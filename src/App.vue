@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import Test from './components/Test.vue';
-import SearchAndFilterForTables from '@/components/SearchAndFilterForTables.vue';
+import SearchAndFilterForTables from './components/SearchAndFilterForTables.vue';
 import { ref } from 'vue';
   
     const filters = ref([
