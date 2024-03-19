@@ -26,6 +26,12 @@ We use VuePress for documentation. Here are the steps to document a new componen
 2. Update in docs/guides/README.md component the 'Component' section
 For more information: https://vuepress.vuejs.org/
 
+To initialize VuePress in local:
+`npx vuepress dev docs`
+
+To build Vuepress:
+`npx vuepress build docs`
+
 
 ## Tips
 - Keep your components small and focused. Each component should do one thing well.
