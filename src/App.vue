@@ -10,25 +10,23 @@ import { ref } from 'vue';
   
     const filters = ref([
       {
-        'name': 'Categoría',
+        'name': 'Color',
         'value': 'type',
         'type': 'category',
-        'categories': ['HIJ', 'DEFG', 'WXYZ'],
+        'categories': ['Marrón', 'Negro', 'Blanco', 'Verde'],
         'selectedFilter': { 'value': []}
       },
       {
-        'name': 'Categoría',
+        'name': 'Precio',
         'value': 'type',
-        'type': 'category',
-        'categories': ['HIJ', 'DEFG', 'WXYZ'],
-        'selectedFilter': { 'value': []}
+        'type': 'number',
+        'selectedFilter': { 'value': null, 'option': null}
       },
       {
-        'name': 'Categoría',
+        'name': 'Rotable',
         'value': 'type',
-        'type': 'category',
-        'categories': ['HIJ', 'DEFG', 'WXYZ'],
-        'selectedFilter': { 'value': []}
+        'type': 'boolean',
+        'selectedFilter': { 'value': null}
       },
     ]);
 

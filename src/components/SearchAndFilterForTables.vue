@@ -2,28 +2,30 @@
     <div class="d-flex">
         <v-text-field v-model="searchData" class="mr-3" style="min-width: 180px;" density="compact" variant="solo"
             label="Búsqueda" append-inner-icon="mdi-magnify" single-line hide-details></v-text-field>
+    </div>
+    <div class="d-flex">
         <v-menu v-model="openFilterMenu" :close-on-content-click="false" offset-y>
             <template v-slot:activator="{ props }">
                 <v-btn v-if="filters.length > 0" variant="tonal" class="primary-btn mr-3" prepend-icon="mdi-filter"
                     v-bind="props">
                     Filtros
-                    <span ref="filterMenu" class="filter-count" v-show="filtersSelected.length > 0"> {{
-            filtersSelected.length }}</span>
+                    <span ref="filterMenu" class="filter-count" v-show="filtersSelected.length >= 0"> ({{
+                    filtersSelected.length }})</span>
                 </v-btn>
+
             </template>
             <v-card ref="filterMenu" width="400" max-height="500">
-                <v-list class="mr-5 ml-5 mt-5" density="compact">
+
+                <!-- <v-list class="mr-5 ml-5 mt-5" density="compact">
                     <h4>Filtros activos</h4>
                     <v-list-item v-for="filterSelected, index in filtersSelected" :key="index">
                         <v-chip closable :key="filterSelected.id" @click:close.stop="deleteFilter(index)"
-                            color="primary">{{
-            filterSelected.text
-        }}</v-chip>
+                            color="primary">{{filterSelected.text}}</v-chip>
                     </v-list-item>
                     <v-list-item v-show="filtersSelected.length === 0">
                         <span class="no-info">No hay filtros activos</span>
                     </v-list-item>
-                </v-list>
+                </v-list> -->
 
                 <v-divider></v-divider>
                 <v-list density="compact" v-model:opened="openedFilters">
@@ -35,7 +37,7 @@
                         <template v-slot:activator="{ props }" :class="{ 'expanded': index === openedFilters }">
                             <v-list-item v-bind="props">
                                 <span class="ml-5" style="font-weight: 450; font-size:12px !important;">{{
-            filter.name }}</span>
+                                filter.name }}</span>
                             </v-list-item>
                         </template>
                         <div style="background-color: #ddf1ff !important; padding-bottom: 25px;">

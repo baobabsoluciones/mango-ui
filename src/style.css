@@ -47,7 +47,7 @@ a:hover, .hover-effect {
 
 .primary-btn {
     background-color: var(--primary-btn) !important;
-    color: white !important;
+    /* color: white !important; */
     border: none !important;
     outline: 0 !important;
     line-height: 1.5em !important;
