@@ -6,6 +6,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { fileURLToPath, URL } from 'node:url'
 
 
+
 export default defineConfig({
     plugins: [
       vue({ 
@@ -16,6 +17,7 @@ export default defineConfig({
         autoImport: true,
       }),
   ],
+
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
@@ -29,5 +31,19 @@ export default defineConfig({
         }
       }
     }
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+    extensions: [
+      '.js',
+      '.json',
+      '.jsx',
+      '.mjs',
+      '.ts',
+      '.tsx',
+      '.vue',
+    ],
   }
 })
