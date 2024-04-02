@@ -3,27 +3,16 @@
     <v-main>
       <v-container class="fill-height">
         <v-responsive class="flex justify-center overflow-visible">
-          <ThemeToggle/>
-          <Header/>
-          <FilterSearch :filters="filters"/>
+            <FilterSearch :filters="filters"/>
         </v-responsive>
       </v-container>
     </v-main>
   </v-app>
 </template>
 
+
 <script setup lang="ts">
-
-  import { FilterSearch } from '@/components/FilterSearch'
-
-  // Example people to test the search filters
-  // const people = [
-  //   { name: 'Pepe', age: 42, salary: 1200, single: true, skills: ['Python', 'C', 'Rust', 'Go'], availability: new Date('2024-06-01')},
-  //   { name: 'Juan', age: 32, salary: 1500, single: false, skills: ['C++', 'SQL', 'HTML', 'PHP'], availability: new Date('2025-01-01')},
-  //   { name: 'Maria', age: 22, salary: 2000, single: true, skills: ['Vue', 'React', 'Javascript', 'Typescript'], availability: new Date('2024-09-15')},
-  //   { name: 'Ana', age: 52, salary: 1000, single: false, skills: ['Java', 'C#', 'Ruby', 'Perl'], availability: new Date('2024-11-21')},
-  //   { name: 'Luis', age: 62, salary: 800, single: true, skills: ['Cobol', 'Fortran', 'Pascal', 'Basic'], availability: new Date('2024-04-07')}
-  // ]
+  import FilterSearch from '@/components/FilterSearch/FilterSearch.vue';
 
   const filters = {
     age: {

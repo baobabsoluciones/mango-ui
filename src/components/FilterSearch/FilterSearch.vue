@@ -15,6 +15,8 @@
 
 <script lang="ts">
   import FilterRow from './FilterRow.vue';
+  import SearchBox from './SearchBox.vue';
+  import FilterToggle from './FilterToggle.vue';
   export default {
     name: 'FilterSearch',
     props: {
