@@ -2,14 +2,17 @@
       <v-row class="justify-center align-top">
         <!-- Search input -->
         <v-col class="flex-grow-0">
-          <SearchBox :autofocus="autofocus"/>
+          <SearchBox :autofocus="autofocus" @search="handleSearch($event)"/>
         </v-col>
         <v-col class="flex-grow-0">
           <FilterToggle @click="toggleFilters"/>
         </v-col>
       </v-row>
       <v-expand-transition>
-        <FilterRow :filters="filters" v-if="showFilters" />
+        <FilterRow :filters="filters" v-if="showFilters"
+        @range="handleFilterRange($event)"
+        @checked="handleFilterMultiCheckboxes($event)"
+        @dateRange="handleFilterDateRange($event)"/>
       </v-expand-transition>
 </template>
 
@@ -41,6 +44,19 @@
       toggleFilters() {
         // Toggle the value of showFilters when clicking on FilterToggle
         this.showFilters = !this.showFilters;
+      },
+      handleSearch(text) {
+        console.log(text)
+      },
+      handleFilterRange(range) {
+        console.log(range[0])
+        console.log(range[1])
+      },
+      handleFilterMultiCheckboxes(checkedList) {
+        console.log(checkedList)
+      },
+      handleFilterRangeDate(date) {
+        console.log(date)
       }
     }
   }

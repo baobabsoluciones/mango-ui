@@ -4,11 +4,11 @@
     <!-- Render filter components based on their type -->
     <template v-if="filter.type === 'range'">
       <!-- Render range filter component -->
-      <Range :filterData="filter" :name="key"/>
+      <Range :filterData="filter" :name="key" @range="handleRange($event)"/>
     </template>
     <template v-else-if="filter.type === 'checkbox'">
       <!-- Render checkbox filter component -->
-      <MultiCheckbox :filterData="filter" :name="key"/>
+      <MultiCheckbox :filterData="filter" :name="key" @checked="handleMultiCheckboxes($event)"/>
     </template>
     <template v-else-if="filter.type === 'daterange'">
       <!-- Render select filter component -->
@@ -31,6 +31,14 @@
         default: () => ({}),
       },
     },
+    methods: {
+      handleRange (range) {
+        this.$emit('range', [range[0], range[1]]);
+      },
+      handleMultiCheckboxes (checkedList) {
+        this.$emit('checked', checkedList)
+      },
+    }
   }
 </script>
 

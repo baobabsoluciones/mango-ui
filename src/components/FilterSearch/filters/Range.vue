@@ -58,5 +58,13 @@
         return this.name.charAt(0).toUpperCase() + this.name.slice(1);
       }
     },
+    watch: {
+      min() {
+        this.$emit('range', [this.min, this.max]);
+      },
+      max() {
+        this.$emit('range', [this.min, this.max]);
+      },
+    }
   }
 </script>

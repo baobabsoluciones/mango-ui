@@ -15,7 +15,7 @@
                   <v-date-picker
                     v-model="min"
                     color="primary"
-                    hide-header="true"
+                    hide-header=true
                   ></v-date-picker>
                 </v-col>
                 <v-col>
@@ -23,7 +23,7 @@
                   <v-date-picker
                     v-model="max"
                     color="primary"
-                    hide-header="true"
+                    hide-header=true
                   ></v-date-picker>
                 </v-col>
               </v-row>
@@ -63,6 +63,16 @@
       capitalizedFirstName(): string {
         return this.name.charAt(0).toUpperCase() + this.name.slice(1);
       }
+    },
+    watch: {
+      min() {
+        console.log(this.min, this.max)
+        this.$emit('dateRange', [this.min, this.max]);
+      },
+      max() {
+        console.log(this.min, this.max)
+        this.$emit('dateRange', [this.min, this.max]);
+      },
     },
   }
 </script>

@@ -10,7 +10,7 @@
             <h3 class="pb-4">{{ capitalizedFirstName }}</h3>
             <v-row v-for="(filter, key) in options" :key="key">
               <div class="checkbox-container">
-                <v-checkbox v-model="filter.checked" :label="filter.label" />
+                <Checkbox :name="filter.label" :active="filter.checked" @addChecked="handleAddChecked($event)" @removeChecked="handleRemoveChecked($event)"></Checkbox>
               </div>
             </v-row>
           </v-col>
@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts">
+import Checkbox from './filters/Checkbox.vue';
+
   export default {
     name: 'MultiCheckbox',
     props: {
@@ -40,6 +42,9 @@
       return {
         show: false,
         options: this.filterData.options ?? [],
+        itemSelected: false,
+        checked: false,
+        checkboxesSelected: [],
       }
     },
     computed: {
@@ -48,7 +53,17 @@
         return this.name.charAt(0).toUpperCase() + this.name.slice(1);
       }
     },
-  }
+    methods: {
+      handleAddChecked(name) {
+        this.checkboxesSelected.push(name)
+        this.$emit('checked', this.checkboxesSelected)      
+      },
+      handleRemoveChecked(name) {
+        this.checkboxesSelected = this.checkboxesSelected.filter(item => item!= name)
+        this.$emit('checked', this.checkboxesSelected)
+      }
+    },
+}
 </script>
 
 <style scoped>

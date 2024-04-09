@@ -7,6 +7,7 @@
     single-line
     rounded
     :autofocus="autofocus"
+    v-model="searchData"
   >
   </v-text-field>
 </template>
@@ -21,8 +22,21 @@
         default: false,
       },
     },
+    data() {
+      return {
+        searchData:'',
+      }
+    },
     setup() {
       //
+    },
+    methods: {
+
+    },
+    watch: {
+      searchData() {
+        this.$emit('search', this.searchData);
+      }
     }
   }
 </script>

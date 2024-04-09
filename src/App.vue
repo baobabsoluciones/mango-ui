@@ -35,7 +35,7 @@
     skills: {
       type: 'checkbox',
       options: [
-        {checked: true, label: 'Python', value: 'python'},
+        {checked: false, label: 'Python', value: 'python'},
         {checked: false, label: 'C', value: 'c'},
         {checked: false, label: 'Rust', value: 'rust'},
         {checked: false, label: 'Go', value: 'go'},
