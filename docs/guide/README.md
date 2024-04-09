@@ -1,4 +1,5 @@
 # Guide
+
 Mango UI is a Vue 3 component library that provides a set of reusable and customizable UI components.
 
 ## Installation
@@ -23,25 +24,17 @@ import { MangoButton } from 'mango-ui'
 
 export default {
   components: {
-    MangoButton
+    MangoButton,
   },
   methods: {
     handleClick() {
       console.log('Button clicked!')
-    }
-  }
+    },
+  },
 }
 </script>
 ```
 
-## Components
-
-Mango UI includes the following components:
-
-- App Vertical Drawer
-- Search Filter Table
-
-Each component has its own set of props for customization. Check the documentation for each component for more details.
-
 ## Licence
+
 Mango UI is MIT licensed.

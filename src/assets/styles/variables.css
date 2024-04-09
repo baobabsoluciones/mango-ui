@@ -1,6 +1,7 @@
 :root {
   --primary: #1594f1;
-  --info: #181926;
+  --title: #404040;
+  --subtitle: #6e6e6e;
   --success: #3ba780;
   --warning: #b99748;
   --danger: #f44336;

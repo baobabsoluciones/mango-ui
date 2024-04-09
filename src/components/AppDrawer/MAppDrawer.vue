@@ -41,7 +41,7 @@
         <slot name="menu">
           <template v-for="item in items" :key="item.title">
             <v-list-item
-              :base-color="'var(--info)'"
+              :base-color="'var(--title)'"
               :color="'var(--accent)'"
               :class="{ 'non-clickable': !item.to }"
               :to="item.to"
@@ -54,7 +54,7 @@
             <template v-if="item.subPages && expanded">
               <v-list class="subpages">
                 <v-list-item
-                  :base-color="'var(--info)'"
+                  :base-color="'var(--subtitle)'"
                   :color="'var(--accent)'"
                   v-for="subPage in item.subPages"
                   :key="subPage.title"
@@ -74,7 +74,7 @@
             v-for="action in actions"
             :key="action.title"
             :to="action.to"
-            :base-color="'var(--info)'"
+            :base-color="'var(--title)'"
             :color="'var(--accent)'"
           >
             <div class="d-flex align-center">
@@ -92,7 +92,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'AppDrawer',
+  name: 'MAppDrawer',
   props: {
     visible: Boolean,
     width: Number,
