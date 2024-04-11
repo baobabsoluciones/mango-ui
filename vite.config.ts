@@ -1,20 +1,21 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import path from 'path'
-import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-//import vuetify from 'vite-plugin-vuetify'
-import { fileURLToPath, URL } from 'node:url'
+// Plugins
+import Components from 'unplugin-vue-components/vite'
+import Vue from '@vitejs/plugin-vue'
+import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
+// Utilities
+import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
+import path from 'path'
 
 export default defineConfig({
   plugins: [
-    vue({
+    Vue({
       template: { transformAssetUrls },
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
-    vuetify({
-      autoImport: true,
-    }),
+    Vuetify(),
+    Components(),
   ],
   build: {
     lib: {
@@ -29,5 +30,11 @@ export default defineConfig({
         },
       },
     },
+  },
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
 })
