@@ -1,0 +1,18 @@
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.actions {
+  margin-top: auto;
+}
+
+.subpages {
+  padding-left: 1em;
+}
+
+.non-clickable {
+  cursor: default;
+  pointer-events: none;
+}

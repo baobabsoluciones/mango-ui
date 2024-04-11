@@ -1,0 +1,13 @@
+:root {
+  --primary: #1594f1;
+  --title: #404040;
+  --subtitle: #6e6e6e;
+  --success: #3ba780;
+  --warning: #b99748;
+  --danger: #f44336;
+  --background: #fdfdfd;
+  --background-variant: #f6edea;
+  --secondary: #f7be68;
+  --accent: #4dc3dd;
+  --dark-accent: #181926;
+}
