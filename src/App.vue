@@ -1,72 +1,65 @@
 <template>
   <v-app>
-    <MAppDrawer
-      :visible="true"
-      :width="250"
-      :logo="logo"
-      :items="items"
-      :actions="actions"
-      :user="user"
-    >
-    </MAppDrawer>
+    <v-main>
+      <v-container class="fill-height">
+        <v-responsive class="flex justify-center overflow-visible">
+          <FilterSearch :filters="filters" />
+        </v-responsive>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import MAppDrawer from './components/AppDrawer/MAppDrawer.vue'
+<script setup lang="ts">
+import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    MAppDrawer,
+const filters = {
+  age: {
+    min: 18,
+    max: 65,
+    type: 'range',
   },
-  data() {
-    return {
-      logo: {
-        src: './assets/logo.png',
-        title: 'Logo',
-      },
-      items: [
-        {
-          title: 'Home',
-          to: '',
-          icon: 'mdi-home',
-          subPages: [
-            {
-              title: 'Dashboard',
-              to: '/dashboard',
-              icon: 'mdi-view-dashboard',
-            },
-            {
-              title: 'Profile',
-              to: '/profile',
-              icon: 'mdi-account',
-            },
-            // ...other subPages
-          ],
-        },
-        {
-          title: 'About',
-          to: '/about',
-          icon: 'mdi-information',
-        },
-        // ...other items
-      ],
-      actions: [
-        {
-          title: 'Logout',
-          to: '/logout',
-          icon: 'mdi-logout',
-        },
-        // ...other actions
-      ],
-      user: {
-        src: './assets/user.png',
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-      },
-    }
+  salary: {
+    min: 800,
+    max: 2000,
+    type: 'range',
   },
-})
+  status: {
+    type: 'checkbox',
+    options: [
+      { checked: true, label: 'Single', value: 'single' },
+      { checked: true, label: 'Married', value: 'married' },
+    ],
+  },
+  skills: {
+    type: 'checkbox',
+    options: [
+      { checked: false, label: 'Python', value: 'python' },
+      { checked: false, label: 'C', value: 'c' },
+      { checked: false, label: 'Rust', value: 'rust' },
+      { checked: false, label: 'Go', value: 'go' },
+      { checked: false, label: 'C++', value: 'c++' },
+      { checked: false, label: 'SQL', value: 'sql' },
+      { checked: false, label: 'HTML', value: 'html' },
+      { checked: false, label: 'PHP', value: 'php' },
+      { checked: false, label: 'Vue', value: 'vue' },
+      { checked: false, label: 'React', value: 'react' },
+      { checked: false, label: 'Javascript', value: 'javascript' },
+      { checked: false, label: 'Typescript', value: 'typescript' },
+      { checked: false, label: 'Java', value: 'java' },
+      { checked: false, label: 'C#', value: 'c#' },
+      { checked: false, label: 'Ruby', value: 'ruby' },
+      { checked: false, label: 'Perl', value: 'perl' },
+      { checked: false, label: 'Cobol', value: 'cobol' },
+      { checked: false, label: 'Fortran', value: 'fortran' },
+      { checked: false, label: 'Pascal', value: 'pascal' },
+      { checked: false, label: 'Basic', value: 'basic' },
+    ],
+  },
+  availability: {
+    type: 'daterange',
+    min: new Date('2024-03-01'),
+    max: new Date('2024-12-31'),
+  },
+}
 </script>

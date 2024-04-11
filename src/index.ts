@@ -3,3 +3,4 @@ import './assets/styles/variables.css'
 import 'vuetify/dist/vuetify.min.css'
 
 export { default as MAppDrawer } from './components/AppDrawer/MAppDrawer.vue'
+export { default as SearchAndFilterForTables } from './components/SearchAndFilterForTables.vue'
