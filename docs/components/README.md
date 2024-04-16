@@ -6,6 +6,7 @@ This page provides documentation for all components in our library.
 
 - [MAppDrawer](#app-drawer)
 - [MSearchAndFilterForTables](#search-and-filter-for-tables)
+- [MButton](#button)
 
 ## App Drawer
 
@@ -141,3 +142,43 @@ The `FilterSearch.vue` component orchestrates the communication between its chil
 - `range`: this event is emitted when a numeric range is entered in a filter
 - `checked`: this event is emitted when a checkbox is selected in a filter
 - `dateRange`: this event is emitted when a date range is selected in a filter
+
+## Button
+
+The `MButton` is a very simple Vue 3 component based on the v-btn component from Vuetify.
+It provides flexibility in customizing button appearance and behavior by allowing developers to easily create buttons with labels, icons, various colors, rounded corners, different sizes, and flat or raised styles.
+
+
+### Props
+
+- `label`: String - It is the text label to display on the button.
+- `icon`: String - Name of the Material Design Icons (MDI) icon to display on the button.
+- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' or 'append-icon'. 
+- `color`: String - The background color of the button. Accepts any valid CSS color value.
+- `rounded`: String - Controls the roundedness of the button's corners. Possible values are '0', 'xs', 'sm', 'lg' or 'xl'.
+- `size`: String - Controls the size of the button. Accepted values are 'x-small', 'small', 'large' or 'x-large'.
+- `flat`: Boolean - Controls whether the button has a flat or raised appearance.
+
+### Usage
+
+To use the `MButton` component, import it in the script of the project you want to use it in:
+
+```vue
+import MButton from './MButton.vue';
+```
+
+Then, within your template, use the `MButton` component as follows:
+
+    ```vue
+    <MButton
+    label="Button"
+    icon="mdi-heart"
+    icon-position="prepend-icon"
+    color="#020246"
+    rounded="xl"
+    size="small"
+    :flat="true"/>
+    ```
+
+    This will render a small button with the label "Button", an MDI heart icon positioned before the label, with a custom color dark blue, rounded corners of extra-large size, and a flat appearance.
+

@@ -9,7 +9,7 @@
           icon="mdi-heart"
           icon-position="prepend-icon"
           color="#020246"
-          rounded="xl"
+          rounded="sm"
           size="small"
           :flat="true"/>
         </v-responsive>

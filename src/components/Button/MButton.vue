@@ -28,9 +28,8 @@ export default {
           default: 'primary'
         },
         rounded: {
-          type: [String, Boolean],
-          default: false,
-          validator: value => ['0', 'xs', 'sm', '', 'lg', 'xl', true, false].includes(value)
+          type: String,
+          default: '',
         },
         size: {
           type: String,
@@ -39,7 +38,6 @@ export default {
         iconPosition: {
           type: String,
           default: 'append-icon',
-          validator: value => ['prepend-icon', 'append-icon'].includes(value)
         },
         flat: {
           type: Boolean,
