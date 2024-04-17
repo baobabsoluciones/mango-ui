@@ -7,7 +7,6 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Button: typeof import('./src/components/Button.vue')['default']
     Checkbox: typeof import('./src/components/FilterSearch/filters/Checkbox.vue')['default']
     DateRange: typeof import('./src/components/FilterSearch/filters/DateRange.vue')['default']
     FilterRow: typeof import('./src/components/FilterSearch/FilterRow.vue')['default']

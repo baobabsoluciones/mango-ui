@@ -5,13 +5,14 @@
         <v-responsive class="flex justify-center overflow-visible">
           <FilterSearch :filters="filters" />
           <MButton
-          label="Button"
-          icon="mdi-heart"
-          icon-position="prepend-icon"
-          color="#020246"
-          rounded="sm"
-          size="small"
-          :flat="true"/>
+            label="Button"
+            icon="mdi-heart"
+            icon-position="prepend-icon"
+            color="#020246"
+            rounded="sm"
+            size="small"
+            :flat="true"
+          />
         </v-responsive>
       </v-container>
     </v-main>
@@ -71,5 +72,4 @@ const filters = {
     max: new Date('2024-12-31'),
   },
 }
-
 </script>
