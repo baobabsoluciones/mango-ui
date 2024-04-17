@@ -4,6 +4,15 @@
       <v-container class="fill-height">
         <v-responsive class="flex justify-center overflow-visible">
           <FilterSearch :filters="filters" />
+          <MButton
+            label="Button"
+            icon="mdi-heart"
+            icon-position="prepend-icon"
+            color="#020246"
+            rounded="sm"
+            size="small"
+            :flat="true"
+          />
         </v-responsive>
       </v-container>
     </v-main>
@@ -12,6 +21,7 @@
 
 <script setup lang="ts">
 import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
+import MButton from '@/components/Button/MButton.vue'
 
 const filters = {
   age: {
