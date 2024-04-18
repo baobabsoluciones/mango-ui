@@ -1,5 +1,5 @@
-<template>
-  <v-btn
+<template >
+  <v-btn class="custom-transform-class text-none"
     v-bind="{
       rounded: rounded,
       color: color,
@@ -52,8 +52,12 @@ export default {
     },
     variant: {
       type: String,
-      default: 'contained',
+      default: 'flat',
     }
   },
 }
 </script>
+<style lang="sass">
+  .custom-transform-class
+    text-transform: uppercase
+</style>
