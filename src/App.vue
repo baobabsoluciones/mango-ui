@@ -5,13 +5,13 @@
         <v-responsive class="flex justify-center overflow-visible">
           <FilterSearch :filters="filters" />
           <MButton
-            label="Button"
+            label="hola"
             icon="mdi-heart"
             icon-position="prepend-icon"
             color="#020246"
-            rounded="sm"
+            rounded="xl"
             size="small"
-            :flat="true"
+            :variant="'tonal'"
           />
         </v-responsive>
       </v-container>

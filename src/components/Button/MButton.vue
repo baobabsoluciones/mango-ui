@@ -4,6 +4,7 @@
       rounded: rounded,
       color: color,
       flat: flat,
+      variant: variant,
       size: size || undefined,
       ...$attrs,
     }"
@@ -49,6 +50,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    variant: {
+      type: String,
+      default: 'contained',
+    }
   },
 }
 </script>
