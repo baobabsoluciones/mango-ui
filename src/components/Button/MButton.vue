@@ -1,9 +1,10 @@
-<template>
-  <v-btn
+<template >
+  <v-btn class="custom-transform-class text-none"
     v-bind="{
       rounded: rounded,
       color: color,
       flat: flat,
+      variant: variant,
       size: size || undefined,
       ...$attrs,
     }"
@@ -49,6 +50,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    variant: {
+      type: String,
+      default: 'flat',
+    }
   },
 }
 </script>
+<style lang="sass">
+  .custom-transform-class
+    text-transform: uppercase
+</style>
