@@ -63,7 +63,7 @@
 import { defineComponent, ref, computed, watch } from 'vue'
 
 export default defineComponent({
-  name: 'DragNDropFile',
+  name: 'MDragNDropFile',
   props: {
     uploadedFile: {
       type: File,
