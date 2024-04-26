@@ -7,6 +7,8 @@ This page provides documentation for all components in our library.
 - [MAppDrawer](#app-drawer)
 - [MSearchAndFilterForTables](#search-and-filter-for-tables)
 - [MButton](#button)
+- [MDragNDropFile](#drag-n-drop-file)
+
 
 ## App Drawer
 
@@ -182,3 +184,38 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+## DragNDropFile
+
+The DragNDropFile component is a Vue 3 component that facilitates drag and drop file uploading. It provides a user-friendly interface for users to upload files by dragging them onto a designated area.
+
+### Props
+
+- `uploadedFile`: File - The currently uploaded file.
+- `downloadIcon`: String - The Material Design Icons (MDI) icon to display in the drop area.
+- `description`: String - Description text to display in the drop area.
+- `formatsAllowed`: Array - An array of file formats allowed for upload.
+- `downloadButtonTitle`: String - Title for the upload button.
+- `invalidFileText`: String - Text to display when an invalid file is uploaded.
+- `errors`: String - Error message to display.
+
+### Usage
+
+```vue
+  import DragNDropFile from './DragNDropFile.vue';
+  <DragNDropFile
+    downloadIcon="mdi-upload"
+    :description="
+      'Description'
+    "
+    :uploadedFile="selectedFile"
+    :formatsAllowed="['json', 'xlsx']"
+    :errors="instanceErrors"
+    :downloadButtonTitle="
+      'DownloadButtonTitle'
+    "
+    :invalidFileText="
+      'InvalidFileText'
+    "
+    @file-selected="onFileSelected"
+  />
+```
