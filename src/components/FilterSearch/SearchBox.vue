@@ -3,11 +3,13 @@
     label="Search"
     class="search-box"
     variant="outlined"
+    density="compact"
     append-inner-icon="mdi-magnify"
     single-line
     rounded
     :autofocus="autofocus"
     v-model="searchData"
+    hide-details="auto"
   >
   </v-text-field>
 </template>

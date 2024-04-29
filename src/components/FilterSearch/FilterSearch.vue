@@ -9,13 +9,10 @@
     </v-col>
     <v-col class="mt-3">
       <v-expand-transition>
-        <FilterRow
-          :filters="filters"
-          v-if="showFilters"
-          @range="handleFilterRange($event)"
-          @checked="handleFilterMultiCheckboxes($event)"
-          @dateRange="handleFilterDateRange($event)"
-        />
+        <FilterRow :filters="filters" v-if="showFilters"
+        @range="handleFilterRange($event)"
+        @checked="handleFilterMultiCheckboxes($event)"
+        @dateRange="handleFilterRangeDate($event)"/>
       </v-expand-transition>
     </v-col>
   </v-row>
@@ -40,29 +37,28 @@ export default {
   setup() {
     //
   },
-  data() {
-    return {
-      showFilters: false,
-    }
-  },
-  methods: {
-    toggleFilters() {
-      // Toggle the value of showFilters when clicking on FilterToggle
-      this.showFilters = !this.showFilters
+    data() {
+      return {
+        showFilters: false,
+      }
     },
-    handleSearch(text) {
-      console.log(text)
+    methods: {
+      toggleFilters() {
+        // Toggle the value of showFilters when clicking on FilterToggle
+        this.showFilters = !this.showFilters;
+      },
+      handleSearch(text) {
+        this.$emit('search', text);
+      },
+      handleFilterRange(range) {
+        this.$emit('filter', { type: 'range', value: range })        
+      },
+      handleFilterMultiCheckboxes(checkedList) {
+        this.$emit('filter', { type: 'checkbox', value: checkedList });
+      },
+      handleFilterRangeDate(date) {
+        this.$emit('filter', { type: 'dateRange', value: date });
+      },
     },
-    handleFilterRange(range) {
-      console.log(range[0])
-      console.log(range[1])
-    },
-    handleFilterMultiCheckboxes(checkedList) {
-      console.log(checkedList)
-    },
-    handleFilterRangeDate(date) {
-      console.log(date)
-    },
-  },
 }
 </script>

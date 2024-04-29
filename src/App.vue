@@ -14,6 +14,7 @@
 
       <v-container class="fill-height">
         <v-responsive class="flex justify-center overflow-visible">
+          <FilterSearch :filters="filters" @search="handleSearch" @filter="handleFilters"/>
           <MButton
             label="HoLi"
             icon="mdi-heart"
@@ -80,5 +81,13 @@ const filters = {
     min: new Date('2024-03-01'),
     max: new Date('2024-12-31'),
   },
-}
+};
+
+const handleSearch = (text) => {
+  console.log('Search text:', text)
+};
+
+const handleFilters = (filters) => {
+  console.log('Applied filters:', filters)
+};
 </script>
