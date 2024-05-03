@@ -15,6 +15,7 @@ declare module 'vue' {
     FilterToggle: typeof import('./src/components/FilterSearch/FilterToggle.vue')['default']
     MAppDrawer: typeof import('./src/components/AppDrawer/MAppDrawer.vue')['default']
     MButton: typeof import('./src/components/Button/MButton.vue')['default']
+    MFormSteps: typeof import('./src/components/MFormSteps.vue')['default']
     MultiCheckbox: typeof import('./src/components/FilterSearch/filters/MultiCheckbox.vue')['default']
     Range: typeof import('./src/components/FilterSearch/filters/Range.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
