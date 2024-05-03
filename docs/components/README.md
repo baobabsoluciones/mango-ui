@@ -182,3 +182,25 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MDateRangePicker
+
+MDateRangePicker
+The MDateRangePicker is a Vue 3 component designed to allow users to select a range of dates. It provides two date pickers side by side, enabling users to select both a start date and an end date.
+
+### Props
+
+  - `startDateTitle`: String - The title to display above the start date picker.
+  - `endDateTitle`: String - The title to display above the end date picker.
+
+### Usage
+
+  ```vue
+  <MDateRangePicker
+  :startDateTitle="'Start Date'"
+  :endDateTitle="'End Date'"
+  @start-date-change="handleStartDateChange"
+  @end-date-change="handleEndDateChange"
+  />
+  ```
+
+This will render two date pickers, one for selecting the start date and another for selecting the end date. Users can choose dates within the range specified. The selected start and end dates can be captured by listening to the `start-date-change` and `end-date-change` events, respectively.
