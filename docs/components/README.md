@@ -182,3 +182,26 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MTitleView
+
+The MTitleView component is a Vue 3 component designed to display a title along with an optional icon and description. It provides a simple and flexible way to present information with a consistent layout.
+
+### Props
+
+  - `icon`: String - The name of the icon to display alongside the title.
+  - `title`: String - The main title to be displayed.
+  - `description`: String - An optional description to provide additional context or details.
+
+### Usage
+
+To use the MTitleView component, import it into the script of your Vue project:
+
+```vue
+<MTitleView
+:icon="'mdi-check'"
+:title="'Title'"
+:description="'Description text goes here'"
+/>
+```
+
+This will render a title along with an icon, if provided, and an optional description. The appearance of the title and description can be customized using CSS styles defined within the component.
