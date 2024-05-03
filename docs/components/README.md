@@ -182,3 +182,31 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MFormSteps
+
+The MFormSteps is a Vue 3 component designed to facilitate the creation of multi-step form interfaces. It provides a structured approach to presenting form steps, enabling developers to guide users through sequential stages of a form submission process.
+
+### Props
+
+ - `steps`: Array - An array of objects representing each step of the form. Each step object contains a title and subtitle to be displayed.
+ - `previousButtonText`: String - Text to display on the "Previous" button for navigating to the previous step.
+ - `continueButtonText`: String - Text to display on the "Continue" button for navigating to the next step.
+ - `disablePreviousButton`: Boolean - Whether to disable the "Previous" button when on the first step.
+ - `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
+ - `currentStep`: Number - The index of the current step. Defaults to 0.
+
+### Usage
+
+```vue
+  <MFormSteps
+      :steps="steps"
+      :disablePreviousButton="disablePrevButton"
+      :disableNextButton="disableNextButton"
+      :currentStep.sync="currentStep"
+      :continueButtonText="$t('projectExecution.continueButton')"
+      :previousButtonText="$t('projectExecution.previousButton')"
+      @update:currentStep="handleStepChange"
+      class="mt-5"
+    >
+```
+This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
