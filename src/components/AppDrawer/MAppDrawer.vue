@@ -37,7 +37,7 @@
       <v-divider class="mt-4 mb-4"></v-divider>
 
       <!-- Menu -->
-      <v-list>
+      <v-list class="pages-content">
         <slot name="menu">
           <template v-for="item in items" :key="item.title">
             <v-list-item
