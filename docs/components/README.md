@@ -195,6 +195,20 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
  - `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
  - `currentStep`: Number - The index of the current step. Defaults to 0.
 
+### Emits
+
+ - `update:currentStep`: This event is emitted when the value of localCurrentStep changes. It is used to synchronize the state of the parent component with the internal state of the MFormSteps component. By listening to this event in the parent component and updating the value of currentStep, the parent component can control the current step of the form.
+
+### Slots
+
+- `step-${localCurrentStep}-title`: This slot allows the user to customize the title of the current step of the form. If provided, it will replace the default title of the current step. This allows greater flexibility in displaying specific information at each step of the form.
+
+- `step-${localCurrentStep}-content`: This slot allows the user to customize the content of the current step of the form. If provided, it will replace the default content of the current step. This is useful for displaying specific form fields or any other content related to the current step.
+
+- `step-${localCurrentStep}-previous-button`: This slot allows the user to customize the "Previous" button of the current step of the form. If provided, it will replace the default "Previous" button of the current step. This allows customizing the appearance or behavior of the "Previous" button according to the user's needs.
+
+- `step-${localCurrentStep}-continue-button`: This slot allows the user to customize the "Continue" button of the current step of the form. If provided, it will replace the default "Continue" button of the current step. This is useful for customizing the appearance or behavior of the "Continue" button according to the user's needs.
+
 ### Usage
 
 ```vue
