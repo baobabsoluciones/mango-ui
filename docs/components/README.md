@@ -198,6 +198,11 @@ The DragNDropFile component is a Vue 3 component that facilitates drag and drop 
 - `invalidFileText`: String - Text to display when an invalid file is uploaded.
 - `errors`: String - Error message to display.
 
+### Emits
+
+- `file-selected`: This event is emitted when a file is successfully selected, either by manually selecting a file from the file explorer or by dragging and dropping a file into the designated area. The selected file is passed as an argument in the event. You can listen for this event in the parent component to handle logic related to the selected file.
+
+
 ### Usage
 
 ```vue

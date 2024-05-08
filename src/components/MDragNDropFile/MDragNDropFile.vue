@@ -180,42 +180,5 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-.dnd-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed #e4e7ec;
-  padding: 20px;
-}
+<style src="./MDragNDropFile.css" scoped></style>
 
-.dragging-over {
-  background-color: #f0f0f0;
-}
-
-.dnd-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.dnd-icon {
-  font-size: 48px;
-}
-
-.selected-file {
-  font-size: 0.8rem;
-  color: var(--success);
-}
-
-.error-message {
-  font-size: 0.8rem;
-  color: var(--danger);
-}
-
-.error-container {
-  max-height: 200px;
-  overflow-y: auto;
-}
-</style>
