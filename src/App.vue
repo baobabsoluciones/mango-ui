@@ -1,17 +1,26 @@
 <template>
   <v-app>
     <v-main>
+      <v-row class="d-flex justify-space-between mt-3">
+        <FilterSearch :filters="filters" />
+        <v-btn
+          color="primary"
+          prepend-icon="mdi-pencil"
+          @click="showSnackbar('info', 'Custom button clicked')"
+        >
+          Modo edición
+        </v-btn>
+      </v-row>
+
       <v-container class="fill-height">
         <v-responsive class="flex justify-center overflow-visible">
-          <FilterSearch :filters="filters" />
           <MButton
-            label="Button"
+            label="HoLi"
             icon="mdi-heart"
             icon-position="prepend-icon"
             color="#020246"
-            rounded="sm"
+            rounded="xl"
             size="small"
-            :flat="true"
           />
         </v-responsive>
       </v-container>

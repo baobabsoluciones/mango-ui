@@ -146,7 +146,7 @@ The `FilterSearch.vue` component orchestrates the communication between its chil
 ## Button
 
 The `MButton` is a very simple Vue 3 component based on the v-btn component from Vuetify.
-It provides flexibility in customizing button appearance and behavior by allowing developers to easily create buttons with labels, icons, various colors, rounded corners, different sizes, and flat or raised styles.
+It provides flexibility in customizing button appearance and behavior by allowing developers to easily create buttons with labels, icons, various colors, rounded corners, different sizes, and variant styles.
 
 
 ### Props
@@ -154,10 +154,10 @@ It provides flexibility in customizing button appearance and behavior by allowin
 - `label`: String - It is the text label to display on the button.
 - `icon`: String - Name of the Material Design Icons (MDI) icon to display on the button.
 - `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' or 'append-icon'. 
-- `color`: String - The background color of the button. Accepts any valid CSS color value.
+- `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)) or the name of the material color (for example success or purple)
 - `rounded`: String - Controls the roundedness of the button's corners. Possible values are '0', 'xs', 'sm', 'lg' or 'xl'.
 - `size`: String - Controls the size of the button. Accepted values are 'x-small', 'small', 'large' or 'x-large'.
-- `flat`: Boolean - Controls whether the button has a flat or raised appearance.
+- `variant`: String - Controls the appearance or style of the botton. Possible values are elevated(default), flat, tonal, outlined, text, and plain.
 
 ### Usage
 
@@ -177,8 +177,8 @@ Then, within your template, use the `MButton` component as follows:
     color="#020246"
     rounded="xl"
     size="small"
-    :flat="true"/>
+    :variant="'outlined'"/>
     ```
 
-    This will render a small button with the label "Button", an MDI heart icon positioned before the label, with a custom color dark blue, rounded corners of extra-large size, and a flat appearance.
+    This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
