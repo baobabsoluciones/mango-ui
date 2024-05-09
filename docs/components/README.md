@@ -182,3 +182,36 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MInfoCard Component
+
+The MInfoCard component represents an information card that displays an icon, title, description, and optional content.
+
+### Props
+
+  `icon (String, default: '')`: The icon to display on the card.
+  `iconColor (String, default: '')`: The color of the icon.
+  `title (String, default: '')`: The title of the card.
+  `description (String, default: '')`: The description of the card.
+
+### Slots
+
+  `Default Slot`: The default slot is used to provide additional content within the card.
+  `icon`: This slot allows you to customize the icon displayed on the card. If not provided, the default icon specified in the icon prop will be used.
+  'title': This slot allows you to customize the title displayed on the card. If not provided, the default title specified in the title prop will be used.
+  `description`: This slot allows you to customize the description displayed on the card. If not provided, the default description specified in the description prop will be used.
+
+### Usage
+
+Here's an example of how to use the MInfoCard component:
+
+  ```vue
+    <template>
+      <MInfoCard
+        icon="mdi-account"
+        iconColor="primary"
+        title="User Information"
+        description="View and edit user details"
+      >
+      </MInfoCard>
+    </template>
+  ```
