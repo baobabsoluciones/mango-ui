@@ -182,3 +182,45 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MFormSteps
+
+The MFormSteps is a Vue 3 component designed to facilitate the creation of multi-step form interfaces. It provides a structured approach to presenting form steps, enabling developers to guide users through sequential stages of a form submission process.
+
+### Props
+
+ - `steps`: Array - An array of objects representing each step of the form. Each step object contains a title and subtitle to be displayed.
+ - `previousButtonText`: String - Text to display on the "Previous" button for navigating to the previous step.
+ - `continueButtonText`: String - Text to display on the "Continue" button for navigating to the next step.
+ - `disablePreviousButton`: Boolean - Whether to disable the "Previous" button when on the first step.
+ - `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
+ - `currentStep`: Number - The index of the current step. Defaults to 0.
+
+### Emits
+
+ - `update:currentStep`: This event is emitted when the value of localCurrentStep changes. It is used to synchronize the state of the parent component with the internal state of the MFormSteps component. By listening to this event in the parent component and updating the value of currentStep, the parent component can control the current step of the form.
+
+### Slots
+
+- `step-${localCurrentStep}-title`: This slot allows the user to customize the title of the current step of the form. If provided, it will replace the default title of the current step. This allows greater flexibility in displaying specific information at each step of the form.
+
+- `step-${localCurrentStep}-content`: This slot allows the user to customize the content of the current step of the form. If provided, it will replace the default content of the current step. This is useful for displaying specific form fields or any other content related to the current step.
+
+- `step-${localCurrentStep}-previous-button`: This slot allows the user to customize the "Previous" button of the current step of the form. If provided, it will replace the default "Previous" button of the current step. This allows customizing the appearance or behavior of the "Previous" button according to the user's needs.
+
+- `step-${localCurrentStep}-continue-button`: This slot allows the user to customize the "Continue" button of the current step of the form. If provided, it will replace the default "Continue" button of the current step. This is useful for customizing the appearance or behavior of the "Continue" button according to the user's needs.
+
+### Usage
+
+```vue
+  <MFormSteps
+      :steps="steps"
+      :disablePreviousButton="disablePrevButton"
+      :disableNextButton="disableNextButton"
+      :currentStep.sync="currentStep"
+      :continueButtonText="$t('projectExecution.continueButton')"
+      :previousButtonText="$t('projectExecution.previousButton')"
+      @update:currentStep="handleStepChange"
+      class="mt-5"
+    >
+```
+This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
