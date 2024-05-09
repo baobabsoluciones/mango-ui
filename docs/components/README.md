@@ -182,3 +182,32 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+### MAppBarTab Component
+
+The MAppBarTab component provides a customizable bottom navigation bar with tabs and a create button. It allows users to navigate between different tabs and create new items.
+
+### Props
+- `tabs` (Array, default: []): An array of objects representing each tab in the bottom navigation bar.    Each object should contain the following properties:
+  - `icon (String)`: The icon to display for the tab.
+  - `text (String)`: The text to display for the tab.
+  - `selected (Boolean, optional)`: Indicates whether the tab is currently selected.
+  - `loading (Boolean, optional)`: Indicates whether the tab is in a loading state.
+
+- `createTitle (String, default: '')`: The title to display on the create button.
+
+### Events
+
+- `close`: Emitted when a tab is closed. Emits the index of the tab that was closed.
+- `select`: Emitted when a tab is selected. Emits the tab object that was selected.
+- `create`: Emitted when the create button is clicked.
+
+```vue
+  <MAppBarTab
+    :tabs="tabs"
+    createTitle="Add New"
+    @close="onTabClose"
+    @select="onTabSelect"
+    @create="onCreate"
+  />
+</template>
+```
