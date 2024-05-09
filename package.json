@@ -4,6 +4,17 @@
   "version": "0.0.1-a6",
   "type": "module",
   "main": "dist/mango-vue.js",
+  "homepage": "https://github.com/baobabsoluciones/mango-ui/",
+  "bugs": {
+    "url": "https://github.com/baobabsoluciones/mango-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baobabsoluciones/mango-ui.git"
+  },
+  "license": "Apache-2.0",
+  "author": "baobab soluciones <sistemas@baoababsoluciones.com>",
+  "files": ["dist", "package.json", "README.md", "LICENSE"],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
