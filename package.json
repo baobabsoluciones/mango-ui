@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.1a4",
   "type": "module",
-  "main": "dist/mango-ui.js",
+  "main": "dist/mango-vue.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
