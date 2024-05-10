@@ -1,0 +1,14 @@
+.v-expansion-panel-title {
+  background-color: #f2f4f8 !important;
+  font-weight: 500 !important;
+}
+
+.custom-checkbox {
+  margin-bottom: -35px;
+}
+
+.custom-checkbox .v-label {
+  font-size: 0.9rem;
+  color: black !important;
+  font-weight: 500 !important;
+}
