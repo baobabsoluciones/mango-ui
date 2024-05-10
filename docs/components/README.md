@@ -349,3 +349,72 @@ Here's an example of how to use the MInfoCard component:
   </MInfoCard>
 </template>
 ```
+
+### MPanelData Component
+
+The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
+
+### Props
+
+- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
+  showFirstHeaders (Boolean, default: false): Controls whether to show headers for the first panel.
+- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
+- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
+
+- allPanelsOpen (Boolean, default: true): Controls whether all panels are initially expanded.
+
+### Events
+
+- date-range-changed: Emitted when the date range is changed. Emits the selected date range value.
+
+### Slots
+
+- `Default Slot`: The default slot is used to provide a table component to display the data.
+
+The slot receives the following props:
+
+- `item-data`: The data to be displayed in the table.
+- `show-headers`: Indicates whether to show headers for the table.
+- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
+- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
+
+### Methods
+
+formatDateForHeaders: A method to format dates for use as panel headers.
+
+### Data
+
+- `selectedDateRange`: The currently selected date range.
+  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
+
+- `openedPanels`: An array containing the indices of the currently opened panels.
+
+### Watchers
+
+- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
+
+### Usage
+
+Here's an example of how to use the MPanelData component:
+
+```vue
+<template>
+  <MPanelData
+    :data="panelData"
+    :checkboxOptions="checkboxOptions"
+    :noDataMessage="noDataMessage"
+    :allPanelsOpen="true"
+    @date-range-changed="onDateRangeChanged"
+  >
+    <template #table="{ itemData, showHeaders }">
+      <!-- Custom table component -->
+    </template>
+    <template #no-data>
+      <div>No data available for the selected range</div>
+    </template>
+    <template #custom-checkbox>
+      <!-- Custom content for custom date range -->
+    </template>
+  </MPanelData>
+</template>
+```

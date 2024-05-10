@@ -21,6 +21,7 @@ declare module 'vue' {
     MTitleView: (typeof import('./src/components/MTitleView.vue'))['default']
     MFormSteps: (typeof import('./src/components/MFormSteps.vue'))['default']
     MDragNDropFile: (typeof import('./src/components/MDragNDropFile.vue'))['default']
+    MPanelData: (typeof import('./src/components/MPanelData/MPanelData.vue'))['default']
     MultiCheckbox: (typeof import('./src/components/FilterSearch/filters/MultiCheckbox.vue'))['default']
     Range: (typeof import('./src/components/FilterSearch/filters/Range.vue'))['default']
     RouterLink: (typeof import('vue-router'))['RouterLink']
