@@ -8,9 +8,7 @@ const formatDateForHeaders = function (date, locale = 'en') {
     day: 'numeric',
   }
 
-  let formattedDate = new Intl.DateTimeFormat(locale.value, options).format(
-    itemDate,
-  )
+  let formattedDate = new Intl.DateTimeFormat(locale, options).format(itemDate)
   itemDate.toDateString() ===
     new Date(today.setDate(today.getDate() - 1)).toDateString()
 

@@ -419,75 +419,6 @@ Here's an example of how to use the MPanelData component:
 </template>
 ```
 
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
 ### Snackbar Component
 
 The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
@@ -533,6 +464,54 @@ export default {
 </script>
 ```
 
+### MBaseModal
+
+The MBaseModal component is a base modal component that provides a customizable modal dialog box. It allows users to display content and interact with buttons within the modal.
+
+### Template
+
+The template of the MBaseModal component uses Vuetify's v-dialog component to create a modal dialog box. Inside the dialog, it includes a v-card containing the modal's title, content, and action buttons. The modal title can optionally display an icon on the left side. The content area is provided by the default slot named "content". Action buttons are dynamically generated based on the provided buttons prop.
+
+### Props
+
+- `value (Boolean, default: false)`: Controls the visibility of the modal dialog.
+- `title (String, default: '')`: The title text displayed at the top of the modal.
+- `icon (String, default: '')`: An optional icon to display alongside the title.
+- `buttons (Array, default: [])`: An array of objects representing action buttons displayed at the bottom of the modal. Each button object should contain text, class, and action properties.
+- `size (String, default: 'md')`: Specifies the size of the modal. Can be one of 'xs', 'md', or 'lg'.
+- `closeOnOutsideClick (Boolean, default: true)`: Controls whether the modal should be closed when clicking outside of it.
+
+### Emits
+
+- `emitButtonAction(action)`: Emits the specified action when a button is clicked within the modal.
+
+### Usage
+
+Here's an example of how to use the MBaseModal component:
+
+```vue
+<MBaseModal
+  v-model="openConfirmationSaveModal"
+  :closeOnOutsideClick="false"
+  :title="$t('inputOutputData.saveChanges')"
+  :buttons="[
+    {
+      text: $t('inputOutputData.save'),
+      action: 'save',
+      class: 'primary-btn',
+    },
+    {
+      text: $t('inputOutputData.exitWithoutSaving'),
+      action: 'cancel',
+      class: 'secondary-btn',
+    },
+  ]"
+  @save="saveChanges"
+  @cancel="cancelEdit"
+  @close="openConfirmationSaveModal = false"
+></MBaseModal>
+```
+
 ### InputField
 
 The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
@@ -541,34 +520,33 @@ Consists of a v-text-field from Vuetify, which serves as the input field. It all
 
 ### Props
 
-  - `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
-  - `prependIcon (String)`: Specifies the icon to be prepended to the input field.
-  - `appendIcon (String)`: Specifies the icon to be appended to the input field.
-  - `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
-  - `title (String)`: The title or label of the input field.
-  - `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
-  - `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
-  - `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
-  - `rules (Array)`: An array of validation rules for the input field.
-  - `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+- `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+- `prependIcon (String)`: Specifies the icon to be prepended to the input field.
+- `appendIcon (String)`: Specifies the icon to be appended to the input field.
+- `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
+- `title (String)`: The title or label of the input field.
+- `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
+- `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
+- `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
+- `rules (Array)`: An array of validation rules for the input field.
+- `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
 
 ### Usage
 
 The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
 
-  ```vue
-    <template>
-      <div>
-        <InputField
-          type="password"
-          title="Password"
-          placeholder="Enter your password"
-          prependIcon="mdi-lock"
-          suffix="characters"
-          :rules="passwordRules"
-          v-model="password"
-        />
-      </div>
-    </template>
-  ```
-
+```vue
+<template>
+  <div>
+    <InputField
+      type="password"
+      title="Password"
+      placeholder="Enter your password"
+      prependIcon="mdi-lock"
+      suffix="characters"
+      :rules="passwordRules"
+      v-model="password"
+    />
+  </div>
+</template>
+```
