@@ -532,3 +532,25 @@ export default {
 }
 </script>
 ```
+
+### Checkbox Options
+
+This component provides a flexible interface for selecting options with checkboxes, allowing for single or multiple selections and emitting events to notify parent components of selection changes.
+
+### Props
+
+  - `options`: An array of objects representing the options to be displayed, including text, description, and checked status.
+  - `multiple`: A boolean indicating if multiple options can be selected simultaneously.
+
+### Usage
+
+ ```vue
+  <template v-else-if="index === 2">
+    <MCheckboxOptions
+      :options="solvers"
+      :multiple="false"
+      @update:options="solvers = $event"
+      class="mt-4"
+    />
+  </template>
+ ```
