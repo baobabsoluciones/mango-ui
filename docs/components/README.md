@@ -7,7 +7,18 @@ This page provides documentation for all components in our library.
 - [MAppDrawer](#app-drawer)
 - [MSearchAndFilterForTables](#search-and-filter-for-tables)
 - [MButton](#button)
-- [MDragNDropFile](#drag-n-drop-file)
+- [MDragNDropFile](#dragndropfile)
+- [MFormSteps](#mformsteps)
+- [MTitleView](#mtitleview)
+- [MAppBarTab](#mappbartab)
+- [MInfoCard](#minfocard)
+- [MPanelData](#mpaneldata)
+- [Snackbar](#msnackbar)
+- [MBaseModal](#mbasemodal)
+- [MInputField](#minputfield)
+- [MDataTable](#mdatatable)
+- [MCheckboxOptions](#mcheckboxoptions)
+- [MTabTable](#mtabtable)
 
 ## App Drawer
 
@@ -216,7 +227,7 @@ import DragNDropFile from './DragNDropFile.vue';
 />
 ```
 
-### MFormSteps
+## MFormSteps
 
 The MFormSteps is a Vue 3 component designed to facilitate the creation of multi-step form interfaces. It provides a structured approach to presenting form steps, enabling developers to guide users through sequential stages of a form submission process.
 
@@ -260,7 +271,7 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
 
 This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
 
-### MTitleView
+## MTitleView
 
 The MTitleView component is a Vue 3 component designed to display a title along with an optional icon and description. It provides a simple and flexible way to present information with a consistent layout.
 
@@ -284,7 +295,7 @@ To use the MTitleView component, import it into the script of your Vue project:
 
 This will render a title along with an icon, if provided, and an optional description. The appearance of the title and description can be customized using CSS styles defined within the component.
 
-### MAppBarTab Component
+## MAppBarTab Component
 
 The MAppBarTab component provides a customizable bottom navigation bar with tabs and a create button. It allows users to navigate between different tabs and create new items.
 
@@ -316,7 +327,7 @@ The MAppBarTab component provides a customizable bottom navigation bar with tabs
 </template>
 ```
 
-### MInfoCard Component
+## MInfoCard Component
 
 The MInfoCard component represents an information card that displays an icon, title, description, and optional content.
 
@@ -350,7 +361,7 @@ Here's an example of how to use the MInfoCard component:
 </template>
 ```
 
-### MPanelData Component
+## MPanelData Component
 
 The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
 
@@ -419,7 +430,7 @@ Here's an example of how to use the MPanelData component:
 </template>
 ```
 
-### Snackbar Component
+## MSnackbar
 
 The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
 
@@ -464,7 +475,7 @@ export default {
 </script>
 ```
 
-### MBaseModal
+## MBaseModal
 
 The MBaseModal component is a base modal component that provides a customizable modal dialog box. It allows users to display content and interact with buttons within the modal.
 
@@ -512,7 +523,7 @@ Here's an example of how to use the MBaseModal component:
 ></MBaseModal>
 ```
 
-### InputField
+## MInputField
 
 The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
 
@@ -551,7 +562,7 @@ The InputField component can be used in templates wherever input fields are requ
 </template>
 ```
 
-### DataTable
+## MDataTable
 
 The DataTable component renders a dynamic table using Vuetify's v-data-table. It allows users to display, edit, and delete tabular data with customizable headers and items.
 
@@ -598,7 +609,7 @@ The DataTable component can be used to display tabular data with customized head
 </template>
 ```
 
-### Checkbox Options
+## MCheckboxOptions
 
 This component provides a flexible interface for selecting options with checkboxes, allowing for single or multiple selections and emitting events to notify parent components of selection changes.
 
@@ -617,5 +628,52 @@ This component provides a flexible interface for selecting options with checkbox
     @update:options="solvers = $event"
     class="mt-4"
   />
+</template>
+```
+
+## MTabTable
+
+This component is a combination of tabs and a table, allowing users to toggle between different datasets represented by tabs and view the content of each tab in a table.
+
+### Props
+
+- `tabsData`: An array of objects containing information about the tabs, where each object has a text property representing the tab's text and a value property representing the tab's value.
+- `selectedTable`: The initially selected tab value. Defaults to null.
+- `direction`: The direction in which the tabs are displayed, can be 'vertical' or 'horizontal'. Defaults to 'vertical'.
+
+### Usage
+
+```vue
+<template>
+  <tabs-table
+    :tabsData="tabs"
+    :selectedTable="selectedTab"
+    direction="vertical"
+    @update:selectedTab="handleSelectedTabUpdate"
+  >
+    <!-- Tabs Content -->
+    <template #tabs>
+      <v-tabs>
+        <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value">
+          {{ tab.text }}
+        </v-tab>
+      </v-tabs>
+    </template>
+
+    <!-- Actions Content -->
+    <template #actions>
+      <v-btn @click="doSomething">Do Something</v-btn>
+    </template>
+
+    <!-- Table Content -->
+    <template #table="props">
+      <v-data-table :items="getDataForTab(props.tableData)" />
+    </template>
+
+    <!-- Custom Button -->
+    <template #customButton>
+      <v-btn @click="customAction">Custom Action</v-btn>
+    </template>
+  </tabs-table>
 </template>
 ```
