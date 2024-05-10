@@ -1,10 +1,10 @@
 # Guide
 
-Mango UI is a Vue 3 component library that provides a set of reusable and customizable UI components.
+Mango Vue is a Vue 3 component library that provides a set of reusable and customizable UI components.
 
 ## Installation
 
-To install Mango UI, use the following command:
+To install Mango Vue, use the following command:
 
 ```bash
 npm install mango-ui
@@ -37,4 +37,4 @@ export default {
 
 ## Licence
 
-Mango UI is MIT licensed.
+Mango Vue is MIT licensed.
