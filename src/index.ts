@@ -19,3 +19,5 @@ export { default as MBaseModal } from './components/MBaseModal/MBaseModal.vue'
 >>>>>>> development
 export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
 
+export { default as MCheckboxOptions } from './components/MCheckboxOptions/MCheckboxOptions.vue'
+
