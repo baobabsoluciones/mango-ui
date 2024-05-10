@@ -15,6 +15,7 @@ declare module 'vue' {
     FilterTag: (typeof import('./src/components/FilterSearch/FilterTag.vue'))['default']
     FilterToggle: (typeof import('./src/components/FilterSearch/FilterToggle.vue'))['default']
     FormSteps: (typeof import('./src/components/FormSteps.vue'))['default']
+    MAppBarTab: (typeof import('./src/components/MAppBarTab/MAppBarTab.vue'))['default']
     MAppDrawer: (typeof import('./src/components/AppDrawer/MAppDrawer.vue'))['default']
     MButton: (typeof import('./src/components/Button/MButton.vue'))['default']
     MTitleView: (typeof import('./src/components/MTitleView.vue'))['default']

@@ -9,3 +9,4 @@ export { default as MDragNDropFile } from './components/MDragNDropFile/MDragNDro
 export { default as MFormSteps } from './components/MFormSteps/MFormSteps.vue'
 export { default as MTitleView } from './components/MTitleView.vue'
 export { default as MAppBarTab } from './components/MAppBarTab/MAppBarTab.vue'
+export { default as MInfoCard } from './components/MInfoCard/MInfoCard.vue'
