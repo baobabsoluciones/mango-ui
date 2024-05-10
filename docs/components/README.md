@@ -7,6 +7,7 @@ This page provides documentation for all components in our library.
 - [MAppDrawer](#app-drawer)
 - [MSearchAndFilterForTables](#search-and-filter-for-tables)
 - [MButton](#button)
+- [MDragNDropFile](#drag-n-drop-file)
 
 ## App Drawer
 
@@ -148,12 +149,11 @@ The `FilterSearch.vue` component orchestrates the communication between its chil
 The `MButton` is a very simple Vue 3 component based on the v-btn component from Vuetify.
 It provides flexibility in customizing button appearance and behavior by allowing developers to easily create buttons with labels, icons, various colors, rounded corners, different sizes, and variant styles.
 
-
 ### Props
 
 - `label`: String - It is the text label to display on the button.
 - `icon`: String - Name of the Material Design Icons (MDI) icon to display on the button.
-- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' or 'append-icon'. 
+- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' or 'append-icon'.
 - `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)) or the name of the material color (for example success or purple)
 - `rounded`: String - Controls the roundedness of the button's corners. Possible values are '0', 'xs', 'sm', 'lg' or 'xl'.
 - `size`: String - Controls the size of the button. Accepted values are 'x-small', 'small', 'large' or 'x-large'.
@@ -182,22 +182,56 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+## DragNDropFile
+
+The DragNDropFile component is a Vue 3 component that facilitates drag and drop file uploading. It provides a user-friendly interface for users to upload files by dragging them onto a designated area.
+
+### Props
+
+- `uploadedFile`: File - The currently uploaded file.
+- `downloadIcon`: String - The Material Design Icons (MDI) icon to display in the drop area.
+- `description`: String - Description text to display in the drop area.
+- `formatsAllowed`: Array - An array of file formats allowed for upload.
+- `downloadButtonTitle`: String - Title for the upload button.
+- `invalidFileText`: String - Text to display when an invalid file is uploaded.
+- `errors`: String - Error message to display.
+
+### Emits
+
+- `file-selected`: This event is emitted when a file is successfully selected, either by manually selecting a file from the file explorer or by dragging and dropping a file into the designated area. The selected file is passed as an argument in the event. You can listen for this event in the parent component to handle logic related to the selected file.
+
+### Usage
+
+```vue
+import DragNDropFile from './DragNDropFile.vue';
+<DragNDropFile
+  downloadIcon="mdi-upload"
+  :description="'Description'"
+  :uploadedFile="selectedFile"
+  :formatsAllowed="['json', 'xlsx']"
+  :errors="instanceErrors"
+  :downloadButtonTitle="'DownloadButtonTitle'"
+  :invalidFileText="'InvalidFileText'"
+  @file-selected="onFileSelected"
+/>
+```
+
 ### MFormSteps
 
 The MFormSteps is a Vue 3 component designed to facilitate the creation of multi-step form interfaces. It provides a structured approach to presenting form steps, enabling developers to guide users through sequential stages of a form submission process.
 
 ### Props
 
- - `steps`: Array - An array of objects representing each step of the form. Each step object contains a title and subtitle to be displayed.
- - `previousButtonText`: String - Text to display on the "Previous" button for navigating to the previous step.
- - `continueButtonText`: String - Text to display on the "Continue" button for navigating to the next step.
- - `disablePreviousButton`: Boolean - Whether to disable the "Previous" button when on the first step.
- - `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
- - `currentStep`: Number - The index of the current step. Defaults to 0.
+- `steps`: Array - An array of objects representing each step of the form. Each step object contains a title and subtitle to be displayed.
+- `previousButtonText`: String - Text to display on the "Previous" button for navigating to the previous step.
+- `continueButtonText`: String - Text to display on the "Continue" button for navigating to the next step.
+- `disablePreviousButton`: Boolean - Whether to disable the "Previous" button when on the first step.
+- `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
+- `currentStep`: Number - The index of the current step. Defaults to 0.
 
 ### Emits
 
- - `update:currentStep`: This event is emitted when the value of localCurrentStep changes. It is used to synchronize the state of the parent component with the internal state of the MFormSteps component. By listening to this event in the parent component and updating the value of currentStep, the parent component can control the current step of the form.
+- `update:currentStep`: This event is emitted when the value of localCurrentStep changes. It is used to synchronize the state of the parent component with the internal state of the MFormSteps component. By listening to this event in the parent component and updating the value of currentStep, the parent component can control the current step of the form.
 
 ### Slots
 
@@ -212,15 +246,16 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
 ### Usage
 
 ```vue
-  <MFormSteps
-      :steps="steps"
-      :disablePreviousButton="disablePrevButton"
-      :disableNextButton="disableNextButton"
-      :currentStep.sync="currentStep"
-      :continueButtonText="$t('projectExecution.continueButton')"
-      :previousButtonText="$t('projectExecution.previousButton')"
-      @update:currentStep="handleStepChange"
-      class="mt-5"
-    >
+<MFormSteps
+  :steps="steps"
+  :disablePreviousButton="disablePrevButton"
+  :disableNextButton="disableNextButton"
+  :currentStep.sync="currentStep"
+  :continueButtonText="$t('projectExecution.continueButton')"
+  :previousButtonText="$t('projectExecution.previousButton')"
+  @update:currentStep="handleStepChange"
+  class="mt-5"
+></MFormSteps>
 ```
+
 This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
