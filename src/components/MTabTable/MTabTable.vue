@@ -49,6 +49,7 @@
 import { ref, computed, watch } from 'vue'
 
 export default {
+  name: 'MTabTable',
   props: {
     tabsData: {
       type: Array,
