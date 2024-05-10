@@ -5,7 +5,7 @@
         <v-expansion-panels variant="accordion" multiple v-model="openedPanels">
           <v-expansion-panel v-for="(item, index) in data" :key="index">
             <v-expansion-panel-title>{{
-              formatDateForHeaders(item.date)
+              formatDateForHeaders(item.date, language)
             }}</v-expansion-panel-title>
             <v-expansion-panel-text>
               <slot
@@ -79,6 +79,10 @@ export default {
     allPanelsOpen: {
       type: Boolean,
       default: true,
+    },
+    language: {
+      type: String,
+      default: 'en',
     },
   },
   data: () => ({

@@ -357,15 +357,15 @@ The MPanelData component displays data in an expandable panel format, allowing u
 ### Props
 
 - `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-  showFirstHeaders (Boolean, default: false): Controls whether to show headers for the first panel.
+- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
 - `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
 - `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-
-- allPanelsOpen (Boolean, default: true): Controls whether all panels are initially expanded.
+- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
+- `language (String, default: 'en')`: Indicates the language for the date formatting
 
 ### Events
 
-- date-range-changed: Emitted when the date range is changed. Emits the selected date range value.
+- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
 
 ### Slots
 
