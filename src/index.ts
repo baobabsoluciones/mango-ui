@@ -8,3 +8,4 @@ export { default as MFilterSearch } from './components/FilterSearch/FilterSearch
 export { default as MDragNDropFile } from './components/MDragNDropFile/MDragNDropFile.vue'
 export { default as MFormSteps } from './components/MFormSteps/MFormSteps.vue'
 export { default as MTitleView } from './components/MTitleView.vue'
+export { default as MAppBarTab } from './components/MAppBarTab/MAppBarTab.vue'

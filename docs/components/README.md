@@ -283,3 +283,35 @@ To use the MTitleView component, import it into the script of your Vue project:
 ```
 
 This will render a title along with an icon, if provided, and an optional description. The appearance of the title and description can be customized using CSS styles defined within the component.
+
+### MAppBarTab Component
+
+The MAppBarTab component provides a customizable bottom navigation bar with tabs and a create button. It allows users to navigate between different tabs and create new items.
+
+### Props
+
+- `tabs` (Array, default: []): An array of objects representing each tab in the bottom navigation bar. Each object should contain the following properties:
+
+  - `icon (String)`: The icon to display for the tab.
+  - `text (String)`: The text to display for the tab.
+  - `selected (Boolean, optional)`: Indicates whether the tab is currently selected.
+  - `loading (Boolean, optional)`: Indicates whether the tab is in a loading state.
+
+- `createTitle (String, default: '')`: The title to display on the create button.
+
+### Events
+
+- `close`: Emitted when a tab is closed. Emits the index of the tab that was closed.
+- `select`: Emitted when a tab is selected. Emits the tab object that was selected.
+- `create`: Emitted when the create button is clicked.
+
+```vue
+  <MAppBarTab
+    :tabs="tabs"
+    createTitle="Add New"
+    @close="onTabClose"
+    @select="onTabSelect"
+    @create="onCreate"
+  />
+</template>
+```
