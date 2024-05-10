@@ -763,3 +763,50 @@ Here's an example of how to use the MBaseModal component:
   @close="openConfirmationSaveModal = false"
 ></MBaseModal>
 ```
+
+### MTabTable
+
+This component is a combination of tabs and a table, allowing users to toggle between different datasets represented by tabs and view the content of each tab in a table.
+
+### Props
+
+  - `tabsData`: An array of objects containing information about the tabs, where each object has a text property representing the tab's text and a value property representing the tab's value.
+  - `selectedTable`: The initially selected tab value. Defaults to null.
+  - `direction`: The direction in which the tabs are displayed, can be 'vertical' or 'horizontal'. Defaults to 'vertical'.
+
+### Usage
+
+  ```vue
+    <template>
+      <tabs-table
+        :tabsData="tabs"
+        :selectedTable="selectedTab"
+        direction="vertical"
+        @update:selectedTab="handleSelectedTabUpdate"
+      >
+        <!-- Tabs Content -->
+        <template #tabs>
+          <v-tabs>
+            <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value">
+              {{ tab.text }}
+            </v-tab>
+          </v-tabs>
+        </template>
+
+        <!-- Actions Content -->
+        <template #actions>
+          <v-btn @click="doSomething">Do Something</v-btn>
+        </template>
+
+        <!-- Table Content -->
+        <template #table="props">
+          <v-data-table :items="getDataForTab(props.tableData)" />
+        </template>
+
+        <!-- Custom Button -->
+        <template #customButton>
+          <v-btn @click="customAction">Custom Action</v-btn>
+        </template>
+      </tabs-table>
+    </template>
+  ```

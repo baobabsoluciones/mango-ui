@@ -13,3 +13,5 @@ export { default as MInfoCard } from './components/MInfoCard/MInfoCard.vue'
 export { default as MPanelData } from './components/MPanelData/MPanelData.vue'
 export { default as MSnackbar } from './components/MSnackbar/MSnackbar.vue'
 export { default as MBaseModal } from './components/MBaseModal/MBaseModal.vue'
+export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
+
