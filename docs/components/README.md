@@ -419,258 +419,6 @@ Here's an example of how to use the MPanelData component:
 </template>
 ```
 
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
-### Snackbar Component
-
-The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
-
-Uses Vuetify's v-snackbar component to display the message. It binds the show property of the snackbar object to control the visibility of the snackbar. The color of the snackbar is also dynamically set based on the color property of the snackbar object. The message content is bound to the message property of the snackbar object.
-
-### Usage
-
-To use the Snackbar component, you need to provide a snackbar object from a parent component or a global provider. This snackbar object should contain the following properties:
-
-- `show`: A Boolean value indicating whether the snackbar should be visible.
-- `message`: The message content to be displayed in the snackbar.
-- `color`: The color of the snackbar, typically indicating the severity or type of the message (e.g., success, error, warning).
-
-```vue
-<template>
-  <div>
-    <Snackbar :snackbar="snackbarData" />
-    <!-- Other content -->
-  </div>
-</template>
-
-<script>
-import { ref } from 'vue'
-import Snackbar from '@/components/Snackbar.vue'
-
-export default {
-  components: {
-    Snackbar,
-  },
-  setup() {
-    const snackbarData = ref({
-      show: false,
-      message: '',
-      color: 'success',
-    })
-
-    return {
-      snackbarData,
-    }
-  },
-}
-</script>
-```
-
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
 ### Snackbar Component
 
 The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
@@ -764,49 +512,157 @@ Here's an example of how to use the MBaseModal component:
 ></MBaseModal>
 ```
 
+### InputField
+
+The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
+
+Consists of a v-text-field from Vuetify, which serves as the input field. It allows users to input text or other data. The component supports features such as outlined variant, compact density, placeholder text, prefix, suffix, and validation rules.
+
+### Props
+
+- `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+- `prependIcon (String)`: Specifies the icon to be prepended to the input field.
+- `appendIcon (String)`: Specifies the icon to be appended to the input field.
+- `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
+- `title (String)`: The title or label of the input field.
+- `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
+- `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
+- `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
+- `rules (Array)`: An array of validation rules for the input field.
+- `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+
+### Usage
+
+The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
+
+```vue
+<template>
+  <div>
+    <InputField
+      type="password"
+      title="Password"
+      placeholder="Enter your password"
+      prependIcon="mdi-lock"
+      suffix="characters"
+      :rules="passwordRules"
+      v-model="password"
+    />
+  </div>
+</template>
+```
+
+### DataTable
+
+The DataTable component renders a dynamic table using Vuetify's v-data-table. It allows users to display, edit, and delete tabular data with customizable headers and items.
+
+Contains a v-data-table component, which is responsible for rendering the table. It iterates over the provided headers and items to dynamically create table rows and cells. It supports various features such as fixed headers, slot-based customization, and pagination.
+
+### Props
+
+- `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+- `items (Array, required)`: Specifies the data items to be displayed in the table.
+- `options (Object)`: Additional options to configure the behavior and appearance of the table.
+- `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
+- `showFooter (Boolean, default: true)`: Indicates whether to display the table footer.
+- `editionMode (Boolean, default: false)`: Indicates whether the table is in edition mode, allowing users to edit or delete items.
+
+### Emits
+
+- `create-item`: This event is emitted when the user requests to create a new item in the DataTable, typically through an "Add" button. The parent component can handle this event by adding a new item to the data list displayed in the DataTable.
+- `delete-item`: This event is emitted when the user requests to delete an item from the DataTable, usually by clicking on a delete button associated with a specific item in the table. The parent component can handle this event by removing the corresponding item from the data list.
+
+### Slots
+
+The default slot allows customization of table cells based on the header value.
+The top slot enables adding a custom button at the top of the table, typically used for adding new items in edition mode.
+
+### Usage
+
+The DataTable component can be used to display tabular data with customized headers and items. It supports features such as sorting, searching, and pagination. Below is an example of how to use the component:
+
+```vue
+<template>
+  <DataTable
+    :headers="tableHeaders"
+    :items="tableItems"
+    :showHeaders="true"
+    :showFooter="true"
+    :editionMode="true"
+    @create-item="addItem"
+    @delete-item="deleteItem"
+  >
+    <template #name="{ item }">
+      <span>{{ item.name }}</span>
+    </template>
+  </DataTable>
+</template>
+```
+
+### Checkbox Options
+
+This component provides a flexible interface for selecting options with checkboxes, allowing for single or multiple selections and emitting events to notify parent components of selection changes.
+
+### Props
+
+- `options`: An array of objects representing the options to be displayed, including text, description, and checked status.
+- `multiple`: A boolean indicating if multiple options can be selected simultaneously.
+
+### Usage
+
+```vue
+<template v-else-if="index === 2">
+  <MCheckboxOptions
+    :options="solvers"
+    :multiple="false"
+    @update:options="solvers = $event"
+    class="mt-4"
+  />
+</template>
+```
+
 ### MTabTable
 
 This component is a combination of tabs and a table, allowing users to toggle between different datasets represented by tabs and view the content of each tab in a table.
 
 ### Props
 
-  - `tabsData`: An array of objects containing information about the tabs, where each object has a text property representing the tab's text and a value property representing the tab's value.
-  - `selectedTable`: The initially selected tab value. Defaults to null.
-  - `direction`: The direction in which the tabs are displayed, can be 'vertical' or 'horizontal'. Defaults to 'vertical'.
+- `tabsData`: An array of objects containing information about the tabs, where each object has a text property representing the tab's text and a value property representing the tab's value.
+- `selectedTable`: The initially selected tab value. Defaults to null.
+- `direction`: The direction in which the tabs are displayed, can be 'vertical' or 'horizontal'. Defaults to 'vertical'.
 
 ### Usage
 
-  ```vue
-    <template>
-      <tabs-table
-        :tabsData="tabs"
-        :selectedTable="selectedTab"
-        direction="vertical"
-        @update:selectedTab="handleSelectedTabUpdate"
-      >
-        <!-- Tabs Content -->
-        <template #tabs>
-          <v-tabs>
-            <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value">
-              {{ tab.text }}
-            </v-tab>
-          </v-tabs>
-        </template>
-
-        <!-- Actions Content -->
-        <template #actions>
-          <v-btn @click="doSomething">Do Something</v-btn>
-        </template>
-
-        <!-- Table Content -->
-        <template #table="props">
-          <v-data-table :items="getDataForTab(props.tableData)" />
-        </template>
-
-        <!-- Custom Button -->
-        <template #customButton>
-          <v-btn @click="customAction">Custom Action</v-btn>
-        </template>
-      </tabs-table>
+```vue
+<template>
+  <tabs-table
+    :tabsData="tabs"
+    :selectedTable="selectedTab"
+    direction="vertical"
+    @update:selectedTab="handleSelectedTabUpdate"
+  >
+    <!-- Tabs Content -->
+    <template #tabs>
+      <v-tabs>
+        <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value">
+          {{ tab.text }}
+        </v-tab>
+      </v-tabs>
     </template>
-  ```
+
+    <!-- Actions Content -->
+    <template #actions>
+      <v-btn @click="doSomething">Do Something</v-btn>
+    </template>
+
+    <!-- Table Content -->
+    <template #table="props">
+      <v-data-table :items="getDataForTab(props.tableData)" />
+    </template>
+
+    <!-- Custom Button -->
+    <template #customButton>
+      <v-btn @click="customAction">Custom Action</v-btn>
+    </template>
+  </tabs-table>
+</template>
+```
