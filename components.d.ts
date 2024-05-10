@@ -17,6 +17,7 @@ declare module 'vue' {
     FormSteps: (typeof import('./src/components/FormSteps.vue'))['default']
     MAppDrawer: (typeof import('./src/components/AppDrawer/MAppDrawer.vue'))['default']
     MButton: (typeof import('./src/components/Button/MButton.vue'))['default']
+    MTitleView: (typeof import('./src/components/MTitleView.vue'))['default']
     MFormSteps: (typeof import('./src/components/MFormSteps.vue'))['default']
     MDragNDropFile: (typeof import('./src/components/MDragNDropFile.vue'))['default']
     MultiCheckbox: (typeof import('./src/components/FilterSearch/filters/MultiCheckbox.vue'))['default']
