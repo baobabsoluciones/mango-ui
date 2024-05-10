@@ -19,6 +19,7 @@ declare module 'vue' {
     MDragNDropFile: typeof import('./src/components/MDragNDropFile/MDragNDropFile.vue')['default']
     MFormSteps: typeof import('./src/components/MFormSteps/MFormSteps.vue')['default']
     MInfoCard: typeof import('./src/components/MInfoCard/MInfoCard.vue')['default']
+    MInputField: typeof import('./src/components/MInputField/MInputField.vue')['default']
     MPanelData: typeof import('./src/components/MPanelData/MPanelData.vue')['default']
     MSnackbar: typeof import('./src/components/MSnackbar/MSnackbar.vue')['default']
     MTitleView: typeof import('./src/components/MTitleView.vue')['default']

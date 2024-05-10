@@ -532,3 +532,43 @@ export default {
 }
 </script>
 ```
+
+### InputField
+
+The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
+
+Consists of a v-text-field from Vuetify, which serves as the input field. It allows users to input text or other data. The component supports features such as outlined variant, compact density, placeholder text, prefix, suffix, and validation rules.
+
+### Props
+
+  - `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+  - `prependIcon (String)`: Specifies the icon to be prepended to the input field.
+  - `appendIcon (String)`: Specifies the icon to be appended to the input field.
+  - `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
+  - `title (String)`: The title or label of the input field.
+  - `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
+  - `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
+  - `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
+  - `rules (Array)`: An array of validation rules for the input field.
+  - `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+
+### Usage
+
+The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
+
+  ```vue
+    <template>
+      <div>
+        <InputField
+          type="password"
+          title="Password"
+          placeholder="Enter your password"
+          prependIcon="mdi-lock"
+          suffix="characters"
+          :rules="passwordRules"
+          v-model="password"
+        />
+      </div>
+    </template>
+  ```
+
