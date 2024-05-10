@@ -349,3 +349,50 @@ Here's an example of how to use the MInfoCard component:
   </MInfoCard>
 </template>
 ```
+### MBaseModal
+
+The MBaseModal component is a base modal component that provides a customizable modal dialog box. It allows users to display content and interact with buttons within the modal.
+
+### Template
+
+The template of the MBaseModal component uses Vuetify's v-dialog component to create a modal dialog box. Inside the dialog, it includes a v-card containing the modal's title, content, and action buttons. The modal title can optionally display an icon on the left side. The content area is provided by the default slot named "content". Action buttons are dynamically generated based on the provided buttons prop.
+
+### Props
+
+  - `value (Boolean, default: false)`: Controls the visibility of the modal dialog.
+  - `title (String, default: '')`: The title text displayed at the top of the modal.
+  - `icon (String, default: '')`: An optional icon to display alongside the title.
+  - `buttons (Array, default: [])`: An array of objects representing action buttons displayed at the bottom of the modal. Each button object should contain text, class, and action properties.
+  - `size (String, default: 'md')`: Specifies the size of the modal. Can be one of 'xs', 'md', or 'lg'.
+  - `closeOnOutsideClick (Boolean, default: true)`: Controls whether the modal should be closed when clicking outside of it.
+
+### Emits
+
+  - `emitButtonAction(action)`: Emits the specified action when a button is clicked within the modal.
+
+### Usage
+
+  Here's an example of how to use the MBaseModal component:
+
+  ```vue
+    <MBaseModal
+      v-model="openConfirmationSaveModal"
+      :closeOnOutsideClick="false"
+      :title="$t('inputOutputData.saveChanges')"
+      :buttons="[
+        {
+          text: $t('inputOutputData.save'),
+          action: 'save',
+          class: 'primary-btn',
+        },
+        {
+          text: $t('inputOutputData.exitWithoutSaving'),
+          action: 'cancel',
+          class: 'secondary-btn',
+        },
+      ]"
+      @save="saveChanges"
+      @cancel="cancelEdit"
+      @close="openConfirmationSaveModal = false"
+    >
+  ```
