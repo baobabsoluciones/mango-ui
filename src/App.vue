@@ -1,27 +1,10 @@
 <template>
   <v-app>
     <v-main>
-      <v-row class="d-flex justify-space-between mt-3">
-        <FilterSearch :filters="filters" />
-        <v-btn
-          color="primary"
-          prepend-icon="mdi-pencil"
-          @click="showSnackbar('info', 'Custom button clicked')"
-        >
-          Modo edición
-        </v-btn>
-      </v-row>
-
+      
       <v-container class="fill-height">
         <v-responsive class="flex justify-center overflow-visible">
-          <MButton
-            label="HoLi"
-            icon="mdi-heart"
-            icon-position="prepend-icon"
-            color="#020246"
-            rounded="xl"
-            size="small"
-          />
+          <FormSteps/>
         </v-responsive>
       </v-container>
     </v-main>
@@ -29,8 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
-import MButton from '@/components/Button/MButton.vue'
+import FormSteps from '@/components/FormSteps.vue'
 
 const filters = {
   age: {
