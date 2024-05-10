@@ -1,6 +1,4 @@
-import i18n from '@/plugins/i18n'
-
-const formatDateForHeaders = function (date, locale = i18n.global.locale) {
+const formatDateForHeaders = function (date, locale = 'en') {
   const today = new Date()
   const itemDate = new Date(date)
   const options = {
@@ -19,6 +17,4 @@ const formatDateForHeaders = function (date, locale = i18n.global.locale) {
   return formattedDate
 }
 
-export {
-  formatDateForHeaders,
-}
+export { formatDateForHeaders }
