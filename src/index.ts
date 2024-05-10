@@ -17,3 +17,5 @@ export { default as MInputField } from './components/MInputField/MInputField.vue
 =======
 export { default as MBaseModal } from './components/MBaseModal/MBaseModal.vue'
 >>>>>>> development
+export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
+

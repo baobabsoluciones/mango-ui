@@ -550,3 +550,137 @@ The InputField component can be used in templates wherever input fields are requ
   </div>
 </template>
 ```
+
+### MBaseModal
+
+The MBaseModal component is a base modal component that provides a customizable modal dialog box. It allows users to display content and interact with buttons within the modal.
+
+### Template
+
+The template of the MBaseModal component uses Vuetify's v-dialog component to create a modal dialog box. Inside the dialog, it includes a v-card containing the modal's title, content, and action buttons. The modal title can optionally display an icon on the left side. The content area is provided by the default slot named "content". Action buttons are dynamically generated based on the provided buttons prop.
+
+### Props
+
+- `value (Boolean, default: false)`: Controls the visibility of the modal dialog.
+- `title (String, default: '')`: The title text displayed at the top of the modal.
+- `icon (String, default: '')`: An optional icon to display alongside the title.
+- `buttons (Array, default: [])`: An array of objects representing action buttons displayed at the bottom of the modal. Each button object should contain text, class, and action properties.
+- `size (String, default: 'md')`: Specifies the size of the modal. Can be one of 'xs', 'md', or 'lg'.
+- `closeOnOutsideClick (Boolean, default: true)`: Controls whether the modal should be closed when clicking outside of it.
+
+### Emits
+
+- `emitButtonAction(action)`: Emits the specified action when a button is clicked within the modal.
+
+### Usage
+
+Here's an example of how to use the MBaseModal component:
+
+```vue
+<MBaseModal
+  v-model="openConfirmationSaveModal"
+  :closeOnOutsideClick="false"
+  :title="$t('inputOutputData.saveChanges')"
+  :buttons="[
+    {
+      text: $t('inputOutputData.save'),
+      action: 'save',
+      class: 'primary-btn',
+    },
+    {
+      text: $t('inputOutputData.exitWithoutSaving'),
+      action: 'cancel',
+      class: 'secondary-btn',
+    },
+  ]"
+  @save="saveChanges"
+  @cancel="cancelEdit"
+  @close="openConfirmationSaveModal = false"
+></MBaseModal>
+```
+
+### InputField
+
+The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
+
+Consists of a v-text-field from Vuetify, which serves as the input field. It allows users to input text or other data. The component supports features such as outlined variant, compact density, placeholder text, prefix, suffix, and validation rules.
+
+### Props
+
+- `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+- `prependIcon (String)`: Specifies the icon to be prepended to the input field.
+- `appendIcon (String)`: Specifies the icon to be appended to the input field.
+- `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
+- `title (String)`: The title or label of the input field.
+- `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
+- `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
+- `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
+- `rules (Array)`: An array of validation rules for the input field.
+- `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+
+### Usage
+
+The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
+
+```vue
+<template>
+  <div>
+    <InputField
+      type="password"
+      title="Password"
+      placeholder="Enter your password"
+      prependIcon="mdi-lock"
+      suffix="characters"
+      :rules="passwordRules"
+      v-model="password"
+    />
+  </div>
+</template>
+```
+
+### DataTable
+
+The DataTable component renders a dynamic table using Vuetify's v-data-table. It allows users to display, edit, and delete tabular data with customizable headers and items.
+
+Contains a v-data-table component, which is responsible for rendering the table. It iterates over the provided headers and items to dynamically create table rows and cells. It supports various features such as fixed headers, slot-based customization, and pagination.
+
+### Props
+
+- `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+- `items (Array, required)`: Specifies the data items to be displayed in the table.
+- `options (Object)`: Additional options to configure the behavior and appearance of the table.
+- `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
+- `showFooter (Boolean, default: true)`: Indicates whether to display the table footer.
+- `editionMode (Boolean, default: false)`: Indicates whether the table is in edition mode, allowing users to edit or delete items.
+
+### Emits
+
+- `create-item`: This event is emitted when the user requests to create a new item in the DataTable, typically through an "Add" button. The parent component can handle this event by adding a new item to the data list displayed in the DataTable.
+- `delete-item`: This event is emitted when the user requests to delete an item from the DataTable, usually by clicking on a delete button associated with a specific item in the table. The parent component can handle this event by removing the corresponding item from the data list.
+
+### Slots
+
+The default slot allows customization of table cells based on the header value.
+The top slot enables adding a custom button at the top of the table, typically used for adding new items in edition mode.
+
+### Usage
+
+The DataTable component can be used to display tabular data with customized headers and items. It supports features such as sorting, searching, and pagination. Below is an example of how to use the component:
+
+```vue
+<template>
+  <DataTable
+    :headers="tableHeaders"
+    :items="tableItems"
+    :showHeaders="true"
+    :showFooter="true"
+    :editionMode="true"
+    @create-item="addItem"
+    @delete-item="deleteItem"
+  >
+    <template #name="{ item }">
+      <span>{{ item.name }}</span>
+    </template>
+  </DataTable>
+</template>
+```

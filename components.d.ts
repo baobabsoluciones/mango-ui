@@ -16,6 +16,7 @@ declare module 'vue' {
     MAppBarTab: (typeof import('./src/components/MAppBarTab/MAppBarTab.vue'))['default']
     MAppDrawer: (typeof import('./src/components/AppDrawer/MAppDrawer.vue'))['default']
     MButton: (typeof import('./src/components/Button/MButton.vue'))['default']
+    MDataTable: (typeof import('./src/components/MDataTable/MDataTable.vue'))['default']
     MDragNDropFile: (typeof import('./src/components/MDragNDropFile/MDragNDropFile.vue'))['default']
     MFormSteps: (typeof import('./src/components/MFormSteps/MFormSteps.vue'))['default']
     MInfoCard: (typeof import('./src/components/MInfoCard/MInfoCard.vue'))['default']
