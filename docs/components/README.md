@@ -532,3 +532,51 @@ export default {
 }
 </script>
 ```
+
+### DataTable
+
+The DataTable component renders a dynamic table using Vuetify's v-data-table. It allows users to display, edit, and delete tabular data with customizable headers and items.
+
+Contains a v-data-table component, which is responsible for rendering the table. It iterates over the provided headers and items to dynamically create table rows and cells. It supports various features such as fixed headers, slot-based customization, and pagination.
+
+### Props
+
+  - `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+  - `items (Array, required)`: Specifies the data items to be displayed in the table.
+  - `options (Object)`: Additional options to configure the behavior and appearance of the table.
+  - `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
+  - `showFooter (Boolean, default: true)`: Indicates whether to display the table footer.
+  - `editionMode (Boolean, default: false)`: Indicates whether the table is in edition mode, allowing users to edit or delete items.
+
+### Emits
+
+  - `create-item`: This event is emitted when the user requests to create a new item in the DataTable, typically through an "Add" button. The parent component can handle this event by adding a new item to the data list displayed in the DataTable.
+  - `delete-item`: This event is emitted when the user requests to delete an item from the DataTable, usually by clicking on a delete button associated with a specific item in the table. The parent component can handle this event by removing the corresponding item from the data list.
+
+### Slots
+
+  The default slot allows customization of table cells based on the header value.
+  The top slot enables adding a custom button at the top of the table, typically used for adding new items in edition mode.
+
+### Usage
+
+  The DataTable component can be used to display tabular data with customized headers and items. It supports features such as sorting, searching, and pagination. Below is an example of how to use the component:
+
+  ```vue
+    <template>
+      <DataTable
+        :headers="tableHeaders"
+        :items="tableItems"
+        :showHeaders="true"
+        :showFooter="true"
+        :editionMode="true"
+        @create-item="addItem"
+        @delete-item="deleteItem"
+      >
+        <template #name="{ item }">
+          <span>{{ item.name }}</span>
+        </template>
+      </DataTable>
+    </template>
+  ```
+

@@ -12,3 +12,5 @@ export { default as MAppBarTab } from './components/MAppBarTab/MAppBarTab.vue'
 export { default as MInfoCard } from './components/MInfoCard/MInfoCard.vue'
 export { default as MPanelData } from './components/MPanelData/MPanelData.vue'
 export { default as MSnackbar } from './components/MSnackbar/MSnackbar.vue'
+export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
+
