@@ -224,3 +224,48 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
     >
 ```
 This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
+
+### Snackbar Component
+
+The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
+
+Uses Vuetify's v-snackbar component to display the message. It binds the show property of the snackbar object to control the visibility of the snackbar. The color of the snackbar is also dynamically set based on the color property of the snackbar object. The message content is bound to the message property of the snackbar object.
+
+### Usage
+To use the Snackbar component, you need to provide a snackbar object from a parent component or a global provider. This snackbar object should contain the following properties:
+
+  - `show`: A Boolean value indicating whether the snackbar should be visible.
+  - `message`: The message content to be displayed in the snackbar.
+  - `color`: The color of the snackbar, typically indicating the severity or type of the message (e.g., success, error, warning).
+
+  ```vue
+    <template>
+      <div>
+        <Snackbar :snackbar="snackbarData" />
+        <!-- Other content -->
+      </div>
+    </template>
+
+    <script>
+    import { ref } from 'vue';
+    import Snackbar from '@/components/Snackbar.vue';
+
+    export default {
+      components: {
+        Snackbar,
+      },
+      setup() {
+        const snackbarData = ref({
+          show: false,
+          message: '',
+          color: 'success',
+        });
+
+        return {
+          snackbarData,
+        };
+      },
+    };
+    </script>
+  ```
+
