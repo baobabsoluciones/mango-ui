@@ -419,258 +419,6 @@ Here's an example of how to use the MPanelData component:
 </template>
 ```
 
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
-### Snackbar Component
-
-The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
-
-Uses Vuetify's v-snackbar component to display the message. It binds the show property of the snackbar object to control the visibility of the snackbar. The color of the snackbar is also dynamically set based on the color property of the snackbar object. The message content is bound to the message property of the snackbar object.
-
-### Usage
-
-To use the Snackbar component, you need to provide a snackbar object from a parent component or a global provider. This snackbar object should contain the following properties:
-
-- `show`: A Boolean value indicating whether the snackbar should be visible.
-- `message`: The message content to be displayed in the snackbar.
-- `color`: The color of the snackbar, typically indicating the severity or type of the message (e.g., success, error, warning).
-
-```vue
-<template>
-  <div>
-    <Snackbar :snackbar="snackbarData" />
-    <!-- Other content -->
-  </div>
-</template>
-
-<script>
-import { ref } from 'vue'
-import Snackbar from '@/components/Snackbar.vue'
-
-export default {
-  components: {
-    Snackbar,
-  },
-  setup() {
-    const snackbarData = ref({
-      show: false,
-      message: '',
-      color: 'success',
-    })
-
-    return {
-      snackbarData,
-    }
-  },
-}
-</script>
-```
-
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
 ### Snackbar Component
 
 The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
@@ -762,4 +510,43 @@ Here's an example of how to use the MBaseModal component:
   @cancel="cancelEdit"
   @close="openConfirmationSaveModal = false"
 ></MBaseModal>
+```
+
+### InputField
+
+The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
+
+Consists of a v-text-field from Vuetify, which serves as the input field. It allows users to input text or other data. The component supports features such as outlined variant, compact density, placeholder text, prefix, suffix, and validation rules.
+
+### Props
+
+- `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+- `prependIcon (String)`: Specifies the icon to be prepended to the input field.
+- `appendIcon (String)`: Specifies the icon to be appended to the input field.
+- `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
+- `title (String)`: The title or label of the input field.
+- `placeholder (String)`: The placeholder text displayed in the input field when it is empty.
+- `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
+- `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
+- `rules (Array)`: An array of validation rules for the input field.
+- `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+
+### Usage
+
+The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
+
+```vue
+<template>
+  <div>
+    <InputField
+      type="password"
+      title="Password"
+      placeholder="Enter your password"
+      prependIcon="mdi-lock"
+      suffix="characters"
+      :rules="passwordRules"
+      v-model="password"
+    />
+  </div>
+</template>
 ```
