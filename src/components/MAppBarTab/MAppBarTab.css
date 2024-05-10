@@ -1,0 +1,47 @@
+.selected-tab {
+  background-color: var(--background) !important;
+}
+
+.my-tab ::v-deep .v-btn__content {
+  font-size: 0.9em !important;
+  text-transform: none !important;
+  color: var(--title);
+  padding: 5px !important;
+  letter-spacing: normal !important;
+}
+
+.loading-icon {
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+::v-deep .v-tab.v-tab.v-btn {
+  border-width: 1px 2px 1px 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  border-bottom: none !important;
+  border-radius: 5px 5px 0 0;
+}
+
+::v-deep .v-tab--selected .v-tab__slider {
+  opacity: 0 !important;
+}
+
+::v-deep.v-bottom-navigation .v-bottom-navigation__content > .v-btn {
+  height: 60% !important;
+  border-color: rgba(0, 0, 0, 0.1);
+  margin-top: 10px !important;
+  margin-right: 5px !important;
+}
+
+::v-deep .v-btn--active > .v-btn__overlay {
+  opacity: 0 !important;
+}
