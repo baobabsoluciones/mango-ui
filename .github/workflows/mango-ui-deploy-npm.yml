@@ -16,7 +16,10 @@ jobs:
         node-version: '14.x'
         registry-url: 'https://registry.npmjs.org'
     - name: Install dependencies
-      run: npm install && npm run build && ls
+      run: |
+        npm install 
+        npm run build
+        ls
     - name: List files on directory
       run: ls
     - name: Publish
