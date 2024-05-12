@@ -19,9 +19,6 @@ jobs:
       run: |
         npm install 
         npm run build
-        ls
-    - name: List files on directory
-      run: ls
     - name: Publish
       run: npm publish
       env:
