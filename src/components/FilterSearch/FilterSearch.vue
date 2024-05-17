@@ -1,10 +1,10 @@
 <template>
-  <v-row>
+  <v-row v-if="filters.length <= 4">
     <!-- Search input -->
-    <v-col class="flex-grow-0">
+    <v-col>
       <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
     </v-col>
-    <v-col class="flex-grow-0">
+    <v-col>
       <FilterToggle @click="toggleFilters" />
     </v-col>
     <v-col class="mt-3">
@@ -16,7 +16,29 @@
       </v-expand-transition>
     </v-col>
   </v-row>
+  <div  v-else>
+<v-row>
+    <!-- Search input -->
+    <v-col>
+      <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
+    </v-col>
+    <v-col>
+      <FilterToggle @click="toggleFilters" />
+    </v-col>
+    </v-row>
+    <v-row>
+    <v-col class="mt-3">
+      <v-expand-transition>
+        <FilterRow :filters="filters" v-if="showFilters"
+        @range="handleFilterRange($event)"
+        @checked="handleFilterMultiCheckboxes($event)"
+        @dateRange="handleFilterRangeDate($event)"/>
+      </v-expand-transition>
+    </v-col>
+  </v-row>
+  </div>
 </template>
+
 
 <script lang="ts">
 import FilterRow from './FilterRow.vue'
@@ -62,3 +84,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.v-row + .v-row{
+  margin-top: 0 !important;
+}
+</style>

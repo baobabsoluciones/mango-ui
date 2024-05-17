@@ -2,7 +2,6 @@
   <v-app>
     <v-main>
       <v-row class="d-flex justify-space-between mt-3">
-        <FilterSearch :filters="filters" />
         <v-btn
           color="primary"
           prepend-icon="mdi-pencil"

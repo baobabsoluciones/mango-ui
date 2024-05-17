@@ -22,9 +22,8 @@
     font-size: 1em;
     border-radius: 25px 25px;
     padding: 6px 12px;
-    min-width: 64px;
+    min-width: 48px;
     text-align: center;
-    margin: 5px;
     margin-top: 0px;
     display: inline-block;
     cursor: pointer;
