@@ -1,12 +1,10 @@
 <template>
-  <v-row v-if="Object.keys(filters).length <= 4">
+  <v-row v-if="Object.keys(filters).length <= 4" style="align-items: center;"
     <!-- Search input -->
     <v-col>
       <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
     </v-col>
-    <v-col >
       <FilterToggle @click="toggleFilters" />
-    </v-col>
     <v-col>
       <v-expand-transition>
         <FilterRow :filters="filters" v-if="showFilters"
