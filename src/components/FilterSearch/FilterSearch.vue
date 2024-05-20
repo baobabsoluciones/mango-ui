@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="Object.keys(filters).length <= 4" style="align-items: center;">
+  <v-row v-if="Object.keys(filters).length <= 4" style="align-items: center; flex: none;">
     <!-- Search input -->
     <v-col>
       <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />

@@ -45,8 +45,7 @@
 
 <style scoped>
   .search-box {
-    max-width: 600px;
-    min-width: 400px;
+    width: 400px !important;
   }
 
 </style>

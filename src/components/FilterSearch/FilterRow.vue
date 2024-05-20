@@ -48,6 +48,5 @@ export default {
 <style scoped>
 .filters-row {
   animation: slide-in 0.5s;
-  
 }
 </style>
