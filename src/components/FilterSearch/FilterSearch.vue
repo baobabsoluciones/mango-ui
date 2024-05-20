@@ -57,10 +57,6 @@ export default {
   setup() {
     //
   },
-  mounted() {
-    console.log(Object.keys(this.filters).length
-)
-  },
     data() {
       return {
         showFilters: false,
