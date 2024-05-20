@@ -1,6 +1,6 @@
 <template>
   <v-row class="filters-row">
-    <v-col v-for="(filter, key) in filters" :key="key" class="flex-grow-0 pt-0">
+    <v-col v-for="(filter, key) in filters" :key="key" class="flex-grow-0 pt-0 pb-0">
       <!-- Render filter components based on their type -->
       <template v-if="filter.type === 'range'">
         <!-- Render range filter component -->
@@ -48,5 +48,6 @@ export default {
 <style scoped>
 .filters-row {
   animation: slide-in 0.5s;
+  
 }
 </style>

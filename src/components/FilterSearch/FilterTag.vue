@@ -25,6 +25,7 @@
     min-width: 48px;
     text-align: center;
     margin-top: 0px;
+    margin-bottom: 0px;
     display: inline-block;
     cursor: pointer;
     border: 1.5px solid #d3d3d3;

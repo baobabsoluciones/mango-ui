@@ -1,13 +1,13 @@
 <template>
-  <v-row v-if="filters.length <= 4">
+  <v-row v-if="Object.keys(filters).length <= 4">
     <!-- Search input -->
     <v-col>
       <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
     </v-col>
-    <v-col>
+    <v-col >
       <FilterToggle @click="toggleFilters" />
     </v-col>
-    <v-col class="mt-3">
+    <v-col>
       <v-expand-transition>
         <FilterRow :filters="filters" v-if="showFilters"
         @range="handleFilterRange($event)"
@@ -16,26 +16,26 @@
       </v-expand-transition>
     </v-col>
   </v-row>
-  <div  v-else>
-<v-row>
-    <!-- Search input -->
-    <v-col>
-      <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
-    </v-col>
-    <v-col>
-      <FilterToggle @click="toggleFilters" />
-    </v-col>
+  <div v-else>
+    <v-row>
+      <!-- Search input -->
+      <v-col>
+        <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
+      </v-col>
+      <v-col>
+        <FilterToggle @click="toggleFilters" />
+      </v-col>
     </v-row>
     <v-row>
-    <v-col class="mt-3">
-      <v-expand-transition>
-        <FilterRow :filters="filters" v-if="showFilters"
-        @range="handleFilterRange($event)"
-        @checked="handleFilterMultiCheckboxes($event)"
-        @dateRange="handleFilterRangeDate($event)"/>
-      </v-expand-transition>
-    </v-col>
-  </v-row>
+      <v-col class="mt-3">
+        <v-expand-transition>
+          <FilterRow :filters="filters" v-if="showFilters"
+          @range="handleFilterRange($event)"
+          @checked="handleFilterMultiCheckboxes($event)"
+          @dateRange="handleFilterRangeDate($event)"/>
+        </v-expand-transition>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -58,6 +58,10 @@ export default {
   },
   setup() {
     //
+  },
+  mounted() {
+    console.log(Object.keys(this.filters).length
+)
   },
     data() {
       return {
@@ -88,5 +92,6 @@ export default {
 <style>
 .v-row + .v-row{
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 </style>

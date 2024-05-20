@@ -33,16 +33,7 @@ import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
 import MButton from '@/components/Button/MButton.vue'
 
 const filters = {
-  age: {
-    min: 18,
-    max: 65,
-    type: 'range',
-  },
-  salary: {
-    min: 800,
-    max: 2000,
-    type: 'range',
-  },
+  
   status: {
     type: 'checkbox',
     options: [
