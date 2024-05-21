@@ -1,11 +1,13 @@
 <template>
-  <v-row v-if="Object.keys(filters).length <= 4" style="align-items: center; flex: none;">
+  <v-row style="align-items: center;">
     <!-- Search input -->
-    <v-col>
-      <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
+    <v-col class="v-col-md-4 v-col-s-3">
+      <SearchBox :autofocus="autofocus" @search="handleSearch($event)" :size="size" />
     </v-col>
+    <div style="width:35px !important">
       <FilterToggle @click="toggleFilters" />
-    <v-col>
+    </div>
+    <v-col cols="7">
       <v-expand-transition>
         <FilterRow :filters="filters" v-if="showFilters"
         @range="handleFilterRange($event)"
@@ -14,27 +16,6 @@
       </v-expand-transition>
     </v-col>
   </v-row>
-  <div v-else>
-    <v-row>
-      <!-- Search input -->
-      <v-col>
-        <SearchBox :autofocus="autofocus" @search="handleSearch($event)" />
-      </v-col>
-      <v-col>
-        <FilterToggle @click="toggleFilters" />
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="mt-3">
-        <v-expand-transition>
-          <FilterRow :filters="filters" v-if="showFilters"
-          @range="handleFilterRange($event)"
-          @checked="handleFilterMultiCheckboxes($event)"
-          @dateRange="handleFilterRangeDate($event)"/>
-        </v-expand-transition>
-      </v-col>
-    </v-row>
-  </div>
 </template>
 
 
@@ -52,6 +33,10 @@ export default {
     autofocus: {
       type: Boolean,
       default: false,
+    },
+    size: {
+      type: String,
+      default: 'md',
     },
   },
   setup() {

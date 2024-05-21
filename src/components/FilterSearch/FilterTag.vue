@@ -1,6 +1,6 @@
 <template>
   <div class="filter-tag">
-    {{ name }}
+    <span>{{ name }}</span>
   </div>
 </template>
 
@@ -19,7 +19,7 @@
 <style scoped>
   .filter-tag {
     background-color: rgba(255, 255, 255, 0.3);
-    font-size: 1em;
+    font-size: 0.85em;
     border-radius: 25px 25px;
     padding: 6px 12px;
     min-width: 48px;
