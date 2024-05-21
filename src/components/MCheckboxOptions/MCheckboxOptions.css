@@ -1,0 +1,27 @@
+.option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.option.checked {
+  background-color: #f2f4f7;
+}
+
+.content {
+  margin-left: 10px;
+}
+
+.title-option {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--primary-variant);
+}
+
+.description-option {
+  font-size: 0.8rem;
+  color: var(--primary-variant);
+}

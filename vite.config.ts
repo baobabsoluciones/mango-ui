@@ -20,7 +20,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'mango-ui',
+      name: 'mango-vue',
     },
     rollupOptions: {
       external: ['vue'],

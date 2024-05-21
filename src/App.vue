@@ -28,8 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
-import MButton from '@/components/Button/MButton.vue'
+import FormSteps from '@/components/FormSteps.vue'
 
 const filters = {
   status: {
