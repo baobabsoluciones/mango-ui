@@ -1,50 +1,47 @@
 <template>
-    <v-checkbox v-model="checked" :label="name" @change="handleChange"/>
+  <v-checkbox v-model="checked" :label="name" @change="handleChange"/>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'MultiCheckbox',
-    props: {
-      name: {
-        type: String,
-        default: '',
-      },
-      active: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  name: 'MultiCheckbox',
+  props: {
+    name: {
+      type: String,
+      default: '',
     },
-    setup() {
-      //
+    active: {
+      type: Boolean,
+      default: false,
     },
-    data() {
-      return {
-        checked: false,
-        label: '',
+  },
+  data() {
+    return {
+      checked: this.active, // Initialize checked with the value of active
+      label: '',
+    }
+  },
+  methods: {
+    handleChange() {
+      if (this.checked) {
+        this.$emit('addChecked', this.name);
+      } else {
+        this.$emit('removeChecked', this.name);
       }
     },
-    methods: {
-      handleChange() {
-        if (this.checked) {
-          this.checked=true
-          this.$emit('addChecked', this.name);
-
-        } else {
-          this.checked=false
-          this.$emit('removeChecked', this.name);
-        }
-      },
+  },
+  watch: {
+    active(newActive) {
+      // Update checked when active changes
+      this.checked = newActive;
     },
-    watch: {
-      
-  }
+  },
 }
 </script>
 
 <style scoped>
-  .checkbox-container {
-    max-height: 48px;
-    overflow: hidden;
-  }
+.checkbox-container {
+  max-height: 48px;
+  overflow: hidden;
+}
 </style>

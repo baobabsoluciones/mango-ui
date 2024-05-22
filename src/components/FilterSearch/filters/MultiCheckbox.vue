@@ -10,7 +10,12 @@
             <h3 class="pb-4">{{ capitalizedFirstName }}</h3>
             <v-row v-for="(filter, key) in options" :key="key">
               <div class="checkbox-container">
-                <Checkbox :name="filter.label" :active="filter.checked" @addChecked="handleAddChecked($event)" @removeChecked="handleRemoveChecked($event)"></Checkbox>
+                  <Checkbox
+                    :name="filter.label"
+                    :active="filterData.checkedList?.includes(filter.label)"
+                    @addChecked="handleAddChecked"
+                    @removeChecked="handleRemoveChecked"
+                  ></Checkbox>
               </div>
             </v-row>
           </v-col>

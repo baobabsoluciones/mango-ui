@@ -1,10 +1,10 @@
 <template>
   <v-row style="align-items: center;">
     <!-- Search input -->
-    <v-col class="v-col-md-4 v-col-s-3">
+    <v-col class="v-col-md-4">
       <SearchBox :autofocus="autofocus" @search="handleSearch($event)" :size="size" />
     </v-col>
-    <div style="width:35px !important">
+    <div style="width:35px !important" v-if="hasFilters">
       <FilterToggle @click="toggleFilters" />
     </div>
     <v-col cols="7">
@@ -12,7 +12,7 @@
         <FilterRow :filters="filters" v-if="showFilters"
         @range="handleFilterRange($event)"
         @checked="handleFilterMultiCheckboxes($event)"
-        @dateRange="handleFilterRangeDate($event)"/>
+        @daterange="handleFilterRangeDate($event)"/>
       </v-expand-transition>
     </v-col>
   </v-row>
@@ -23,6 +23,7 @@
 import FilterRow from './FilterRow.vue'
 import SearchBox from './SearchBox.vue'
 import FilterToggle from './FilterToggle.vue'
+
 export default {
   name: 'FilterSearch',
   props: {
@@ -52,19 +53,29 @@ export default {
         // Toggle the value of showFilters when clicking on FilterToggle
         this.showFilters = !this.showFilters;
       },
+      resetFilters() {
+        // Reset all filters
+        this.$emit('reset');
+      },
       handleSearch(text) {
         this.$emit('search', text);
       },
-      handleFilterRange(range) {
-        this.$emit('filter', { type: 'range', value: range })        
+      handleFilterRange(filterRange) {
+        this.$emit('filter', { type: 'range', value: filterRange.range, key: filterRange.key})        
       },
-      handleFilterMultiCheckboxes(checkedList) {
-        this.$emit('filter', { type: 'checkbox', value: checkedList });
+      handleFilterMultiCheckboxes(fitlerCheckboxes) {
+        this.$emit('filter', { type: 'checkbox', value: fitlerCheckboxes.checkedList, key: fitlerCheckboxes.key});
       },
       handleFilterRangeDate(date) {
-        this.$emit('filter', { type: 'dateRange', value: date });
+        this.$emit('filter', { type: 'daterange', value: date.date, key: date.key});
       },
     },
+    computed: {
+      hasFilters() {
+        // Check if the filters object is empty
+        return Object.keys(this.filters).length > 0;
+      },
+  },
 }
 </script>
 

@@ -4,19 +4,19 @@
       <!-- Render filter components based on their type -->
       <template v-if="filter.type === 'range'">
         <!-- Render range filter component -->
-        <Range :filterData="filter" :name="filter.title" @range="handleRange($event)" />
+        <Range :filterData="filter" :name="filter.title" @range="handleRange($event, key)" />
       </template>
       <template v-else-if="filter.type === 'checkbox'">
         <!-- Render checkbox filter component -->
         <MultiCheckbox
           :filterData="filter"
           :name="filter.title"
-          @checked="handleMultiCheckboxes($event)"
+          @checked="handleMultiCheckboxes($event, key)"
         />
       </template>
       <template v-else-if="filter.type === 'daterange'">
-        <!-- Render select filter component -->
-        <DateRange :filterData="filter" :name="filter.title" />
+        <!-- Render date filter component -->
+        <DateRange :filterData="filter" :name="filter.title" @daterange="handleDateRange($event, key)" />
       </template>
     </div>
   </div>
@@ -47,11 +47,18 @@ export default {
     window.removeEventListener('resize', this.checkScroll);
   },
   methods: {
-    handleRange(range) {
-      this.$emit('range', [range[0], range[1]])
+    handleRange(range, key) {
+      const filterRange = { key: key, range: range}
+      this.$emit('range', filterRange)
     },
-    handleMultiCheckboxes(checkedList) {
-      this.$emit('checked', checkedList)
+    handleMultiCheckboxes(checkedList, key) {
+      this.filters[key].checkedList = checkedList;
+      const filterCheckboxes = { key: key, checkedList: checkedList }
+      this.$emit('checked', filterCheckboxes)
+    },
+    handleDateRange(date, key) {
+      const filterDate = { key: key, date: date }
+      this.$emit('daterange', filterDate)
     },
     checkScroll() {
       this.isScrollActive = this.$el.scrollWidth > this.$el.clientWidth;
