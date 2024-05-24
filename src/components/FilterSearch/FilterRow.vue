@@ -53,6 +53,9 @@ export default {
     },
     handleMultiCheckboxes(checkedList, key) {
       this.filters[key].checkedList = checkedList;
+      this.filters[key].options.forEach(option => {
+        option.checked = checkedList.includes(option.value);
+      });
       const filterCheckboxes = { key: key, checkedList: checkedList }
       this.$emit('checked', filterCheckboxes)
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-tag">
+  <div class="filter-tag" :class="{ 'selected': selected }">
     <span>{{ name }}</span>
   </div>
 </template>
@@ -11,6 +11,10 @@
       name: {
         type: String,
         default: '',
+      },
+      selected: {
+        type: Boolean,
+        default: false,
       },
     },
   }
@@ -29,5 +33,10 @@
     display: inline-block;
     cursor: pointer;
     border: 1.5px solid #d3d3d3;
+  }
+
+  .filter-tag.selected {
+    border-color: var(--primary);
+    color: var(--primary);
   }
 </style>

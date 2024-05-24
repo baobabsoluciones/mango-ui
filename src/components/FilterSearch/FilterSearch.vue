@@ -7,6 +7,9 @@
     <div style="width:35px !important" v-if="hasFilters">
       <FilterToggle @click="toggleFilters" />
     </div>
+    <div class="ml-3" style="width:35px !important" v-if="showFilters">
+      <v-icon style="font-size: 1.2rem !important"icon="mdi-delete-sweep" @click="resetFilters" ></v-icon>
+    </div>
     <v-col cols="7">
       <v-expand-transition>
         <FilterRow :filters="filters" v-if="showFilters"
@@ -79,7 +82,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-row + .v-row{
   margin-top: 0 !important;
   margin-bottom: 0 !important;

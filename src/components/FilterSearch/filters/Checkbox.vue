@@ -10,6 +10,10 @@ export default {
       type: String,
       default: '',
     },
+    value: {
+      type: [String, Number], 
+      default: '',
+    },
     active: {
       type: Boolean,
       default: false,
@@ -24,9 +28,9 @@ export default {
   methods: {
     handleChange() {
       if (this.checked) {
-        this.$emit('addChecked', this.name);
+        this.$emit('addChecked', this.value);
       } else {
-        this.$emit('removeChecked', this.name);
+        this.$emit('removeChecked', this.value);
       }
     },
   },
