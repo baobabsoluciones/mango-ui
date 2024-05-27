@@ -3,7 +3,7 @@
     <div>
       <v-menu v-model="show" :close-on-content-click="false" location="end">
         <template v-slot:activator="{ props }">
-          <FilterTag :name="capitalizedFirstName" v-bind="props" />
+          <FilterTag :selected="filterData.selected" :name="capitalizedFirstName" v-bind="props" />
         </template>
         <v-card min-width="300" class="rounded-xl">
           <v-col class="pa-4">

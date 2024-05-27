@@ -1,13 +1,15 @@
 <template>
   <v-text-field
-    label="Search"
-    class="search-box"
+    :label="label"
+    :class="['search-box', size]"
     variant="outlined"
+    density="compact"
     append-inner-icon="mdi-magnify"
     single-line
     rounded
     :autofocus="autofocus"
     v-model="searchData"
+    hide-details="auto"
   >
   </v-text-field>
 </template>
@@ -20,6 +22,14 @@
       autofocus: {
         type: Boolean,
         default: false,
+      },
+      label: {
+        type: String,
+        default: 'Search',
+      },
+      size: {
+        type: String,
+        default: 'md',
       },
     },
     data() {
@@ -42,9 +52,8 @@
 </script>
 
 <style scoped>
-  .search-box {
-    max-width: 600px;
-    min-width: 400px;
-  }
+ .search-box {
+  font-size: 0.85em;
+ }
 
 </style>
