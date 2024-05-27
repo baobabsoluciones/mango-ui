@@ -1,9 +1,9 @@
 {
   "name": "mango-vue",
   "private": false,
-  "version": "0.0.1-a7",
+  "version": "0.1.4",
   "type": "module",
-  "main": "dist/mango-vue.js",
+  "main": "./dist/mango-vue.js",
   "homepage": "https://github.com/baobabsoluciones/mango-ui/",
   "bugs": {
     "url": "https://github.com/baobabsoluciones/mango-ui/issues"
