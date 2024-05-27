@@ -1,11 +1,27 @@
 <template>
   <v-app>
     <v-main>
-      
+      <v-row class="d-flex justify-space-between mt-3">
+        <v-btn
+          color="primary"
+          prepend-icon="mdi-pencil"
+          @click="showSnackbar('info', 'Custom button clicked')"
+        >
+          Modo edición
+        </v-btn>
+        <MButton
+            label="HoLi"
+            icon="mdi-heart"
+            icon-position="prepend-icon"
+            color="#020246"
+            rounded="xl"
+            size="small"
+          />
+      </v-row>
+
       <v-container class="fill-height">
-        <v-responsive class="flex justify-center overflow-visible">
-          <FormSteps/>
-        </v-responsive>
+          <FilterSearch :filters="filters" @search="handleSearch" @filter="handleFilters"/>
+          
       </v-container>
     </v-main>
   </v-app>
@@ -15,16 +31,6 @@
 import FormSteps from '@/components/FormSteps.vue'
 
 const filters = {
-  age: {
-    min: 18,
-    max: 65,
-    type: 'range',
-  },
-  salary: {
-    min: 800,
-    max: 2000,
-    type: 'range',
-  },
   status: {
     type: 'checkbox',
     options: [
@@ -62,5 +68,13 @@ const filters = {
     min: new Date('2024-03-01'),
     max: new Date('2024-12-31'),
   },
-}
+};
+
+const handleSearch = (text) => {
+  console.log('Search text:', text)
+};
+
+const handleFilters = (filters) => {
+  console.log('Applied filters:', filters)
+};
 </script>
