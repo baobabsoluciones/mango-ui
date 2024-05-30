@@ -95,11 +95,6 @@ export default {
     formatDateForHeaders,
   },
   watch: {
-    // selectedDateRange(newVal) {
-    //   if (!newVal ) {
-    //     this.$emit('date-range-changed', null);
-    //   }
-    // },
     data(newData, oldData) {
       if (newData.length !== oldData.length && this.allPanelsOpen) {
         this.openedPanels = newData.map((_, index) => index)
