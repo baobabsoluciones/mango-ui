@@ -1,7 +1,29 @@
 <template>
   <v-card class="rounded-lg pa-10" style="background-color: white !important">
+    <v-row style="margin-top: -30px">
+      <v-col
+        v-for="option in checkboxOptions"
+        :key="option.value"
+        cols="auto"
+      >
+        <v-checkbox
+          v-model="selectedDateRange"
+          :label="option.label"
+          :value="option.value"
+          class="custom-checkbox"
+          :color="option.color"
+          @change="$emit('date-range-changed', selectedDateRange)"
+        >
+        </v-checkbox>
+      </v-col>
+      <v-col v-if="selectedDateRange === 'custom'">
+        <div class="ml-1" style="height: 50px !important">
+          <slot name="custom-checkbox"></slot>
+        </div>
+      </v-col>
+    </v-row>
     <v-row>
-      <v-col class="v-col-10 v-col-s-12">
+      <v-col cols="12">
         <v-expansion-panels variant="accordion" multiple v-model="openedPanels">
           <v-expansion-panel v-for="(item, index) in data" :key="index">
             <v-expansion-panel-title>{{
@@ -24,30 +46,6 @@
             <slot name="no-data">{{ noDataMessage }}</slot>
           </div>
         </template>
-      </v-col>
-      <v-col class="v-col-2 v-col-s-6">
-        <v-card
-          elevation="0"
-          class="rounded-lg pa-3"
-          style="background-color: #f2f4f8; height: 100% !important"
-        >
-          <v-checkbox
-            v-for="option in checkboxOptions"
-            :key="option.value"
-            v-model="selectedDateRange"
-            :label="option.label"
-            :value="option.value"
-            class="custom-checkbox"
-            :color="option.color"
-            @change="$emit('date-range-changed', option.value)"
-          >
-          </v-checkbox>
-          <template v-if="selectedDateRange === 'custom'">
-            <div class="pa-2 ml-6">
-              <slot name="custom-checkbox"></slot>
-            </div>
-          </template>
-        </v-card>
       </v-col>
     </v-row>
   </v-card>
@@ -86,7 +84,7 @@ export default {
     },
   },
   data: () => ({
-    selectedDateRange: 'today',
+    selectedDateRange: null,
     customDateRange: {
       from: null,
       to: null,
