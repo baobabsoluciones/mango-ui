@@ -29,24 +29,20 @@
           >mdi-close</v-icon
         >
       </v-tab>
+        <v-tab
+        class="create-tab-btn"
+        max-height="40"
+        density="compact"
+        rounded="xs"
+        slim
+        @click.stop="$emit('create')"
+      >
+        <v-icon style="font-size: 0.85rem" class="mr-1">mdi-plus</v-icon>
+        <span style="font-size: 0.85rem !important; text-transform: none !important; letter-spacing: normal !important;">{{ createTitle }}</span>
+      </v-tab>
     </v-tabs>
     <v-spacer></v-spacer>
-    <v-btn
-      class="create-tab-btn"
-      variant="outlined"
-      size="x-small"
-      rounded="lg"
-      @click="$emit('create')"
-    >
-      <v-row no-gutters class="align-center">
-        <v-col cols="auto">
-          <v-icon style="font-size: 0.85rem" class="mr-1">mdi-plus</v-icon>
-        </v-col>
-        <v-col cols="auto">
-          {{ createTitle }}
-        </v-col>
-      </v-row>
-    </v-btn>
+    <slot name="actions"></slot>
   </v-bottom-navigation>
 </template>
 
