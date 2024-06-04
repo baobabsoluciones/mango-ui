@@ -4,6 +4,7 @@
       {{ title }}
     </span>
     <v-text-field
+      v-if="!isSelector"
       variant="outlined"
       density="compact"
       :hide-details="rules?.length === 0"
@@ -30,6 +31,13 @@
         }}</v-icon>
       </template>
     </v-text-field>
+    <v-select
+      v-if="isSelector"
+      style="width: 300px !important"
+      variant="outlined"
+      v-model="optionSelected"
+      :items="options"
+    ></v-select>
   </div>
 </template>
 
@@ -51,10 +59,14 @@ export default {
     suffix: String,
     rules: Array,
     modelValue: [String, Number, Boolean],
+    isSelect: Boolean,
+    options: Array
   },
   data() {
     return {
+      optionSelected: 'option-1',
       showPassword: false,
+      isSelector: false
     }
   },
   computed: {
@@ -72,6 +84,10 @@ export default {
       this.showPassword = !this.showPassword
     },
   },
+  mounted(){
+    this.isSelector = this.isSelect;
+    
+  }
 }
 </script>
 

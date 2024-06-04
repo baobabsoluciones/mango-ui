@@ -550,7 +550,9 @@ Consists of a v-text-field from Vuetify, which serves as the input field. It all
   - `prefix (String)`: The text or icon to be displayed as a prefix inside the input field.
   - `suffix (String)`: The text or icon to be displayed as a suffix inside the input field.
   - `rules (Array)`: An array of validation rules for the input field.
-  - `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the v-model directive.
+  - `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the     v-model directive.
+  - `isSelect (Boolean)`: If true, the component works like a v-selector
+  - `options` (Array): List of options if we use it like a selector. The array must contain {title: ..., value: ...} 
 
 ### Usage
 
