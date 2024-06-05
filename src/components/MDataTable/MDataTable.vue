@@ -72,6 +72,60 @@
         </v-row>
       </v-btn>
     </template>
+    <template v-slot:bottom>
+      <v-pagination
+        v-model="currentPage"
+        :length="totalPages"
+        color="var(--primary)"
+        @input="handlePageChange"
+        density="comfortable"
+      >
+        <template v-slot:prev>
+          <div class="mr-5">
+            <v-icon
+              :class="{ 'pagination-icon-disabled': currentPage === 1 }"
+              class="pagination-icon"
+              :disabled="currentPage === 1"
+              @click="currentPage--"
+            >
+              mdi-chevron-left
+            </v-icon>
+            <span
+              :class="{ 'pagination-icon-disabled': currentPage === 1 }"
+              class="pagination-icon ml-2"
+              @click="goPrevPage()"
+              style="font-size: 0.8rem !important; user-select: none"
+            >
+              {{ prevText }}
+            </span>
+          </div>
+        </template>
+        <template v-slot:next>
+          <div class="ml-5">
+            <span
+              :class="{
+                'pagination-icon-disabled': currentPage === totalPages,
+              }"
+              class="pagination-icon mr-2"
+              @click="goNextPage()"
+              style="font-size: 0.8rem !important; user-select: none"
+            >
+              {{ nextText }}
+            </span>
+            <v-icon
+              :class="{
+                'pagination-icon-disabled': currentPage === totalPages,
+              }"
+              class="pagination-icon"
+              :disabled="currentPage === totalPages"
+              @click="currentPage++"
+            >
+              mdi-chevron-right
+            </v-icon>
+          </div>
+        </template>
+      </v-pagination>
+    </template>
   </v-data-table>
 </template>
 
@@ -102,9 +156,22 @@ export default {
       type: Boolean,
       default: false,
     },
+    itemsPerPage: {
+      type: Number,
+      default: 10,
+    },
+    prevText: {
+      type: String,
+      default: 'Previous',
+    },
+    nextText: {
+      type: String,
+      default: 'Next',
+    },
   },
   data: () => ({
     search: '',
+    currentPage: 1,
   }),
   methods: {
     handleInput(value, type, key, index) {
@@ -112,6 +179,19 @@ export default {
         this.items[index][key] = Number(value)
       } else {
         this.items[index][key] = value
+      }
+    },
+    handlePageChange(page) {
+      this.currentPage = page
+    },
+    goNextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++
+      }
+    },
+    goPrevPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--
       }
     },
   },
@@ -131,10 +211,15 @@ export default {
       }
     },
     itemsWithIndex() {
-      return this.items.map((item, index) => ({
+      const start = (this.currentPage - 1) * this.itemsPerPage
+      const end = start + this.itemsPerPage
+      return this.items.slice(start, end).map((item, index) => ({
         ...item,
-        index,
+        index: start + index,
       }))
+    },
+    totalPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage)
     },
     footerClass() {
       return this.showFooter ? '' : 'hide-footer'
@@ -147,4 +232,3 @@ export default {
 </script>
 
 <style src="./MDataTable.css" scoped></style>
-

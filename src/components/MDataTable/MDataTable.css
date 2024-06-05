@@ -44,3 +44,31 @@
 .changed-item {
   background-color: var(--primary-light) !important;
 }
+
+::v-deep .v-pagination__prev {
+  align-self: center !important;
+}
+
+::v-deep .v-pagination__next {
+  align-self: center !important;
+}
+
+::v-deep .v-pagination__item .v-btn__content {
+  font-size: 0.9rem;
+}
+
+::v-deep .v-pagination__item .v-btn--disabled {
+  opacity: 1;
+}
+
+.pagination-icon {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.pagination-icon-disabled {
+  color: var(--subtitle) !important;
+  font-weight: 600 !important;
+  cursor: default;
+}
