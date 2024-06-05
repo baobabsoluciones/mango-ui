@@ -541,7 +541,7 @@ Consists of a v-text-field from Vuetify, which serves as the input field. It all
 
 ### Props
 
-  - `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password).
+  - `type (String, default: 'text')`: Specifies the type of input field (e.g., text, password). Not needed if selector.
   - `prependIcon (String)`: Specifies the icon to be prepended to the input field.
   - `appendIcon (String)`: Specifies the icon to be appended to the input field.
   - `prependInnerIcon (String)`: Specifies the icon to be prepended inside the input field.
@@ -553,6 +553,7 @@ Consists of a v-text-field from Vuetify, which serves as the input field. It all
   - `modelValue (String, Number, Boolean)`: The value of the input field, typically bound using the     v-model directive.
   - `isSelect (Boolean)`: If true, the component works like a v-selector
   - `options` (Array): List of options if we use it like a selector. The array must contain {title: ..., value: ...} 
+  - `defaultSelection`: String that defines the default selected option. Must be one of the titles of the options array.
 
 ### Usage
 

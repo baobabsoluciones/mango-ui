@@ -60,11 +60,12 @@ export default {
     rules: Array,
     modelValue: [String, Number, Boolean],
     isSelect: Boolean,
-    options: Array
+    options: Array,
+    defaultSelection: String
   },
   data() {
     return {
-      optionSelected: 'option-1',
+      optionSelected: '',
       showPassword: false,
       isSelector: false
     }
@@ -85,8 +86,8 @@ export default {
     },
   },
   mounted(){
-    this.isSelector = this.isSelect;
-    
+    this.isSelector = this.isSelect
+    this.optionSelected = this.defaultSelection
   }
 }
 </script>
