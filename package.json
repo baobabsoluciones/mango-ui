@@ -1,9 +1,25 @@
 {
-  "name": "mango-ui",
-  "private": true,
-  "version": "0.0.0",
+  "name": "mango-vue",
+  "private": false,
+  "version": "0.1.7",
   "type": "module",
-  "main": "dist/mango-ui.js",
+  "main": "./dist/mango-vue.js",
+  "homepage": "https://github.com/baobabsoluciones/mango-ui/",
+  "bugs": {
+    "url": "https://github.com/baobabsoluciones/mango-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baobabsoluciones/mango-ui.git"
+  },
+  "license": "Apache-2.0",
+  "author": "baobab soluciones <sistemas@baoababsoluciones.com>",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -21,7 +37,7 @@
     "@vuepress/bundler-vite": "next",
     "@vuepress/client": "next",
     "@vuepress/theme-default": "next",
-    "prettier": "^3.2.5",
+    "prettier": "3.2.5",
     "typescript": "^5.2.2",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.1.6",

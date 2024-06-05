@@ -1,7 +1,7 @@
 <template><div><h1 id="guide" tabindex="-1"><a class="header-anchor" href="#guide"><span>Guide</span></a></h1>
-<p>Mango UI is a Vue 3 component library that provides a set of reusable and customizable UI components.</p>
+<p>Mango Vue is a Vue 3 component library that provides a set of reusable and customizable UI components.</p>
 <h2 id="installation" tabindex="-1"><a class="header-anchor" href="#installation"><span>Installation</span></a></h2>
-<p>To install Mango UI, use the following command:</p>
+<p>To install Mango Vue, use the following command:</p>
 <div class="language-bash line-numbers-mode" data-ext="sh" data-title="sh"><pre v-pre class="language-bash"><code><span class="token function">npm</span> <span class="token function">install</span> mango-ui
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="usage" tabindex="-1"><a class="header-anchor" href="#usage"><span>Usage</span></a></h2>
 <p>After installing the library, you can import and use the components in your Vue 3 project. Here's an example of how to use a Button component:</p>
@@ -24,7 +24,7 @@
 <span class="token punctuation">}</span>
 </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="licence" tabindex="-1"><a class="header-anchor" href="#licence"><span>Licence</span></a></h2>
-<p>Mango UI is MIT licensed.</p>
+<p>Mango Vue is MIT licensed.</p>
 </div></template>
 
 

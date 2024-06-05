@@ -40,7 +40,7 @@
           </div>
         </v-card>
       </v-col>
-      <v-col class="v-col-s-9 v-col-md-8 v-col-xl-7">
+      <v-col class="v-col-s-9 v-col-md-8 v-col-xl-9">
         <v-card class="elevation-2" style="border-radius: 20px !important">
           <div class="px-3 py-3">
             <slot :name="`step-${localCurrentStep}-title`">

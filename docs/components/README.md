@@ -7,7 +7,18 @@ This page provides documentation for all components in our library.
 - [MAppDrawer](#app-drawer)
 - [MSearchAndFilterForTables](#search-and-filter-for-tables)
 - [MButton](#button)
-- [MDragNDropFile](#drag-n-drop-file)
+- [MDragNDropFile](#dragndropfile)
+- [MFormSteps](#mformsteps)
+- [MTitleView](#mtitleview)
+- [MAppBarTab](#mappbartab)
+- [MInfoCard](#minfocard)
+- [MPanelData](#mpaneldata)
+- [Snackbar](#msnackbar)
+- [MBaseModal](#mbasemodal)
+- [MInputField](#minputfield)
+- [MDataTable](#mdatatable)
+- [MCheckboxOptions](#mcheckboxoptions)
+- [MTabTable](#mtabtable)
 
 ## App Drawer
 
@@ -216,7 +227,7 @@ import DragNDropFile from './DragNDropFile.vue';
 />
 ```
 
-### MFormSteps
+## MFormSteps
 
 The MFormSteps is a Vue 3 component designed to facilitate the creation of multi-step form interfaces. It provides a structured approach to presenting form steps, enabling developers to guide users through sequential stages of a form submission process.
 
@@ -260,7 +271,7 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
 
 This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
 
-### MTitleView
+## MTitleView
 
 The MTitleView component is a Vue 3 component designed to display a title along with an optional icon and description. It provides a simple and flexible way to present information with a consistent layout.
 
@@ -284,7 +295,7 @@ To use the MTitleView component, import it into the script of your Vue project:
 
 This will render a title along with an icon, if provided, and an optional description. The appearance of the title and description can be customized using CSS styles defined within the component.
 
-### MAppBarTab Component
+## MAppBarTab Component
 
 The MAppBarTab component provides a customizable bottom navigation bar with tabs and a create button. It allows users to navigate between different tabs and create new items.
 
@@ -316,7 +327,7 @@ The MAppBarTab component provides a customizable bottom navigation bar with tabs
 </template>
 ```
 
-### MInfoCard Component
+## MInfoCard Component
 
 The MInfoCard component represents an information card that displays an icon, title, description, and optional content.
 
@@ -350,7 +361,7 @@ Here's an example of how to use the MInfoCard component:
 </template>
 ```
 
-### MPanelData Component
+## MPanelData Component
 
 The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
 
@@ -419,76 +430,7 @@ Here's an example of how to use the MPanelData component:
 </template>
 ```
 
-### MPanelData Component
-
-The MPanelData component displays data in an expandable panel format, allowing users to view detailed information categorized by date. It also provides options to filter the data by date range.
-
-### Props
-
-- `data (Array, required)`: An array of objects representing the data to be displayed. Each object should contain a date property and a data property.
-- `showFirstHeaders (Boolean, default: false)`: Controls whether to show headers for the first panel.
-- `checkboxOptions (Array, required)`: An array of objects representing the checkbox options for filtering the data by date range. Each object should contain label, value, and color properties.
-- `noDataMessage (String, default: 'No data for the selected range')`: The message to display when there is no data available for the selected range.
-- `allPanelsOpen (Boolean, default: true)`: Controls whether all panels are initially expanded.
-- `language (String, default: 'en')`: Indicates the language for the date formatting
-
-### Events
-
-- `date-range-changed`: Emitted when the date range is changed. Emits the selected date range value.
-
-### Slots
-
-- `Default Slot`: The default slot is used to provide a table component to display the data.
-
-The slot receives the following props:
-
-- `item-data`: The data to be displayed in the table.
-- `show-headers`: Indicates whether to show headers for the table.
-- `no-data`: This slot is used to provide custom content to be displayed when there is no data available.
-- `custom-checkbox`: This slot is used to provide custom content for the "custom" date range option.
-
-### Methods
-
-formatDateForHeaders: A method to format dates for use as panel headers.
-
-### Data
-
-- `selectedDateRange`: The currently selected date range.
-  customDateRange: An object representing the custom date range selected by the user, with from and to properties.
-
-- `openedPanels`: An array containing the indices of the currently opened panels.
-
-### Watchers
-
-- `data`: Watches changes in the data prop and expands all panels if allPanelsOpen is true.
-
-### Usage
-
-Here's an example of how to use the MPanelData component:
-
-```vue
-<template>
-  <MPanelData
-    :data="panelData"
-    :checkboxOptions="checkboxOptions"
-    :noDataMessage="noDataMessage"
-    :allPanelsOpen="true"
-    @date-range-changed="onDateRangeChanged"
-  >
-    <template #table="{ itemData, showHeaders }">
-      <!-- Custom table component -->
-    </template>
-    <template #no-data>
-      <div>No data available for the selected range</div>
-    </template>
-    <template #custom-checkbox>
-      <!-- Custom content for custom date range -->
-    </template>
-  </MPanelData>
-</template>
-```
-
-### Snackbar Component
+## MSnackbar
 
 The Snackbar component displays short-lived messages or notifications at the bottom of the screen. It allows users to receive important information without disrupting their current workflow.
 
@@ -533,7 +475,55 @@ export default {
 </script>
 ```
 
-### InputField
+## MBaseModal
+
+The MBaseModal component is a base modal component that provides a customizable modal dialog box. It allows users to display content and interact with buttons within the modal.
+
+### Template
+
+The template of the MBaseModal component uses Vuetify's v-dialog component to create a modal dialog box. Inside the dialog, it includes a v-card containing the modal's title, content, and action buttons. The modal title can optionally display an icon on the left side. The content area is provided by the default slot named "content". Action buttons are dynamically generated based on the provided buttons prop.
+
+### Props
+
+- `value (Boolean, default: false)`: Controls the visibility of the modal dialog.
+- `title (String, default: '')`: The title text displayed at the top of the modal.
+- `icon (String, default: '')`: An optional icon to display alongside the title.
+- `buttons (Array, default: [])`: An array of objects representing action buttons displayed at the bottom of the modal. Each button object should contain text, class, and action properties.
+- `size (String, default: 'md')`: Specifies the size of the modal. Can be one of 'xs', 'md', or 'lg'.
+- `closeOnOutsideClick (Boolean, default: true)`: Controls whether the modal should be closed when clicking outside of it.
+
+### Emits
+
+- `emitButtonAction(action)`: Emits the specified action when a button is clicked within the modal.
+
+### Usage
+
+Here's an example of how to use the MBaseModal component:
+
+```vue
+<MBaseModal
+  v-model="openConfirmationSaveModal"
+  :closeOnOutsideClick="false"
+  :title="$t('inputOutputData.saveChanges')"
+  :buttons="[
+    {
+      text: $t('inputOutputData.save'),
+      action: 'save',
+      class: 'primary-btn',
+    },
+    {
+      text: $t('inputOutputData.exitWithoutSaving'),
+      action: 'cancel',
+      class: 'secondary-btn',
+    },
+  ]"
+  @save="saveChanges"
+  @cancel="cancelEdit"
+  @close="openConfirmationSaveModal = false"
+></MBaseModal>
+```
+
+## MInputField
 
 The InputField component provides a customizable input field with various features such as icons, prefixes, suffixes, and password visibility toggling.
 
@@ -559,19 +549,134 @@ Consists of a v-text-field from Vuetify, which serves as the input field. It all
 
 The InputField component can be used in templates wherever input fields are required. Here's an example of how to use the component:
 
-  ```vue
-    <template>
-      <div>
-        <InputField
-          type="password"
-          title="Password"
-          placeholder="Enter your password"
-          prependIcon="mdi-lock"
-          suffix="characters"
-          :rules="passwordRules"
-          v-model="password"
-        />
-      </div>
-    </template>
-  ```
+```vue
+<template>
+  <div>
+    <InputField
+      type="password"
+      title="Password"
+      placeholder="Enter your password"
+      prependIcon="mdi-lock"
+      suffix="characters"
+      :rules="passwordRules"
+      v-model="password"
+    />
+  </div>
+</template>
+```
 
+## MDataTable
+
+The DataTable component renders a dynamic table using Vuetify's v-data-table. It allows users to display, edit, and delete tabular data with customizable headers and items.
+
+Contains a v-data-table component, which is responsible for rendering the table. It iterates over the provided headers and items to dynamically create table rows and cells. It supports various features such as fixed headers, slot-based customization, and pagination.
+
+### Props
+
+- `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+- `items (Array, required)`: Specifies the data items to be displayed in the table.
+- `options (Object)`: Additional options to configure the behavior and appearance of the table.
+- `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
+- `showFooter (Boolean, default: true)`: Indicates whether to display the table footer.
+- `editionMode (Boolean, default: false)`: Indicates whether the table is in edition mode, allowing users to edit or delete items.
+
+### Emits
+
+- `create-item`: This event is emitted when the user requests to create a new item in the DataTable, typically through an "Add" button. The parent component can handle this event by adding a new item to the data list displayed in the DataTable.
+- `delete-item`: This event is emitted when the user requests to delete an item from the DataTable, usually by clicking on a delete button associated with a specific item in the table. The parent component can handle this event by removing the corresponding item from the data list.
+
+### Slots
+
+The default slot allows customization of table cells based on the header value.
+The top slot enables adding a custom button at the top of the table, typically used for adding new items in edition mode.
+
+### Usage
+
+The DataTable component can be used to display tabular data with customized headers and items. It supports features such as sorting, searching, and pagination. Below is an example of how to use the component:
+
+```vue
+<template>
+  <DataTable
+    :headers="tableHeaders"
+    :items="tableItems"
+    :showHeaders="true"
+    :showFooter="true"
+    :editionMode="true"
+    @create-item="addItem"
+    @delete-item="deleteItem"
+  >
+    <template #name="{ item }">
+      <span>{{ item.name }}</span>
+    </template>
+  </DataTable>
+</template>
+```
+
+## MCheckboxOptions
+
+This component provides a flexible interface for selecting options with checkboxes, allowing for single or multiple selections and emitting events to notify parent components of selection changes.
+
+### Props
+
+- `options`: An array of objects representing the options to be displayed, including text, description, and checked status.
+- `multiple`: A boolean indicating if multiple options can be selected simultaneously.
+
+### Usage
+
+```vue
+<template v-else-if="index === 2">
+  <MCheckboxOptions
+    :options="solvers"
+    :multiple="false"
+    @update:options="solvers = $event"
+    class="mt-4"
+  />
+</template>
+```
+
+## MTabTable
+
+This component is a combination of tabs and a table, allowing users to toggle between different datasets represented by tabs and view the content of each tab in a table.
+
+### Props
+
+- `tabsData`: An array of objects containing information about the tabs, where each object has a text property representing the tab's text and a value property representing the tab's value.
+- `selectedTable`: The initially selected tab value. Defaults to null.
+- `direction`: The direction in which the tabs are displayed, can be 'vertical' or 'horizontal'. Defaults to 'vertical'.
+
+### Usage
+
+```vue
+<template>
+  <tabs-table
+    :tabsData="tabs"
+    :selectedTable="selectedTab"
+    direction="vertical"
+    @update:selectedTab="handleSelectedTabUpdate"
+  >
+    <!-- Tabs Content -->
+    <template #tabs>
+      <v-tabs>
+        <v-tab v-for="(tab, index) in tabs" :key="index" :value="tab.value">
+          {{ tab.text }}
+        </v-tab>
+      </v-tabs>
+    </template>
+
+    <!-- Actions Content -->
+    <template #actions>
+      <v-btn @click="doSomething">Do Something</v-btn>
+    </template>
+
+    <!-- Table Content -->
+    <template #table="props">
+      <v-data-table :items="getDataForTab(props.tableData)" />
+    </template>
+
+    <!-- Custom Button -->
+    <template #customButton>
+      <v-btn @click="customAction">Custom Action</v-btn>
+    </template>
+  </tabs-table>
+</template>
+```

@@ -1,0 +1,19 @@
+.tabs-border {
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.tabs-border-vertical {
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.tabs-border-horizontal {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.v-row {
+  margin: 0px !important;
+}
+
+::v-deep .v-tab--selected {
+  color: var(--primary) !important;
+}
