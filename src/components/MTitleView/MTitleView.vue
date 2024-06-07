@@ -32,30 +32,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.icon-title {
-  display: flex;
-  flex-direction: column;
-}
-
-.icon-title-row {
-  display: flex;
-  align-items: center;
-}
-
-.icon {
-  margin-right: 10px;
-}
-
-.title {
-  margin: 0;
-  font-size: 1.2rem !important;
-  color: var(--title);
-}
-
-.description {
-  margin: 0;
-  font-size: 0.9rem !important;
-  color: var(--subtitle);
-}
-</style>
+<style src="./MTitleView.css" scoped></style>

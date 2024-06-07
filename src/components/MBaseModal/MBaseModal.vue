@@ -3,6 +3,7 @@
     v-model="dialog"
     :max-width="dialogWidth"
     :persistent="!closeOnOutsideClick"
+    :attach="attach"
   >
     <v-card elevation="5" rounded="lg">
       <v-card-title>
@@ -62,6 +63,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    attach: {
+      type: [String, Boolean],
+      default: 'body',
+    },
   },
   computed: {
     dialogWidth() {
@@ -97,4 +102,3 @@ export default {
 </script>
 
 <style src="./MBaseModal.css" scoped></style>
-

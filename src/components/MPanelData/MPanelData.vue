@@ -1,11 +1,7 @@
 <template>
   <v-card class="rounded-lg pa-10" style="background-color: white !important">
     <v-row style="margin-top: -30px">
-      <v-col
-        v-for="option in checkboxOptions"
-        :key="option.value"
-        cols="auto"
-      >
+      <v-col v-for="option in checkboxOptions" :key="option.value" cols="auto">
         <v-checkbox
           v-model="selectedDateRange"
           :label="option.label"
