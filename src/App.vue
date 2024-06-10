@@ -24,6 +24,20 @@
           />
         </v-responsive>
       </v-container>
+
+      <v-container class="fill-height">
+          <FilterSearch :filters="filters" @search="handleSearch" @filter="handleFilters"/>
+          <KPIChartCard
+            title="Occupation rate of filling racks"
+            :value="80"
+            :series="[90, 31, 80, 40, 51, 42, 109, 100]"
+            chartType="donut"
+            backgroundColor="#f2b6d6"
+            titleColor="#8c0e21"
+            valueColor="#8c0e21"
+            chartColor="#214270"
+          />
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -31,6 +45,8 @@
 <script setup lang="ts">
 import FilterSearch from '@/components/FilterSearch/FilterSearch.vue'
 import MButton from '@/components/Button/MButton.vue'
+import KPIChartCard from '@/components/KPICharts/KPIChartCard.vue'
+
 
 const filters = {
   age: {
