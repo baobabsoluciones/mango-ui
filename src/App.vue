@@ -29,9 +29,8 @@
           <FilterSearch :filters="filters" @search="handleSearch" @filter="handleFilters"/>
           <KPIChartCard
             title="Occupation rate of filling racks"
-            :value="80"
             :series="[90, 31, 80, 40, 51, 42, 109, 100]"
-            chartType="donut"
+            chartType="area"
             backgroundColor="#f2b6d6"
             titleColor="#8c0e21"
             valueColor="#8c0e21"

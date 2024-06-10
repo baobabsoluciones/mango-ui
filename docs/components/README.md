@@ -182,3 +182,71 @@ Then, within your template, use the `MButton` component as follows:
 
     This will render a small button with the label "Button", an MDI heart icon positioned before the label, rounded corners of extra-large size, and an outlined style in a custom dark blue color.
 
+## KPI Chart Cards
+
+The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a KPI value with its accompanying chart in a base card. The component is highly customizable, allowing the usear to choose different charts, color and styles.
+
+### Props
+
+- `title`: String - The title of the KPI card.
+- `value`: Number - The primary KPI value to be displayed.
+- `series`: Array - An array of numbers representing the data series for the chart type 'area'.
+- `chartType`: String - The type of chart to display. Accepted values are 'donut' and 'area'.
+- `backgroundColor`: String - The backgpund color of the card. Default color is `#b8b6b7`.
+- `chartColor`: String - The color of the chart. Default color is `#214270`.
+- `valueColor`: String - The color of the KPI value. Default color is `#000000`.
+- `titleolor`: String - The color of the KPI title. Default color is `#000000`.
+
+### Usage
+
+To use the `KPIChartCard` component, it has to be imported in the script of the project you want to use it in:
+
+```vue
+import MButton from './MButton.vue';
+```
+The usage of the `KPIChartCard` component varies depending on the type of chart you want to display: `area` or `donut`. Here are examples of how to use the component for each type of chart:
+
+For area chart (`chartType="area"`):
+```vue
+<KPIChartCard
+  title="Occupation rate of filling racks"
+  :series="[90, 31, 80, 40, 51, 42, 109, 100]"
+  chartType="area"
+  backgroundColor="#f2b6d6"
+  titleColor="#8c0e21"
+  valueColor="#8c0e21"
+  chartColor="#214270"
+/>
+```
+
+This example requires the series prop, which is an array representing the data series for the area chart.
+This will render a KPI card with the title "Occupation rate of filling racks", an area chart, and a KPI value of 100 (the last element in the series). The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
+
+For donut chart (`chartType="donut"`):
+```vue
+<KPIChartCard
+  title="Occupation rate of filling racks"
+  :value="50"
+  chartType="donut"
+  backgroundColor="#f2b6d6"
+  chartColor="#1b1c2e"
+  titleColor="#8c0e21"
+  valueColor="#8c0e21"
+/>
+```
+
+This example only requires the value prop, which represents the KPI value to be displayed in the donut chart. 
+This will render a KPI card with the title "Occupation rate of filling racks", a donut chart, and a KPI value of 50. The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
+
+In summary, when using the `KPIChartCard` component, provide the `series` prop for area charts and the `value` prop for donut charts, along with other necessary props for styling and customization.
+
+### Additional info
+
+The `KPIChartCard` component is organized within the `KPICharts` folder, which contains several subcomponents:
+
+- `ChartCardTitle.vue`: Displays the title of the KPI card.
+- `KPIValue.vue`: Displays the KPI value.
+- `DonutChart.vue`: Displays a donut chart using Vue Apex Charts.
+- `AreaChart.vue`: Displays an area chart using Vue Apex Charts.
+
+The `KPIChartCard.vue` component orchestrates the communication between its child components.
