@@ -184,15 +184,15 @@ Then, within your template, use the `MButton` component as follows:
 
 ## KPI Chart Cards
 
-The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a KPI value with its accompanying chart in a base card. The component is highly customizable, allowing the usear to choose different charts, color and styles.
+The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a card with a KPI value with its accompanying chart. The component is highly customizable, allowing the usear to choose different charts, colors and styles.
 
 ### Props
 
 - `title`: String - The title of the KPI card.
-- `value`: Number - The primary KPI value to be displayed.
+- `value`: Number - The primary KPI value to be displayed for the chart type 'donut'.
 - `series`: Array - An array of numbers representing the data series for the chart type 'area'.
 - `chartType`: String - The type of chart to display. Accepted values are 'donut' and 'area'.
-- `backgroundColor`: String - The backgpund color of the card. Default color is `#b8b6b7`.
+- `backgroundColor`: String - The background color of the card. Default color is `#b8b6b7`.
 - `chartColor`: String - The color of the chart. Default color is `#214270`.
 - `valueColor`: String - The color of the KPI value. Default color is `#000000`.
 - `titleolor`: String - The color of the KPI title. Default color is `#000000`.
@@ -202,7 +202,7 @@ The `KPIChartCard` component is a Vue 3 component designed to be part of dashboa
 To use the `KPIChartCard` component, it has to be imported in the script of the project you want to use it in:
 
 ```vue
-import MButton from './MButton.vue';
+import KPIChartCard from './KPIChartCard.vue';
 ```
 The usage of the `KPIChartCard` component varies depending on the type of chart you want to display: `area` or `donut`. Here are examples of how to use the component for each type of chart:
 

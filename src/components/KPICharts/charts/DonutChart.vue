@@ -1,5 +1,5 @@
 <template>
-    <div class= "donut-chart">
+    <div class= "donut-chart" :style="{ width: width, height: height }">
         <apexchart :options="chartOptions" :series="series"></apexchart>
     </div>
 </template>
@@ -19,6 +19,14 @@ import VueApexCharts from "vue3-apexcharts";
             },
             value: {
                 type: Number
+            },
+            width: {
+                type: String,
+                default: '150px'
+            },
+            height: {
+                type: String,
+                default: '150px'
             }
         },
         data () {
@@ -27,8 +35,8 @@ import VueApexCharts from "vue3-apexcharts";
                 chartOptions: {
                     chart: {
                         type: 'radialBar',
-                        height: 150,
-                        width: 150,
+                        height: this.height,
+                        width: this.width,
                     },
                     stroke: {
                         lineCap: 'round'
@@ -62,8 +70,6 @@ import VueApexCharts from "vue3-apexcharts";
 
 <style>
 .donut-chart {
-  width: 150px;
-  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;

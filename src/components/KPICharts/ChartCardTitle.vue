@@ -1,5 +1,5 @@
 <template>
-    <div class="chart-card-title" :style="{ color: titleColor }">
+    <div class="chart-card-title" :style="{ color: titleColor, fontSize: fontSize}">
         {{ title }}
     </div>
 </template>
@@ -12,6 +12,10 @@
             titleColor: {
                 type: String,
                 default: '#000000'
+            },
+            fontSize: {
+                type: String,
+                default: '16px'
             }
         },
     }
@@ -19,7 +23,6 @@
 
 <style>
 .chart-card-title{
-    font-size: 16px;
     font-weight: bold;
     margin: 8px;
 }

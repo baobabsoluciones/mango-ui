@@ -29,12 +29,31 @@
           <FilterSearch :filters="filters" @search="handleSearch" @filter="handleFilters"/>
           <KPIChartCard
             title="Occupation rate of filling racks"
+            fontSize="20px"
+            height="200px"
             :series="[90, 31, 80, 40, 51, 42, 109, 100]"
             chartType="area"
             backgroundColor="#f2b6d6"
             titleColor="#8c0e21"
             valueColor="#8c0e21"
+            valueFontSize="46px"
             chartColor="#214270"
+            chartHeight="200px"
+            chartWidth="200px"
+          />
+          <KPIChartCard
+            title="Occupation rate of filling racks"
+            :value="50"
+            chartType="donut"
+            backgroundColor="#f2b6d6"
+            chartColor="#1b1c2e"
+            titleColor="#8c0e21"
+            valueColor="#8c0e21"
+            height="200px"
+            chartHeight="200px"
+            chartWidth="200px"
+            valueFontSize="46px"
+            fontSize="20px"
           />
       </v-container>
     </v-main>
