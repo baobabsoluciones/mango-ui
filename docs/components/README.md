@@ -184,7 +184,7 @@ Then, within your template, use the `MButton` component as follows:
 
 ## KPI Chart Cards
 
-The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a card with a KPI value with its accompanying chart. The component is highly customizable, allowing the usear to choose different charts, colors and styles.
+The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a card with a KPI value with its accompanying chart. The component is highly customizable, allowing the usear to choose different charts, colors, sizes and styles.
 
 ### Props
 
@@ -195,7 +195,12 @@ The `KPIChartCard` component is a Vue 3 component designed to be part of dashboa
 - `backgroundColor`: String - The background color of the card. Default color is `#b8b6b7`.
 - `chartColor`: String - The color of the chart. Default color is `#214270`.
 - `valueColor`: String - The color of the KPI value. Default color is `#000000`.
-- `titleolor`: String - The color of the KPI title. Default color is `#000000`.
+- `titleColor`: String - The color of the KPI title. Default color is `#000000`.
+- `height`: String - The height of the card in pixels. Default height is 150px.
+- `chartWidth`: String - The width of the chart in pixels. Default width for the charts is 150px.
+- `chartHeight`: String - The height of the chart in pixels. Default width for the charts is 150px.
+- `fontSize`: String - The size of the title font in pixels. Default size for the title font is 16px.
+- `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the title font is 42px.
 
 ### Usage
 
@@ -210,12 +215,17 @@ For area chart (`chartType="area"`):
 ```vue
 <KPIChartCard
   title="Occupation rate of filling racks"
+  fontSize="20px"
+  height="200px"
   :series="[90, 31, 80, 40, 51, 42, 109, 100]"
   chartType="area"
   backgroundColor="#f2b6d6"
   titleColor="#8c0e21"
   valueColor="#8c0e21"
+  valueFontSize="46px"
   chartColor="#214270"
+  chartHeight="200px"
+  chartWidth="200px"
 />
 ```
 
@@ -232,6 +242,11 @@ For donut chart (`chartType="donut"`):
   chartColor="#1b1c2e"
   titleColor="#8c0e21"
   valueColor="#8c0e21"
+  height="200px"
+  chartHeight="200px"
+  chartWidth="200px"
+  valueFontSize="46px"
+  fontSize="20px"
 />
 ```
 
