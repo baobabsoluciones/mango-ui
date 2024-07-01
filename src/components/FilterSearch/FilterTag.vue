@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-tag">
-    {{ name }}
+  <div class="filter-tag" :class="{ 'selected': selected }">
+    <span>{{ name }}</span>
   </div>
 </template>
 
@@ -12,6 +12,10 @@
         type: String,
         default: '',
       },
+      selected: {
+        type: Boolean,
+        default: false,
+      },
     },
   }
 </script>
@@ -19,15 +23,20 @@
 <style scoped>
   .filter-tag {
     background-color: rgba(255, 255, 255, 0.3);
-    font-size: 1.1em;
+    font-size: 0.85em;
     border-radius: 25px 25px;
-    padding: 12px 24px;
-    min-width: 64px;
+    padding: 6px 12px;
+    min-width: 48px;
     text-align: center;
-    margin: 5px;
     margin-top: 0px;
+    margin-bottom: 0px;
     display: inline-block;
     cursor: pointer;
-    border: 2px solid #d3d3d3;
+    border: 1.5px solid #d3d3d3;
+  }
+
+  .filter-tag.selected {
+    border-color: var(--primary);
+    color: var(--primary);
   }
 </style>

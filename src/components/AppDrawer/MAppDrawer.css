@@ -16,3 +16,29 @@
   cursor: default;
   pointer-events: none;
 }
+
+.pages-content {
+  overflow-y: auto !important;
+  height: 100%;
+}
+
+/* Width for scroll */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track for scroll */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle for scroll */
+::-webkit-scrollbar-thumb {
+  background: #dfe0e1;
+  border-radius: 5px; /* Add this line */
+}
+
+/* Handle on hover for scroll */
+::-webkit-scrollbar-thumb:hover {
+  background: #b6b7b8;
+}

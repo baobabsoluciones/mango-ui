@@ -3,28 +3,26 @@
     <div>
       <v-menu v-model="show" :close-on-content-click="false" location="end">
         <template v-slot:activator="{ props }">
-          <FilterTag :name="capitalizedFirstName" v-bind="props" />
+          <FilterTag :selected="filterData.selected" :name="capitalizedFirstName" v-bind="props" />
         </template>
         <v-card min-width="300" class="rounded-xl custom-card">
           <v-col class="pa-4">
             <h3 class="pb-4">{{ capitalizedFirstName }}</h3>
             <v-col>
-              <v-row class="flex-row justify-space-between">
-                <v-col>
-                  <h3>From</h3>
-                  <v-date-picker
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    :label="fromLabel"
+                    type="date"
                     v-model="min"
-                    color="primary"
-                    hide-header=true
-                  ></v-date-picker>
+                  ></v-text-field>
                 </v-col>
-                <v-col>
-                  <h4>To</h4>
-                  <v-date-picker
+                <v-col cols="6">
+                  <v-text-field
+                    :label="toLabel"
+                    type="date"
                     v-model="max"
-                    color="primary"
-                    hide-header=true
-                  ></v-date-picker>
+                  ></v-text-field>
                 </v-col>
               </v-row>
             </v-col>
@@ -47,6 +45,14 @@
         type: Object,
         default: () => ({}),
       },
+      fromLabel: {
+        type: String,
+        default: 'From',
+      },
+      toLabel: {
+        type: String,
+        default: 'To',
+      },
     },
     setup() {
       //
@@ -66,12 +72,10 @@
     },
     watch: {
       min() {
-        console.log(this.min, this.max)
-        this.$emit('dateRange', [this.min, this.max]);
+        this.$emit('daterange', [this.min, this.max]);
       },
       max() {
-        console.log(this.min, this.max)
-        this.$emit('dateRange', [this.min, this.max]);
+        this.$emit('daterange', [this.min, this.max]);
       },
     },
   }

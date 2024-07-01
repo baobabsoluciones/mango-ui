@@ -3,14 +3,20 @@
     <div>
       <v-menu v-model="show" :close-on-content-click="false" location="end">
         <template v-slot:activator="{ props }">
-          <FilterTag :name="capitalizedFirstName" v-bind="props" />
+          <FilterTag :selected="filterData.selected" :name="capitalizedFirstName" v-bind="props" />
         </template>
         <v-card min-width="300" class="rounded-xl">
           <v-col class="pa-4 overflow-x">
             <h3 class="pb-4">{{ capitalizedFirstName }}</h3>
             <v-row v-for="(filter, key) in options" :key="key">
               <div class="checkbox-container">
-                <Checkbox :name="filter.label" :active="filter.checked" @addChecked="handleAddChecked($event)" @removeChecked="handleRemoveChecked($event)"></Checkbox>
+                  <Checkbox
+                    :name="filter.label"
+                    :value="filter.value"
+                    :active="filter.checked"
+                    @addChecked="handleAddChecked"
+                    @removeChecked="handleRemoveChecked"
+                  ></Checkbox>
               </div>
             </v-row>
           </v-col>
