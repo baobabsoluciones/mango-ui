@@ -1,6 +1,13 @@
 ::v-deep .v-data-table__th {
   border-right: 1px solid #0000001e !important; /* Change color as needed */
   background-color: #f9f9f9 !important;
+    
+}
+
+::v-deep .v-data-table__th .v-data-table-header__content span{
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
 }
 
 /* Remove border from the last header cell */
@@ -15,6 +22,8 @@
 .hide-footer ::v-deep .v-data-table-footer {
   display: none !important;
 }
+
+
 
 .hide-header ::v-deep .v-data-table__th {
   visibility: hidden;
@@ -34,4 +43,32 @@
 
 .changed-item {
   background-color: var(--primary-light) !important;
+}
+
+::v-deep .v-pagination__prev {
+  align-self: center !important;
+}
+
+::v-deep .v-pagination__next {
+  align-self: center !important;
+}
+
+::v-deep .v-pagination__item .v-btn__content {
+  font-size: 0.9rem;
+}
+
+::v-deep .v-pagination__item .v-btn--disabled {
+  opacity: 1;
+}
+
+.pagination-icon {
+  color: var(--primary) !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+}
+
+.pagination-icon-disabled {
+  color: var(--subtitle) !important;
+  font-weight: 600 !important;
+  cursor: default;
 }
