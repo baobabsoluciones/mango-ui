@@ -18,11 +18,16 @@ export default {
   test: {
     globals: true,
     environment: 'jsdom',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+    },
     setupFiles: ['./tests/setup.ts'], // setup file to configure the testing environment
     server: {
       deps: {
         inline: ['vuetify'],
       },
     },
+    silent: true, // disable warnings
   },
 }
