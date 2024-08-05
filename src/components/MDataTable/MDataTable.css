@@ -10,6 +10,12 @@
   word-break: break-all !important;
 }
 
+::v-deep .v-data-table__td {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
 /* Remove border from the last header cell */
 ::v-deep .v-data-table__th:last-child {
   border-right: none !important;
