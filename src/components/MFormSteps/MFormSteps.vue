@@ -70,6 +70,7 @@
           <v-col cols="auto">
             <slot :name="`step-${localCurrentStep}-previous-button`">
               <v-btn
+                class="previous-button"
                 color="primary"
                 v-if="localCurrentStep > 0"
                 @click="localCurrentStep--"
@@ -83,6 +84,7 @@
           <v-col cols="auto">
             <slot :name="`step-${localCurrentStep}-continue-button`">
               <v-btn
+                class="continue-button"
                 color="primary"
                 v-if="localCurrentStep < steps.length - 1"
                 @click="localCurrentStep++"
