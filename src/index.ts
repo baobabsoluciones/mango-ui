@@ -8,7 +8,7 @@ export { default as MFilterSearch } from './components/FilterSearch/FilterSearch
 export { default as KPIChartCard } from './components/KPICharts/KPIChartCard.vue'
 export { default as MDragNDropFile } from './components/MDragNDropFile/MDragNDropFile.vue'
 export { default as MFormSteps } from './components/MFormSteps/MFormSteps.vue'
-export { default as MTitleView } from './components/MTitleView.vue'
+export { default as MTitleView } from './components/MTitleView/MTitleView.vue'
 export { default as MAppBarTab } from './components/MAppBarTab/MAppBarTab.vue'
 export { default as MInfoCard } from './components/MInfoCard/MInfoCard.vue'
 export { default as MPanelData } from './components/MPanelData/MPanelData.vue'
@@ -18,4 +18,3 @@ export { default as MBaseModal } from './components/MBaseModal/MBaseModal.vue'
 export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
 export { default as MCheckboxOptions } from './components/MCheckboxOptions/MCheckboxOptions.vue'
 export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
-

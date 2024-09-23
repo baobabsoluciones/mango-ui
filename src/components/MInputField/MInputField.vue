@@ -25,10 +25,14 @@
       <template v-slot:prepend-inner v-if="prependInnerIcon">
         <v-icon v-if="prependInnerIcon">{{ prependInnerIcon }}</v-icon>
       </template>
-      <template v-slot:append-inner v-if="type === 'password'">
-        <v-icon @click="togglePasswordVisibility">{{
+      <template
+        v-slot:append-inner
+        v-if="type === 'password' || appendInnerIcon"
+      >
+        <v-icon v-if="type === 'password'" @click="togglePasswordVisibility">{{
           showPassword ? 'mdi-eye-off' : 'mdi-eye'
         }}</v-icon>
+        <v-icon v-else-if="appendInnerIcon">{{ appendInnerIcon }}</v-icon>
       </template>
     </v-text-field>
     <v-select
@@ -61,13 +65,13 @@ export default {
     modelValue: [String, Number, Boolean],
     isSelect: Boolean,
     options: Array,
-    defaultSelection: String
+    defaultSelection: String,
   },
   data() {
     return {
       optionSelected: '',
       showPassword: false,
-      isSelector: false
+      isSelector: false,
     }
   },
   computed: {
@@ -85,12 +89,11 @@ export default {
       this.showPassword = !this.showPassword
     },
   },
-  mounted(){
+  mounted() {
     this.isSelector = this.isSelect
     this.optionSelected = this.defaultSelection
-  }
+  },
 }
 </script>
 
 <style src="./MInputField.css" scoped></style>
-
