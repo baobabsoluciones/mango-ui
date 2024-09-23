@@ -17,10 +17,10 @@
         :class="tab.selected === true ? 'selected-tab' : ''"
         @click="selectTab(tab)"
       >
-        <v-icon v-if="tab.loading" class="mr-2 loading-icon" color="primary"
+        <v-icon v-if="tab.loading" class="mr-2 loading-icon"
           >mdi-loading</v-icon
         >
-        <v-icon v-else class="mr-2" color="primary">{{ tab.icon }}</v-icon>
+        <v-icon v-else class="mr-2">{{ tab.icon }}</v-icon>
         {{ tab.text
         }}<v-icon
           style="font-size: 0.7rem !important"
