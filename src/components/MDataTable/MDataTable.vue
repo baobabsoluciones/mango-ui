@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-if="showFooter"
     fixed-header
     class="pa-2 data-table"
     :headers="tableHeaders"
@@ -127,6 +128,16 @@
       </v-pagination>
     </template>
   </v-data-table>
+  <v-data-table-virtual
+    fixed-header
+    class="hide-scrollbar"
+    v-else-if="!showFooter"
+    :headers="headers"
+    :items="items"
+    :options="options"
+    :density="'compact'"
+  >
+  </v-data-table-virtual>
 </template>
 
 <script>
