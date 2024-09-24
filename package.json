@@ -28,9 +28,11 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "apexcharts": "^3.49.1",
     "resize-observer": "^1.0.4",
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.21",
+    "vue3-apexcharts": "^1.5.3",
     "vuetify": "^3.5.9",
     "webfontloader": "^1.6.28"
   },

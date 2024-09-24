@@ -7,12 +7,17 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AreaChart: (typeof import('./src/components/KPICharts/charts/AreaChart.vue'))['default']
+    ChartCardTitle: (typeof import('./src/components/KPICharts/ChartCardTitle.vue'))['default']
     Checkbox: (typeof import('./src/components/FilterSearch/filters/Checkbox.vue'))['default']
     DateRange: (typeof import('./src/components/FilterSearch/filters/DateRange.vue'))['default']
+    DonutChart: (typeof import('./src/components/KPICharts/charts/DonutChart.vue'))['default']
     FilterRow: (typeof import('./src/components/FilterSearch/FilterRow.vue'))['default']
     FilterSearch: (typeof import('./src/components/FilterSearch/FilterSearch.vue'))['default']
     FilterTag: (typeof import('./src/components/FilterSearch/FilterTag.vue'))['default']
     FilterToggle: (typeof import('./src/components/FilterSearch/FilterToggle.vue'))['default']
+    KPIChartCard: (typeof import('./src/components/KPICharts/KPIChartCard.vue'))['default']
+    KPIValue: (typeof import('./src/components/KPICharts/KPIValue.vue'))['default']
     MAppBarTab: (typeof import('./src/components/MAppBarTab/MAppBarTab.vue'))['default']
     MAppDrawer: (typeof import('./src/components/AppDrawer/MAppDrawer.vue'))['default']
     MBaseModal: (typeof import('./src/components/MBaseModal/MBaseModal.vue'))['default']
