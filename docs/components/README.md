@@ -220,9 +220,11 @@ To use the `KPIChartCard` component, it has to be imported in the script of the 
 ```vue
 import KPIChartCard from './KPIChartCard.vue';
 ```
+
 The usage of the `KPIChartCard` component varies depending on the type of chart you want to display: `area` or `donut`. Here are examples of how to use the component for each type of chart:
 
 For area chart (`chartType="area"`):
+
 ```vue
 <KPIChartCard
   title="Occupation rate of filling racks"
@@ -244,6 +246,7 @@ This example requires the series prop, which is an array representing the data s
 This will render a KPI card with the title "Occupation rate of filling racks", an area chart, and a KPI value of 100 (the last element in the series). The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
 
 For donut chart (`chartType="donut"`):
+
 ```vue
 <KPIChartCard
   title="Occupation rate of filling racks"
@@ -261,7 +264,7 @@ For donut chart (`chartType="donut"`):
 />
 ```
 
-This example only requires the value prop, which represents the KPI value to be displayed in the donut chart. 
+This example only requires the value prop, which represents the KPI value to be displayed in the donut chart.
 This will render a KPI card with the title "Occupation rate of filling racks", a donut chart, and a KPI value of 50. The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
 
 In summary, when using the `KPIChartCard` component, provide the `series` prop for area charts and the `value` prop for donut charts, along with other necessary props for styling and customization.
@@ -276,6 +279,7 @@ The `KPIChartCard` component is organized within the `KPICharts` folder, which c
 - `AreaChart.vue`: Displays an area chart using Vue Apex Charts.
 
 The `KPIChartCard.vue` component orchestrates the communication between its child components.
+
 ## DragNDropFile
 
 The DragNDropFile component is a Vue 3 component that facilitates drag and drop file uploading. It provides a user-friendly interface for users to upload files by dragging them onto a designated area.
@@ -660,7 +664,7 @@ Contains a v-data-table component, which is responsible for rendering the table.
 - `items (Array, required)`: Specifies the data items to be displayed in the table.
 - `options (Object)`: Additional options to configure the behavior and appearance of the table.
 - `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
-- `showFooter (Boolean, default: true)`: Indicates whether to display the table footer.
+- `showFooter (Boolean, default: true)`: Indicates whether to display the table footer. If false, data will be shown virtually (all data at once, scroll is invisible) NOTICE: If false, table is not editable.
 - `editionMode (Boolean, default: false)`: Indicates whether the table is in edition mode, allowing users to edit or delete items.
 - `itemsPerPage (Number, default: 10)`: Determines the number of items to be displayed per page in the data table.
 - `prevText (String, default: 'Previous')`: Sets the text for the "Previous" button in the pagination.
