@@ -179,11 +179,23 @@ export default {
       type: String,
       default: 'Next',
     },
+    resetCurrentPage: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     search: '',
     currentPage: 1,
   }),
+  watch: {
+    resetCurrentPage(newVal) {
+      if (newVal) {
+        this.currentPage = 1
+        this.$emit('update:resetCurrentPage', false) // Reset the prop to false after resetting the page
+      }
+    },
+  },
   methods: {
     handleInput(value, type, key, index) {
       if (type === 'number') {
