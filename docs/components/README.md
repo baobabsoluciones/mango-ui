@@ -669,11 +669,13 @@ Contains a v-data-table component, which is responsible for rendering the table.
 - `itemsPerPage (Number, default: 10)`: Determines the number of items to be displayed per page in the data table.
 - `prevText (String, default: 'Previous')`: Sets the text for the "Previous" button in the pagination.
 - `nextText (String, default: 'Next')`: Sets the text for the "Next" button in the pagination.
+- `resetCurrentPage (Boolean, default: false)`: Resets the current page to the first one when value is true.
 
 ### Emits
 
 - `create-item`: This event is emitted when the user requests to create a new item in the DataTable, typically through an "Add" button. The parent component can handle this event by adding a new item to the data list displayed in the DataTable.
 - `delete-item`: This event is emitted when the user requests to delete an item from the DataTable, usually by clicking on a delete button associated with a specific item in the table. The parent component can handle this event by removing the corresponding item from the data list.
+- `update:resetCurrentPage`: This event is emitted when the `resetCurrentPage` prop is set to `true` and the current page is reset to 1. The parent component can handle this event to set the `resetCurrentPage` prop back to `false` after the reset is done.
 
 ### Slots
 
