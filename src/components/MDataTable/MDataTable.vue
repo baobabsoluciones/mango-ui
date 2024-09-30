@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-if="showFooter"
     fixed-header
     class="pa-2 data-table"
     :headers="tableHeaders"
@@ -127,6 +128,16 @@
       </v-pagination>
     </template>
   </v-data-table>
+  <v-data-table-virtual
+    fixed-header
+    class="hide-scrollbar"
+    v-else-if="!showFooter"
+    :headers="headers"
+    :items="items"
+    :options="options"
+    :density="'compact'"
+  >
+  </v-data-table-virtual>
 </template>
 
 <script>
@@ -168,11 +179,23 @@ export default {
       type: String,
       default: 'Next',
     },
+    resetCurrentPage: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: () => ({
     search: '',
     currentPage: 1,
   }),
+  watch: {
+    resetCurrentPage(newVal) {
+      if (newVal) {
+        this.currentPage = 1
+        this.$emit('update:resetCurrentPage', false) // Reset the prop to false after resetting the page
+      }
+    },
+  },
   methods: {
     handleInput(value, type, key, index) {
       if (type === 'number') {

@@ -1,10 +1,15 @@
 ::v-deep .v-data-table__th {
   border-right: 1px solid #0000001e !important; /* Change color as needed */
   background-color: #f9f9f9 !important;
-    
 }
 
-::v-deep .v-data-table__th .v-data-table-header__content span{
+::v-deep .v-data-table__th .v-data-table-header__content span {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
+::v-deep .v-data-table__td {
   white-space: normal !important;
   word-wrap: break-word !important;
   word-break: break-all !important;
@@ -23,7 +28,17 @@
   display: none !important;
 }
 
+.hide-scrollbar ::v-deep .v-table__wrapper {
+  border-radius: inherit;
+  overflow: auto;
+  flex: 1 1 auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
 
+.hide-scrollbar ::v-deep .v-table__wrapper::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
 
 .hide-header ::v-deep .v-data-table__th {
   visibility: hidden;

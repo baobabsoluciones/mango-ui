@@ -17,19 +17,19 @@
         :class="tab.selected === true ? 'selected-tab' : ''"
         @click="selectTab(tab)"
       >
-        <v-icon v-if="tab.loading" class="mr-2 loading-icon" color="primary"
+        <v-icon v-if="tab.loading" class="mr-2 loading-icon"
           >mdi-loading</v-icon
         >
-        <v-icon v-else class="mr-2" color="primary">{{ tab.icon }}</v-icon>
+        <v-icon v-else class="mr-2">{{ tab.icon }}</v-icon>
         {{ tab.text
         }}<v-icon
           style="font-size: 0.7rem !important"
           @click="closeTab(index)"
-          class="ml-3"
+          class="close-icon ml-3"
           >mdi-close</v-icon
         >
       </v-tab>
-        <v-tab
+      <v-tab
         class="create-tab-btn"
         max-height="40"
         density="compact"
@@ -38,7 +38,14 @@
         @click.stop="$emit('create')"
       >
         <v-icon style="font-size: 0.85rem" class="mr-1">mdi-plus</v-icon>
-        <span style="font-size: 0.85rem !important; text-transform: none !important; letter-spacing: normal !important;">{{ createTitle }}</span>
+        <span
+          style="
+            font-size: 0.85rem !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+          "
+          >{{ createTitle }}</span
+        >
       </v-tab>
     </v-tabs>
     <v-spacer></v-spacer>
