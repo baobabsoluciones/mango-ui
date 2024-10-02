@@ -136,7 +136,59 @@
     :items="items"
     :options="options"
     :density="'compact'"
+    :class="[headerClass]"
   >
+    <template v-slot:item="{ item }">
+      <tr>
+        <td v-for="header in headers" :key="header.value">
+          <slot :name="header.value" :item="item">
+            <div v-if="!editionMode">
+              <template v-if="header.type === 'boolean'">
+                <input type="checkbox" :checked="item[header.value]" disabled />
+              </template>
+              <template v-else>
+                {{ item[header.value] }}
+              </template>
+            </div>
+            <div v-else>
+              <template v-if="header.value === 'delete'">
+                <v-icon small @click="$emit('delete-item', item.index)"
+                  >mdi-delete</v-icon
+                >
+              </template>
+              <template v-else-if="header.type === 'boolean'">
+                <input type="checkbox" :checked="item[header.value]" />
+              </template>
+              <template v-else>
+                <v-text-field
+                  v-model="item[header.value]"
+                  single-line
+                  counter
+                  hide-details
+                  @input="
+                    handleInput(
+                      item[header.value],
+                      header.type || item.type,
+                      header.value,
+                      item.index,
+                    )
+                  "
+                  :type="
+                    header.type
+                      ? header.type
+                      : header.disabled
+                        ? 'text'
+                        : item.type
+                  "
+                  :disabled="header.disabled"
+                  :density="options.density"
+                ></v-text-field>
+              </template>
+            </div>
+          </slot>
+        </td>
+      </tr>
+    </template>
   </v-data-table-virtual>
 </template>
 
