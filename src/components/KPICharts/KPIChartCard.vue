@@ -100,7 +100,6 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  margin-top: -2em;
 }
 
 </style>
