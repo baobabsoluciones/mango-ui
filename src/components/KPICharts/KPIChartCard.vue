@@ -1,9 +1,9 @@
 <template>
     <div class="kpi-chart-card"
-    :style="{backgroundColor: backgroundColor, height: height}">
+    :style="{backgroundColor: backgroundColor, height: height, width: width}">
         <ChartCardTitle :title="title" :titleColor="titleColor" :fontSize="fontSize"/>
         <div class="content">
-            <KPIValue :value="computedValue" :valueColor="valueColor" :valueFontSize= "valueFontSize"/>
+            <KPIValue :value="computedValue" :valueColor="valueColor" :valueFontSize= "valueFontSize" :formatSymbol="formatSymbol"/>
             <template v-if="chartType === 'donut'">
                 <DonutChart :chartColor="chartColor" :value="value" :width="chartWidth" :height="chartHeight"/>
             </template>
@@ -27,6 +27,10 @@ export default {
         height: {
             type: String,
             default: '150px'
+        },
+        width: {
+            type: String,
+            default: 'auto'
         },
         title: {
             type: String,
@@ -74,6 +78,10 @@ export default {
         chartHeight: {
             type: String,
             default: '150px'
+        },
+        formatSymbol: {
+            type: String,
+            default: ''
         }
     },
     computed: {
@@ -98,7 +106,7 @@ export default {
 .content {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 100%;
 }
 

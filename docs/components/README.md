@@ -262,10 +262,13 @@ The `KPIChartCard` component is a Vue 3 component designed to be part of dashboa
 - `valueColor`: String - The color of the KPI value. Default color is `#000000`.
 - `titleColor`: String - The color of the KPI title. Default color is `#000000`.
 - `height`: String - The height of the card in pixels. Default height is 150px.
+- `width`: String - The width of the card in pixels. Default height is auto.
 - `chartWidth`: String - The width of the chart in pixels. Default width for the charts is 150px.
 - `chartHeight`: String - The height of the chart in pixels. Default width for the charts is 150px.
 - `fontSize`: String - The size of the title font in pixels. Default size for the title font is 16px.
 - `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the title font is 42px.
+- `formatSymbol`: String - An optional symbol to be displayed next to the KPI value. If provided, the font size of the symbol will be `valueFontSize - 10px`.
+
 
 ### Usage
 
