@@ -1,6 +1,6 @@
 <template>
     <div class="kpi-value" :style="{ color: valueColor, fontSize: valueFontSize}">
-        {{ value }}
+        {{ value }}<span v-if="formatSymbol" :style="{ fontSize: computedSymbolFontSize }">{{ formatSymbol }}</span>
     </div>
 </template>
 
@@ -16,8 +16,18 @@
             valueFontSize: {
                 type: String,
                 default: '42px'
+            },
+            formatSymbol: {
+                type: String,
+                default: ''
             }
         },
+        computed: {
+            computedSymbolFontSize() {
+                const baseSize = parseInt(this.valueFontSize); 
+                return `${baseSize - 10}px`; 
+            }
+        }
     }
 </script>
 

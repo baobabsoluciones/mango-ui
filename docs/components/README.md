@@ -266,6 +266,8 @@ The `KPIChartCard` component is a Vue 3 component designed to be part of dashboa
 - `chartHeight`: String - The height of the chart in pixels. Default width for the charts is 150px.
 - `fontSize`: String - The size of the title font in pixels. Default size for the title font is 16px.
 - `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the title font is 42px.
+- `formatSymbol`: String - An optional symbol to be displayed next to the KPI value. If provided, the font size of the symbol will be `valueFontSize - 10px`.
+
 
 ### Usage
 
