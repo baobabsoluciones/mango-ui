@@ -37,6 +37,7 @@
     </v-text-field>
     <v-select
       v-if="isSelector"
+      class="select-field"
       density="compact"
       variant="outlined"
       v-model="optionSelected"
