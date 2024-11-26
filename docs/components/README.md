@@ -101,59 +101,113 @@ Here's an example of how to use the slots:
 
 ## Search and filter for tables
 
-The `MSearchFilter` component is a Vue 3 component that contains a search input field with a toggle button, that shows and hides and a set of filters in a row.
+The `MFilterSearch` component is a Vue 3 component that contains a search input field with a toggle button, that shows and hides and a set of filters in a row.
 It allows users to browse and apply various filters to narrow down the search results in a table of data.
 The component provides a smooth transition when toggling the display of filters.
 
 ### Props
 
 - `filters`: an object representing the available filters. Each filter object should have the following structure:
-  `'name': { 'type': String, //The type of filter. This can be 'range', 'checkbox' or 'dateRange'. }`
+  ```javascript
+  {
+    'name': {
+      'title': String, // The title of the filter.
+      'filterable': Boolean, // Whether the filter is applicable.
+      'type': String, // The type of filter. This can be 'range', 'checkbox', or 'dateRange'.
+      'selected': Boolean, // Whether the filter is selected.
+      'required': Boolean, // Whether the filter is required.
+      'options': Array, // (Optional) The options for 'checkbox' type filters.
+      'min': Number | Date, // (Optional) The minimum value for 'range' or 'dateRange' type filters.
+      'max': Number | Date, // (Optional) The maximum value for 'range' or 'dateRange' type filters.
+    }
+  }
+  ```
 
 ### Usage
 
-First, import the `MSearchFilter` component in the script of the project you want to use it in:
+First, import the `MFilterSearch` component in the script of the project you want to use it in:
 
 ```vue
-import MSearchFilter from './MSearchFilter.vue';
+import MFilterSearch from './MFilterSearch.vue';
 ```
 
 Then you can use it:
 
 ```vue
-<FilterSearch
-  :filters="{
-    name1: {
-      type: 'range',
-    },
-    name2: {
-      type: 'checkbox',
-      options: [
-        { checked: true, label: 'Label1', value: 'value1' },
-        { checked: false, label: 'Label2', value: 'value2' },
-      ],
-    },
-    name3: {
-      type: 'daterange',
-    },
-  }"
-/>
+<template>
+  <MFilterSearch
+    :filters="filters"
+    @reset="handleResetFilters"
+    @search="handleSearch"
+    @filter="handleFilters"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue'
+import MFilterSearch from './MFilterSearch.vue'
+
+const filters = ref({
+  name1: {
+    title: 'Filter 1',
+    filterable: true,
+    type: 'range',
+    selected: false,
+    required: false,
+    min: 0,
+    max: 100,
+  },
+  name2: {
+    title: 'Filter 2',
+    filterable: true,
+    type: 'checkbox',
+    selected: false,
+    required: false,
+    options: [
+      { checked: true, label: 'Label1', value: 'value1' },
+      { checked: false, label: 'Label2', value: 'value2' },
+    ],
+  },
+  name3: {
+    title: 'Filter 3',
+    filterable: true,
+    type: 'daterange',
+    selected: false,
+    required: false,
+    min: new Date('2022-01-01'),
+    max: new Date('2022-12-31'),
+  },
+})
+
+const handleResetFilters = () => {
+  console.log('Filters reset')
+}
+
+const handleSearch = (query) => {
+  console.log('Search query:', query)
+}
+
+const handleFilters = (filters) => {
+  console.log('Filters applied:', filters)
+}
+</script>
 ```
+
+### Emits
+
+The `FilterSearch.vue` component emits the following events:
+
+- `reset`: this event is emitted when the filters are reset.
+- `search`: this event is emitted when a search query is entered in the search input field.
+- `filter`: this event is emitted when filters are applied.
 
 ### Aditional info
 
-The `MSearchFilter` component is organized within the `FilterSearch` folder, which contains several subcomponents:
+The `MFilterSearch` component is organized within the `FilterSearch` folder, which contains several subcomponents:
 
 - FilterRow.vue: responsible for displaying and handling a row of individual filters
 - FilterToggle.vue: provides the toggle functionality to show or hide the set of filters
 - SearchBox.vue: presents the search input field for users to input their search queries
-
-The `FilterSearch.vue` component orchestrates the communication between its child components by emitting events:
-
-- `search`: this event is emitted when a search queries is entered in the space input field
-- `range`: this event is emitted when a numeric range is entered in a filter
-- `checked`: this event is emitted when a checkbox is selected in a filter
-- `dateRange`: this event is emitted when a date range is selected in a filter
 
 ## Button
 
@@ -208,10 +262,13 @@ The `KPIChartCard` component is a Vue 3 component designed to be part of dashboa
 - `valueColor`: String - The color of the KPI value. Default color is `#000000`.
 - `titleColor`: String - The color of the KPI title. Default color is `#000000`.
 - `height`: String - The height of the card in pixels. Default height is 150px.
+- `width`: String - The width of the card in pixels. Default height is auto.
 - `chartWidth`: String - The width of the chart in pixels. Default width for the charts is 150px.
 - `chartHeight`: String - The height of the chart in pixels. Default width for the charts is 150px.
 - `fontSize`: String - The size of the title font in pixels. Default size for the title font is 16px.
 - `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the title font is 42px.
+- `formatSymbol`: String - An optional symbol to be displayed next to the KPI value. If provided, the font size of the symbol will be `valueFontSize - 10px`.
+
 
 ### Usage
 

@@ -1,7 +1,7 @@
 {
   "name": "mango-vue",
   "private": false,
-  "version": "0.1.9",
+  "version": "0.2.0",
   "type": "module",
   "main": "./dist/mango-vue.js",
   "homepage": "https://github.com/baobabsoluciones/mango-ui/",
@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "apexcharts": "^3.49.1",
+    "apexcharts": "^4.0.0",
     "resize-observer": "^1.0.4",
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.21",
@@ -45,6 +45,7 @@
     "@vuepress/theme-default": "next",
     "jsdom": "^24.1.0",
     "prettier": "3.2.5",
+    "sass-embedded": "^1.79.4",
     "sass-embedded": "^1.79.4",
     "typescript": "^5.2.2",
     "unplugin-vue-components": "^0.26.0",

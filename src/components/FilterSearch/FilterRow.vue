@@ -4,7 +4,11 @@
       <!-- Render filter components based on their type -->
       <template v-if="filter.type === 'range'">
         <!-- Render range filter component -->
-        <Range :filterData="filter" :name="filter.title" @range="handleRange($event, key)" />
+        <Range
+          :filterData="filter"
+          :name="filter.title"
+          @range="handleRange($event, key)"
+        />
       </template>
       <template v-else-if="filter.type === 'checkbox'">
         <!-- Render checkbox filter component -->
@@ -16,7 +20,11 @@
       </template>
       <template v-else-if="filter.type === 'daterange'">
         <!-- Render date filter component -->
-        <DateRange :filterData="filter" :name="filter.title" @daterange="handleDateRange($event, key)" />
+        <DateRange
+          :filterData="filter"
+          :name="filter.title"
+          @daterange="handleDateRange($event, key)"
+        />
       </template>
     </div>
   </div>
@@ -37,34 +45,38 @@ export default {
   data() {
     return {
       isScrollActive: false,
-    };
+    }
   },
   mounted() {
-    this.checkScroll();
-    window.addEventListener('resize', this.checkScroll);
+    this.checkScroll()
+    window.addEventListener('resize', this.checkScroll)
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.checkScroll);
+    window.removeEventListener('resize', this.checkScroll)
   },
   methods: {
     handleRange(range, key) {
-      const filterRange = { key: key, range: range}
+      this.filters[key].min = range[0]
+      this.filters[key].max = range[1]
+      const filterRange = { key: key, range: range }
       this.$emit('range', filterRange)
     },
     handleMultiCheckboxes(checkedList, key) {
-      this.filters[key].checkedList = checkedList;
-      this.filters[key].options.forEach(option => {
-        option.checked = checkedList.includes(option.value);
-      });
+      this.filters[key].checkedList = checkedList
+      this.filters[key].options.forEach((option) => {
+        option.checked = checkedList.includes(option.value)
+      })
       const filterCheckboxes = { key: key, checkedList: checkedList }
       this.$emit('checked', filterCheckboxes)
     },
     handleDateRange(date, key) {
+      this.filters[key].min = date.start
+      this.filters[key].max = date.end
       const filterDate = { key: key, date: date }
       this.$emit('daterange', filterDate)
     },
     checkScroll() {
-      this.isScrollActive = this.$el.scrollWidth > this.$el.clientWidth;
+      this.isScrollActive = this.$el.scrollWidth > this.$el.clientWidth
     },
   },
 }

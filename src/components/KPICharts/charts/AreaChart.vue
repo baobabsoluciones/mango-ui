@@ -50,6 +50,7 @@ import VueApexCharts from "vue3-apexcharts";
                         zoom: {
                             enabled: false
                         },
+                        sparkline: { enabled: true },
                     },
                     stroke: {
                         curve: 'smooth'
@@ -87,7 +88,18 @@ import VueApexCharts from "vue3-apexcharts";
                         show: false 
                     },
                     tooltip: {
-                        enabled: false
+                        x: { show: false },
+                        marker: { show: false },
+                        y: {
+                            title: {
+                            formatter: function formatter() {
+                                return "";
+                            },
+                            },
+                            formatter: function (value) {
+                            return value;
+                            },
+                        },
                     },
                     colors: [this.chartColor],
                 },
