@@ -13,6 +13,7 @@
       :prefix="prefix"
       :suffix="suffix"
       :rules="rules"
+      :disabled="disabled"
       v-model="computedValue"
       style="font-size: 0.9rem !important"
     >
@@ -40,7 +41,8 @@
       class="select-field"
       density="compact"
       variant="outlined"
-      v-model="optionSelected"
+      :disabled="disabled"
+      v-model="computedOptionSelected"
       :items="options"
     ></v-select>
   </div>
@@ -67,10 +69,13 @@ export default {
     isSelect: Boolean,
     options: Array,
     defaultSelection: String,
+    disabled: {
+      type: Boolean,
+      default: false
+    },
   },
   data() {
     return {
-      optionSelected: '',
       showPassword: false,
       isSelector: false,
     }
@@ -84,6 +89,14 @@ export default {
         this.$emit('update:modelValue', value)
       },
     },
+    computedOptionSelected: {
+      get() {
+        return this.modelValue || this.defaultSelection
+      },
+      set(value) {
+        this.$emit('update:modelValue', value)
+      }
+    }
   },
   methods: {
     togglePasswordVisibility() {
@@ -92,7 +105,6 @@ export default {
   },
   mounted() {
     this.isSelector = this.isSelect
-    this.optionSelected = this.defaultSelection
   },
 }
 </script>
