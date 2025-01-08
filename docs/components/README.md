@@ -717,7 +717,7 @@ Contains a v-data-table component, which is responsible for rendering the table.
 
 ### Props
 
-- `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+- `headers (Array, required)`: Specifies the headers of the table, including title, value, and optional configuration.
 - `items (Array, required)`: Specifies the data items to be displayed in the table.
 - `options (Object)`: Additional options to configure the behavior and appearance of the table.
 - `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
