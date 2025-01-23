@@ -727,6 +727,9 @@ Contains a v-data-table component, which is responsible for rendering the table.
 - `prevText (String, default: 'Previous')`: Sets the text for the "Previous" button in the pagination.
 - `nextText (String, default: 'Next')`: Sets the text for the "Next" button in the pagination.
 - `resetCurrentPage (Boolean, default: false)`: Resets the current page to the first one when value is true.
+- `noDataMessage (String, default: 'No data available')`: The message to display when there are no items in the table.
+- `addSpaceBetweenPagination (Boolean, default: false)`: When enabled, adds additional vertical space between the table content and pagination to adjust for partially filled pages.
+- `customSpaceBetweenPaginationHeight (String)`: A computed property that calculates the height of the space between table content and pagination based on the number of items and row height. Only applicable when `addSpaceBetweenPagination` is true.
 
 ### Emits
 
