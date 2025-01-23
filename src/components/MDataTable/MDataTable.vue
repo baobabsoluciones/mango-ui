@@ -82,7 +82,7 @@
       <div>
         <div 
           v-if="addSpaceBetweenPagination" 
-          :style="{ height: `${rowHeight * (itemsPerPage - itemsWithIndex.length)}px` }"
+          :style="{ height: customSpaceBetweenPaginationHeight }"
         ></div>
         <v-pagination
           v-model="currentPage"
@@ -323,18 +323,20 @@ export default {
       return this.showHeaders ? '' : 'hide-header'
     },
     rowHeight() {
-      // More generous row heights with additional padding
       const densityHeights = {
         'default': 52,   // standard row height
-        'comfortable': 48,  // slightly smaller
-        'compact': 40   // smallest row height
+        'comfortable': 44,  // slightly smaller
+        'compact': 36   // smallest row height
       }
       const density = this.options.density || 'default'
       const baseHeight = densityHeights[density] || densityHeights['default']
       
-      // Add extra padding to make space more visible
       return baseHeight
     },
+    customSpaceBetweenPaginationHeight() {
+      const height = this.rowHeight * (this.itemsPerPage - this.itemsWithIndex.length)
+      return `${height}px`
+    }
   },
 }
 </script>
