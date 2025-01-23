@@ -1,18 +1,18 @@
 ::v-deep .v-data-table__th {
-  border-right: 1px solid #0000001e !important; /* Change color as needed */
+  border-right: 1px solid #0000001e !important;
   background-color: #f9f9f9 !important;
 }
 
 ::v-deep .v-data-table__th .v-data-table-header__content span {
   white-space: normal !important;
   word-wrap: break-word !important;
-  word-break: break-all !important;
+  word-break: normal !important;
 }
 
 ::v-deep .v-data-table__td {
   white-space: normal !important;
   word-wrap: break-word !important;
-  word-break: break-all !important;
+  word-break: normal !important;
 }
 
 /* Remove border from the last header cell */

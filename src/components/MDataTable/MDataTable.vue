@@ -69,7 +69,7 @@
           <v-col cols="auto">
             <v-icon style="font-size: 0.85rem" class="mr-1">mdi-plus</v-icon>
           </v-col>
-          <v-col cols="auto"> {{ $t('inputOutputData.addItem') }} </v-col>
+          <v-col cols="auto">Add Item</v-col>
         </v-row>
       </v-btn>
     </template>
