@@ -1,6 +1,6 @@
 <template>
     <div class= "area-chart" :style="{ width: width, height: height }">
-        <apexchart :options="chartOptions" :series="chartSeries"></apexchart>
+        <apexchart :options="chartOptions" :series="chartSeries" :width="width" :height="height"></apexchart>
     </div>
 </template>
 
@@ -29,21 +29,17 @@ import VueApexCharts from "vue3-apexcharts";
             },
             height: {
                 type: String,
-                default: '150px'
+                default: '100px'
             }
         },
         computed: {
             chartSeries() {
                 return [{data: this.series}]
-            }
-        },
-        data () {
-            return {
-                chartOptions: {
+            },
+            chartOptions() {
+                return {
                     chart: {
                         type: 'area',
-                        height: this.height,
-                        width: this.width,
                         toolbar: {
                             show: false
                         },
@@ -102,9 +98,12 @@ import VueApexCharts from "vue3-apexcharts";
                         },
                     },
                     colors: [this.chartColor],
-                },
+                }
             }
-        },  
+        },
+        data() {
+            return {}
+        },
     }
 </script>
 
