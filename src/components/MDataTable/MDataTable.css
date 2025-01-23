@@ -70,6 +70,14 @@
 
 ::v-deep .v-pagination__item .v-btn__content {
   font-size: 0.9rem;
+  text-transform: none; /* Prevent automatic formatting */
+  letter-spacing: normal;
+}
+
+/* For numbers over 1000, reduce font size */
+::v-deep .v-pagination__item .v-btn__content[aria-label*=","] {
+  font-size: 0.75rem;
+  font-weight: 500;
 }
 
 ::v-deep .v-pagination__item .v-btn--disabled {
