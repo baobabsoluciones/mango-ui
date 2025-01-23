@@ -29,7 +29,7 @@ import VueApexCharts from "vue3-apexcharts";
             },
             height: {
                 type: String,
-                default: '100px'
+                default: '150px'
             }
         },
         computed: {

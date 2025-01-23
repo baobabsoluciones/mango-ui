@@ -35,8 +35,6 @@ import VueApexCharts from "vue3-apexcharts";
                 chartOptions: {
                     chart: {
                         type: 'radialBar',
-                        height: this.height,
-                        width: this.width,
                     },
                     stroke: {
                         lineCap: 'round'
