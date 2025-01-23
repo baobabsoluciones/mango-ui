@@ -9,6 +9,11 @@
     :hide-default-footer="!showFooter"
     :class="[footerClass, headerClass]"
   >
+    <template v-if="items.length === 0" v-slot:no-data>
+      <div class="text-center py-4">
+        {{ noDataMessage }}
+      </div>
+    </template>
     <template
       v-for="header in tableHeaders"
       v-slot:[`item.${header.value}`]="{ item }"
@@ -69,63 +74,70 @@
           <v-col cols="auto">
             <v-icon style="font-size: 0.85rem" class="mr-1">mdi-plus</v-icon>
           </v-col>
-          <v-col cols="auto"> {{ $t('inputOutputData.addItem') }} </v-col>
+          <v-col cols="auto">Add Item</v-col>
         </v-row>
       </v-btn>
     </template>
     <template v-slot:bottom>
-      <v-pagination
-        v-model="currentPage"
-        :length="totalPages"
-        color="var(--primary)"
-        @input="handlePageChange"
-        density="comfortable"
-      >
-        <template v-slot:prev>
-          <div class="mr-5">
-            <v-icon
-              :class="{ 'pagination-icon-disabled': currentPage === 1 }"
-              class="pagination-icon"
-              :disabled="currentPage === 1"
-              @click="currentPage--"
-            >
-              mdi-chevron-left
-            </v-icon>
-            <span
-              :class="{ 'pagination-icon-disabled': currentPage === 1 }"
-              class="pagination-icon ml-2"
-              @click="goPrevPage()"
-              style="font-size: 0.8rem !important; user-select: none"
-            >
-              {{ prevText }}
-            </span>
-          </div>
-        </template>
-        <template v-slot:next>
-          <div class="ml-5">
-            <span
-              :class="{
-                'pagination-icon-disabled': currentPage === totalPages,
-              }"
-              class="pagination-icon mr-2"
-              @click="goNextPage()"
-              style="font-size: 0.8rem !important; user-select: none"
-            >
-              {{ nextText }}
-            </span>
-            <v-icon
-              :class="{
-                'pagination-icon-disabled': currentPage === totalPages,
-              }"
-              class="pagination-icon"
-              :disabled="currentPage === totalPages"
-              @click="currentPage++"
-            >
-              mdi-chevron-right
-            </v-icon>
-          </div>
-        </template>
-      </v-pagination>
+      <div>
+        <div 
+          v-if="addSpaceBetweenPagination" 
+          :style="{ height: customSpaceBetweenPaginationHeight }"
+        ></div>
+        <v-pagination
+          v-model="currentPage"
+          :length="totalPages"
+          color="var(--primary)"
+          @input="handlePageChange"
+          density="comfortable"
+          :disabled="items.length === 0"
+        >
+          <template v-slot:prev>
+            <div class="mr-5">
+              <v-icon
+                :class="{ 'pagination-icon-disabled': currentPage === 1 || items.length === 0 }"
+                class="pagination-icon"
+                :disabled="currentPage === 1 || items.length === 0"
+                @click="currentPage--"
+              >
+                mdi-chevron-left
+              </v-icon>
+              <span
+                :class="{ 'pagination-icon-disabled': currentPage === 1 || items.length === 0 }"
+                class="pagination-icon ml-2"
+                @click="goPrevPage()"
+                style="font-size: 0.8rem !important; user-select: none"
+              >
+                {{ prevText }}
+              </span>
+            </div>
+          </template>
+          <template v-slot:next>
+            <div class="ml-5">
+              <span
+                :class="{
+                  'pagination-icon-disabled': currentPage === totalPages || items.length === 0,
+                }"
+                class="pagination-icon mr-2"
+                @click="goNextPage()"
+                style="font-size: 0.8rem !important; user-select: none"
+              >
+                {{ nextText }}
+              </span>
+              <v-icon
+                :class="{
+                  'pagination-icon-disabled': currentPage === totalPages || items.length === 0,
+                }"
+                class="pagination-icon"
+                :disabled="currentPage === totalPages || items.length === 0"
+                @click="currentPage++"
+              >
+                mdi-chevron-right
+              </v-icon>
+            </div>
+          </template>
+        </v-pagination>
+      </div>
     </template>
   </v-data-table>
   <v-data-table-virtual
@@ -135,7 +147,7 @@
     :headers="headers"
     :items="items"
     :options="options"
-    :density="'compact'"
+    :density="options.density ? options.density : 'compact'"
     :class="[headerClass]"
   >
     <template v-slot:item="{ item }">
@@ -235,6 +247,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    noDataMessage: {
+      type: String,
+      default: 'No data available'
+    },
+    addSpaceBetweenPagination: {
+      type: Boolean,
+      default: false
+    }
   },
   data: () => ({
     search: '',
@@ -294,7 +314,7 @@ export default {
       }))
     },
     totalPages() {
-      return Math.ceil(this.items.length / this.itemsPerPage)
+      return this.items.length > 0 ? Math.ceil(this.items.length / this.itemsPerPage) : 0
     },
     footerClass() {
       return this.showFooter ? '' : 'hide-footer'
@@ -302,6 +322,21 @@ export default {
     headerClass() {
       return this.showHeaders ? '' : 'hide-header'
     },
+    rowHeight() {
+      const densityHeights = {
+        'default': 52,   // standard row height
+        'comfortable': 44,  // slightly smaller
+        'compact': 36   // smallest row height
+      }
+      const density = this.options.density || 'default'
+      const baseHeight = densityHeights[density] || densityHeights['default']
+      
+      return baseHeight
+    },
+    customSpaceBetweenPaginationHeight() {
+      const height = this.rowHeight * (this.itemsPerPage - this.itemsWithIndex.length)
+      return `${height}px`
+    }
   },
 }
 </script>

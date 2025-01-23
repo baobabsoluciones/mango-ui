@@ -717,7 +717,7 @@ Contains a v-data-table component, which is responsible for rendering the table.
 
 ### Props
 
-- `headers (Array, required)`: Specifies the headers of the table, including text, value, and optional configuration.
+- `headers (Array, required)`: Specifies the headers of the table, including title, value, and optional configuration.
 - `items (Array, required)`: Specifies the data items to be displayed in the table.
 - `options (Object)`: Additional options to configure the behavior and appearance of the table.
 - `showHeaders (Boolean, default: true)`: Indicates whether to display the table headers.
@@ -727,6 +727,8 @@ Contains a v-data-table component, which is responsible for rendering the table.
 - `prevText (String, default: 'Previous')`: Sets the text for the "Previous" button in the pagination.
 - `nextText (String, default: 'Next')`: Sets the text for the "Next" button in the pagination.
 - `resetCurrentPage (Boolean, default: false)`: Resets the current page to the first one when value is true.
+- `noDataMessage (String, default: 'No data available')`: The message to display when there are no items in the table.
+- `addSpaceBetweenPagination (Boolean, default: false)`: When enabled, adds additional vertical space between the table content and pagination to adjust for partially filled pages.
 
 ### Emits
 
