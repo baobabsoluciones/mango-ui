@@ -3,12 +3,47 @@
     :style="{backgroundColor: backgroundColor, height: height, width: width}">
         <ChartCardTitle :title="title" :titleColor="titleColor" :fontSize="fontSize"/>
         <div class="content">
-            <KPIValue :value="computedValue" :valueColor="valueColor" :valueFontSize= "valueFontSize" :formatSymbol="formatSymbol"/>
+            <div class="values-container">
+                <div v-if="mainValue" class="value-item">
+                    <KPIValue 
+                        :value="mainValue.value" 
+                        :valueColor="mainValue.color || valueColor" 
+                        :valueFontSize="valueFontSize"
+                        :formatSymbol="formatSymbol"
+                    />
+                    <span class="value-label" :style="{ color: mainValue.color || valueColor }">{{ mainValue.label }}</span>
+                </div>
+                <div v-if="secondaryValue" class="value-item">
+                    <KPIValue 
+                        :value="secondaryValue.value" 
+                        :valueColor="secondaryValue.color || valueColor" 
+                        :valueFontSize="valueFontSize"
+                        :formatSymbol="formatSymbol"
+                    />
+                    <span class="value-label" :style="{ color: secondaryValue.color || valueColor }">{{ secondaryValue.label }}</span>
+                </div>
+            </div>
             <template v-if="chartType === 'donut'">
-                <DonutChart :chartColor="chartColor" :value="value" :width="chartWidth" :height="chartHeight"/>
+                <DonutChart 
+                    :chartColor="mainValue?.color || chartColor"
+                    :secondaryColor="secondaryValue?.color || secondaryColor"
+                    :value="mainValue?.value"
+                    :secondaryValue="secondaryValue?.value"
+                    :width="chartWidth" 
+                    :height="chartHeight"
+                />
             </template>
             <template v-if="chartType === 'area'">
-                <AreaChart :chartColor="chartColor" :series="series" :value="value" :width="chartWidth" :height="chartHeight"/>
+                <AreaChart 
+                    :chartColor="mainValue?.color || chartColor"
+                    :secondaryColor="secondaryValue?.color || secondaryColor"
+                    :series="series"
+                    :secondarySeries="secondarySeries"
+                    :mainLabel="mainValue?.label"
+                    :secondaryLabel="secondaryValue?.label"
+                    :width="chartWidth" 
+                    :height="chartHeight"
+                />
             </template>
         </div>
     </div>
@@ -36,11 +71,11 @@ export default {
             type: String,
             default: () => ({}),
         },
-        value: {
-            type: Number,
-            default: () => ({}),
-        },
         series: {
+            type: Array,
+            default: () => []
+        },
+        secondarySeries: {
             type: Array,
             default: () => []
         },
@@ -54,6 +89,10 @@ export default {
         chartColor: {
             type: String,
             default: '#214270'
+        },
+        secondaryColor: {
+            type: String,
+            default: '#4CAF50'
         },
         valueColor: {
             type: String,
@@ -82,6 +121,14 @@ export default {
         formatSymbol: {
             type: String,
             default: ''
+        },
+        mainValue: {
+            type: Object,
+            default: null
+        },
+        secondaryValue: {
+            type: Object,
+            default: null
         }
     },
     computed: {
@@ -89,7 +136,7 @@ export default {
             if (this.chartType === 'area' && this.series.length) {
                 return this.series[this.series.length -1];
             }
-            return this.value;
+            return this.mainValue?.value || this.value;
         }
     }
 }
@@ -100,7 +147,7 @@ export default {
 <style>
 .kpi-chart-card {
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
 }
 
 .content {
@@ -110,4 +157,21 @@ export default {
   width: 100%;
 }
 
+.values-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.value-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.value-label {
+    font-size: 14px;
+    font-weight: 500;
+}
 </style>
