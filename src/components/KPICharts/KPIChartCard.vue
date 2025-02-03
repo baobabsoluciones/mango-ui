@@ -55,9 +55,14 @@ import KPIValue from './KPIValue.vue'
 import DonutChart from './charts/DonutChart.vue';
 import AreaChart from './charts/AreaChart.vue'
 
-
 export default {
     name: 'KPIChartCard',
+    components: {
+        ChartCardTitle,
+        KPIValue,
+        DonutChart,
+        AreaChart
+    },
     props: {
         height: {
             type: String,
@@ -69,7 +74,7 @@ export default {
         },
         title: {
             type: String,
-            default: () => ({}),
+            default: ''
         },
         series: {
             type: Array,
@@ -81,10 +86,11 @@ export default {
         },
         chartType: {
             type: String,
+            required: true
         },
         backgroundColor: {
             type: String,
-            default: '#b8b6b7'
+            default: '#FFFFFF'
         },
         chartColor: {
             type: String,
@@ -130,18 +136,8 @@ export default {
             type: Object,
             default: null
         }
-    },
-    computed: {
-        computedValue() {
-            if (this.chartType === 'area' && this.series.length) {
-                return this.series[this.series.length -1];
-            }
-            return this.mainValue?.value || this.value;
-        }
     }
 }
-
-
 </script>
 
 <style>
