@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2] - 03/02/2024
+
+### Added
+- Feature: Added support for comparison values display in KPIChartCard component
+- Feature: Added formatSymbol prop to KPIChartCard component for displaying units (%, €, etc.) next to values
+
 ## [0.2.1] - 23/01/2024
 
 ### Added
