@@ -249,93 +249,108 @@ Then, within your template, use the `MButton` component as follows:
 
 ## KPI Chart Cards
 
-The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a card with a KPI value with its accompanying chart. The component is highly customizable, allowing the usear to choose different charts, colors, sizes and styles.
+The `KPIChartCard` component is a Vue 3 component designed to be part of dashboards or tables. It displays a card with KPI values and their accompanying chart. The component is highly customizable, allowing the user to choose different charts, colors, sizes, and styles. It supports displaying multiple values with labels, making it perfect for comparisons.
 
 ### Props
 
 - `title`: String - The title of the KPI card.
-- `value`: Number - The primary KPI value to be displayed for the chart type 'donut'.
-- `series`: Array - An array of numbers representing the data series for the chart type 'area'.
+- `mainValue`: Object - The primary value object containing:
+  - `value`: Number - The value to display
+  - `label`: String - The label for this value (e.g., "Shift")
+  - `color`: String - The color for this value and its chart element
+- `secondaryValue`: Object - The secondary value object with the same structure as mainValue
+- `series`: Array - An array of numbers representing the primary data series for the chart type 'area'.
+- `secondarySeries`: Array - An array of numbers representing the secondary data series for the chart type 'area'.
 - `chartType`: String - The type of chart to display. Accepted values are 'donut' and 'area'.
-- `backgroundColor`: String - The background color of the card. Default color is `#b8b6b7`.
-- `chartColor`: String - The color of the chart. Default color is `#214270`.
-- `valueColor`: String - The color of the KPI value. Default color is `#000000`.
+- `backgroundColor`: String - The background color of the card. Default color is `#FFFFFF`.
+- `chartColor`: String - The default color of the primary chart element. Default color is `#214270`.
+- `secondaryColor`: String - The default color of the secondary chart element. Default color is `#4CAF50`.
+- `valueColor`: String - The default color of the KPI values. Default color is `#000000`.
 - `titleColor`: String - The color of the KPI title. Default color is `#000000`.
 - `height`: String - The height of the card in pixels. Default height is 150px.
-- `width`: String - The width of the card in pixels. Default height is auto.
+- `width`: String - The width of the card in pixels. Default width is auto.
 - `chartWidth`: String - The width of the chart in pixels. Default width for the charts is 150px.
-- `chartHeight`: String - The height of the chart in pixels. Default width for the charts is 150px.
+- `chartHeight`: String - The height of the chart in pixels. Default height for the charts is 150px.
 - `fontSize`: String - The size of the title font in pixels. Default size for the title font is 16px.
-- `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the title font is 42px.
-- `formatSymbol`: String - An optional symbol to be displayed next to the KPI value. If provided, the font size of the symbol will be `valueFontSize - 10px`.
-
+- `valueFontSize`: String - The size of the KPI value font in pixels. Default size for the value font is 42px.
+- `formatSymbol`: String - An optional symbol to be displayed next to the KPI values (e.g., "%", "€", "m³"). The symbol will be shown with a slightly smaller font size (valueFontSize - 10px) for better visual hierarchy.
 
 ### Usage
 
-To use the `KPIChartCard` component, it has to be imported in the script of the project you want to use it in:
+To use the `KPIChartCard` component, import it in your script:
 
 ```vue
 import KPIChartCard from './KPIChartCard.vue';
 ```
 
-The usage of the `KPIChartCard` component varies depending on the type of chart you want to display: `area` or `donut`. Here are examples of how to use the component for each type of chart:
-
-For area chart (`chartType="area"`):
-
-```vue
-<KPIChartCard
-  title="Occupation rate of filling racks"
-  fontSize="20px"
-  height="200px"
-  :series="[90, 31, 80, 40, 51, 42, 109, 100]"
-  chartType="area"
-  backgroundColor="#f2b6d6"
-  titleColor="#8c0e21"
-  valueColor="#8c0e21"
-  valueFontSize="46px"
-  chartColor="#214270"
-  chartHeight="200px"
-  chartWidth="200px"
-/>
-```
-
-This example requires the series prop, which is an array representing the data series for the area chart.
-This will render a KPI card with the title "Occupation rate of filling racks", an area chart, and a KPI value of 100 (the last element in the series). The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
+The usage varies depending on the type of chart. Here are examples for both types:
 
 For donut chart (`chartType="donut"`):
 
 ```vue
 <KPIChartCard
-  title="Occupation rate of filling racks"
-  :value="50"
+  title="Occupation Rate of Filling Racks"
+  :mainValue="{ value: 90, label: 'Shift', color: '#3B82F6' }"
+  :secondaryValue="{ value: 88, label: 'Avg.', color: '#10B981' }"
   chartType="donut"
-  backgroundColor="#f2b6d6"
-  chartColor="#1b1c2e"
-  titleColor="#8c0e21"
-  valueColor="#8c0e21"
+  backgroundColor="#FFFFFF"
+  width="400px"
   height="200px"
-  chartHeight="200px"
-  chartWidth="200px"
-  valueFontSize="46px"
-  fontSize="20px"
+  chartWidth="120px"
+  chartHeight="120px"
+  valueFontSize="32px"
+  formatSymbol="%"  // Will display "90%" and "88%" with the % slightly smaller
 />
 ```
 
-This example only requires the value prop, which represents the KPI value to be displayed in the donut chart.
-This will render a KPI card with the title "Occupation rate of filling racks", a donut chart, and a KPI value of 50. The background color of the card will be light pink (#f2b6d6), the chart color will be dark blue (#1b1c2e), and both the title and KPI value will be dark red (#8c0e21).
+For area chart (`chartType="area"`):
 
-In summary, when using the `KPIChartCard` component, provide the `series` prop for area charts and the `value` prop for donut charts, along with other necessary props for styling and customization.
+```vue
+<KPIChartCard
+  title="Expected Cryogenic Filled in the Shift"
+  :mainValue="{ value: 23, label: 'Shift', color: '#3B82F6' }"
+  :secondaryValue="{ value: 25, label: 'Avg.', color: '#10B981' }"
+  chartType="area"
+  :series="[18, 20, 22, 21, 23]"
+  :secondarySeries="[20, 22, 24, 23, 25]"
+  backgroundColor="#FFFFFF"
+  width="400px"
+  height="200px"
+  chartWidth="200px"
+  chartHeight="120px"
+  valueFontSize="32px"
+  formatSymbol="m³"  // Will display "23m³" and "25m³" with the m³ slightly smaller
+/>
+```
+
+For single value usage:
+
+```vue
+<KPIChartCard
+  title="Temperature Trend"
+  :mainValue="{ value: 24, label: 'Celsius', color: '#3B82F6' }"
+  chartType="area"
+  :series="[20, 22, 23, 24, 24]"
+  chartWidth="200px"
+  chartHeight="120px"
+  backgroundColor="#FFFFFF"
+  width="400px"
+  height="200px"
+  valueFontSize="32px"
+  formatSymbol="°C"  // Will display "24°C" with the °C slightly smaller
+/>
+```
 
 ### Additional info
 
 The `KPIChartCard` component is organized within the `KPICharts` folder, which contains several subcomponents:
 
 - `ChartCardTitle.vue`: Displays the title of the KPI card.
-- `KPIValue.vue`: Displays the KPI value.
-- `DonutChart.vue`: Displays a donut chart using Vue Apex Charts.
-- `AreaChart.vue`: Displays an area chart using Vue Apex Charts.
+- `KPIValue.vue`: Displays the KPI values with their labels and optional format symbols.
+- `DonutChart.vue`: Displays a donut chart using Vue Apex Charts, supporting multiple rings for value comparison.
+- `AreaChart.vue`: Displays an area chart using Vue Apex Charts, supporting multiple series for trend comparison.
 
-The `KPIChartCard.vue` component orchestrates the communication between its child components.
+The component supports both single and multiple value displays, making it versatile for various dashboard needs. The charts automatically adapt to show comparisons when both main and secondary values are provided. Format symbols are automatically sized and positioned next to their respective values for optimal readability.
 
 ## DragNDropFile
 

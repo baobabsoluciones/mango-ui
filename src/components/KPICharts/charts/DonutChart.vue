@@ -1,6 +1,13 @@
 <template>
-    <div class= "donut-chart" :style="{ width: width, height: height }">
-        <apexchart :options="chartOptions" :series="series" :width="width" :height="height"></apexchart>
+    <div class="donut-chart" :style="{ width: width, height: height }">
+        <apexchart 
+            ref="chart"
+            type="radialBar"
+            :options="chartOptions" 
+            :series="computedSeries" 
+            :width="width" 
+            :height="height"
+        ></apexchart>
     </div>
 </template>
 
@@ -17,8 +24,17 @@ import VueApexCharts from "vue3-apexcharts";
                 type: String,
                 default: '#214270',
             },
+            secondaryColor: {
+                type: String,
+                default: '#4CAF50',
+            },
             value: {
-                type: Number
+                type: Number,
+                default: 0
+            },
+            secondaryValue: {
+                type: Number,
+                default: null
             },
             width: {
                 type: String,
@@ -29,40 +45,101 @@ import VueApexCharts from "vue3-apexcharts";
                 default: '150px'
             }
         },
+        computed: {
+            computedSeries() {
+                return this.secondaryValue !== null 
+                    ? [this.value || 0, this.secondaryValue] 
+                    : [this.value || 0]
+            },
+            computedColors() {
+                return this.secondaryValue !== null 
+                    ? [this.chartColor, this.secondaryColor]
+                    : [this.chartColor]
+            }
+        },
         data () {
             return {
-                series: [this.value],
                 chartOptions: {
                     chart: {
                         type: 'radialBar',
+                        offsetY: 0
                     },
                     stroke: {
-                        lineCap: 'round'
+                        lineCap: 'round',
+                        curve: 'smooth'
                     },
                     plotOptions: {
-                    radialBar: {
-                        hollow: {
-                            margin: 0,
-                            size: "55%"
-                        },
-                        dataLabels: {
-                            name: {
-                                show: false,
+                        radialBar: {
+                            startAngle: -360,
+                            endAngle: 0,
+                            inverseOrder: true,
+                            hollow: {
+                                margin: 5,
+                                size: "50%"
                             },
-                            value: {
-                                show: false
+                            track: {
+                                show: true,
+                                background: '#F3F4F6',
+                                strokeWidth: '40%',
+                                opacity: 1,
+                                margin: 3,
+                                dropShadow: {
+                                    enabled: false
+                                }
                             },
-                        },
-                        track: {
-                            background: '#f2f2f2',
-                            strokeWidth: '100%',
+                            dataLabels: {
+                                name: {
+                                    show: false,
+                                },
+                                value: {
+                                    show: false
+                                },
+                            },
+                            strokeWidth: '40%'
                         },
                     },
-                },
-                colors: [this.chartColor],
+                    fill: {
+                        opacity: 1
+                    },
+                    colors: this.computedColors,
                 },
             }
-        },  
+        },
+        watch: {
+            value: {
+                handler() {
+                    this.updateChartColors();
+                }
+            },
+            secondaryValue: {
+                handler() {
+                    this.updateChartColors();
+                }
+            },
+            chartColor: {
+                handler() {
+                    this.updateChartColors();
+                }
+            },
+            secondaryColor: {
+                handler() {
+                    this.updateChartColors();
+                }
+            },
+            computedColors: {
+                handler(newColors) {
+                    this.updateChartColors();
+                }
+            }
+        },
+        methods: {
+            updateChartColors() {
+                this.chartOptions = {
+                    ...this.chartOptions,
+                    colors: this.computedColors
+                };
+            }
+        }
     }
 </script>
 
@@ -71,6 +148,6 @@ import VueApexCharts from "vue3-apexcharts";
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:auto;
+  margin: auto;
 }
 </style>
