@@ -3,12 +3,47 @@
     :style="{backgroundColor: backgroundColor, height: height, width: width}">
         <ChartCardTitle :title="title" :titleColor="titleColor" :fontSize="fontSize"/>
         <div class="content">
-            <KPIValue :value="computedValue" :valueColor="valueColor" :valueFontSize= "valueFontSize" :formatSymbol="formatSymbol"/>
+            <div class="values-container">
+                <div v-if="mainValue" class="value-item">
+                    <KPIValue 
+                        :value="mainValue.value" 
+                        :valueColor="mainValue.color || valueColor" 
+                        :valueFontSize="valueFontSize"
+                        :formatSymbol="formatSymbol"
+                    />
+                    <span class="value-label" :style="{ color: mainValue.color || valueColor }">{{ mainValue.label }}</span>
+                </div>
+                <div v-if="secondaryValue" class="value-item">
+                    <KPIValue 
+                        :value="secondaryValue.value" 
+                        :valueColor="secondaryValue.color || valueColor" 
+                        :valueFontSize="valueFontSize"
+                        :formatSymbol="formatSymbol"
+                    />
+                    <span class="value-label" :style="{ color: secondaryValue.color || valueColor }">{{ secondaryValue.label }}</span>
+                </div>
+            </div>
             <template v-if="chartType === 'donut'">
-                <DonutChart :chartColor="chartColor" :value="value" :width="chartWidth" :height="chartHeight"/>
+                <DonutChart 
+                    :chartColor="mainValue?.color || chartColor"
+                    :secondaryColor="secondaryValue?.color || secondaryColor"
+                    :value="mainValue?.value"
+                    :secondaryValue="secondaryValue?.value"
+                    :width="chartWidth" 
+                    :height="chartHeight"
+                />
             </template>
             <template v-if="chartType === 'area'">
-                <AreaChart :chartColor="chartColor" :series="series" :value="value" :width="chartWidth" :height="chartHeight"/>
+                <AreaChart 
+                    :chartColor="mainValue?.color || chartColor"
+                    :secondaryColor="secondaryValue?.color || secondaryColor"
+                    :series="series"
+                    :secondarySeries="secondarySeries"
+                    :mainLabel="mainValue?.label"
+                    :secondaryLabel="secondaryValue?.label"
+                    :width="chartWidth" 
+                    :height="chartHeight"
+                />
             </template>
         </div>
     </div>
@@ -20,9 +55,14 @@ import KPIValue from './KPIValue.vue'
 import DonutChart from './charts/DonutChart.vue';
 import AreaChart from './charts/AreaChart.vue'
 
-
 export default {
     name: 'KPIChartCard',
+    components: {
+        ChartCardTitle,
+        KPIValue,
+        DonutChart,
+        AreaChart
+    },
     props: {
         height: {
             type: String,
@@ -34,26 +74,31 @@ export default {
         },
         title: {
             type: String,
-            default: () => ({}),
-        },
-        value: {
-            type: Number,
-            default: () => ({}),
+            default: ''
         },
         series: {
             type: Array,
             default: () => []
         },
+        secondarySeries: {
+            type: Array,
+            default: () => []
+        },
         chartType: {
             type: String,
+            required: true
         },
         backgroundColor: {
             type: String,
-            default: '#b8b6b7'
+            default: '#FFFFFF'
         },
         chartColor: {
             type: String,
             default: '#214270'
+        },
+        secondaryColor: {
+            type: String,
+            default: '#4CAF50'
         },
         valueColor: {
             type: String,
@@ -82,25 +127,23 @@ export default {
         formatSymbol: {
             type: String,
             default: ''
-        }
-    },
-    computed: {
-        computedValue() {
-            if (this.chartType === 'area' && this.series.length) {
-                return this.series[this.series.length -1];
-            }
-            return this.value;
+        },
+        mainValue: {
+            type: Object,
+            default: null
+        },
+        secondaryValue: {
+            type: Object,
+            default: null
         }
     }
 }
-
-
 </script>
 
 <style>
 .kpi-chart-card {
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
 }
 
 .content {
@@ -110,4 +153,21 @@ export default {
   width: 100%;
 }
 
+.values-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.value-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.value-label {
+    font-size: 14px;
+    font-weight: 500;
+}
 </style>

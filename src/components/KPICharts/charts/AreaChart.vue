@@ -17,8 +17,24 @@ import VueApexCharts from "vue3-apexcharts";
                 type: String,
                 default: '#214270',
             },
+            secondaryColor: {
+                type: String,
+                default: '#4CAF50',
+            },
             series: {
                 type: Array
+            },
+            secondarySeries: {
+                type: Array,
+                default: () => []
+            },
+            mainLabel: {
+                type: String,
+                default: 'Primary'
+            },
+            secondaryLabel: {
+                type: String,
+                default: 'Secondary'
             },
             value: {
                 type: Number
@@ -34,7 +50,18 @@ import VueApexCharts from "vue3-apexcharts";
         },
         computed: {
             chartSeries() {
-                return [{data: this.series}]
+                const series = [{
+                    name: this.mainLabel,
+                    data: this.series
+                }];
+                
+                if (this.secondarySeries.length > 0) {
+                    series.push({
+                        name: this.secondaryLabel,
+                        data: this.secondarySeries
+                    });
+                }
+                return series;
             },
             chartOptions() {
                 return {
@@ -49,14 +76,15 @@ import VueApexCharts from "vue3-apexcharts";
                         sparkline: { enabled: true },
                     },
                     stroke: {
-                        curve: 'smooth'
+                        curve: 'smooth',
+                        width: 2
                     },
                     dataLabels: {
                         enabled: false
                     },
                     fill: {
                         type: 'solid',
-                        opacity: 0.8,
+                        opacity: [0.35, 0.25],
                     },
                     xaxis: {
                         labels: {
@@ -84,20 +112,19 @@ import VueApexCharts from "vue3-apexcharts";
                         show: false 
                     },
                     tooltip: {
+                        shared: true,
+                        intersect: false,
                         x: { show: false },
                         marker: { show: false },
                         y: {
                             title: {
-                            formatter: function formatter() {
-                                return "";
-                            },
-                            },
-                            formatter: function (value) {
-                            return value;
+                                formatter: function formatter(seriesName) {
+                                    return seriesName + ": ";
+                                },
                             },
                         },
                     },
-                    colors: [this.chartColor],
+                    colors: [this.chartColor, this.secondaryColor],
                 }
             }
         },
