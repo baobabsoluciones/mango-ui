@@ -13,8 +13,8 @@
   white-space: normal !important;
   height: auto !important;
   min-height: 24px !important;
-  word-break: break-all !important;
   overflow-wrap: break-word !important;
+  word-break: normal !important;
 }
 
 ::v-deep .v-data-table__th .v-data-table-header__content span {
@@ -22,7 +22,8 @@
   overflow: visible !important;
   text-overflow: unset !important;
   word-wrap: break-word !important;
-  word-break: break-all !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
   padding: 8px 16px !important;
   display: block !important;
   line-height: 1.2 !important;
@@ -35,7 +36,8 @@
   text-overflow: unset !important;
   padding: 8px 16px !important;
   word-wrap: break-word !important;
-  word-break: break-all !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
   max-width: 300px !important;
   min-width: 100px !important;
   hyphens: auto !important;
