@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3] - 03/03/2025
+
+### Fixed
+- Bugfix: Improved text wrapping in MDataTable headers and cells to handle both long words and phrases properly
+- Bugfix: Fixed header and cell content display to prevent text overflow and ensure proper content visibility
+
 ## [0.2.2] - 03/02/2024
 
 ### Added
