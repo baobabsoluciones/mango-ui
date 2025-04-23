@@ -352,39 +352,126 @@ The `KPIChartCard` component is organized within the `KPICharts` folder, which c
 
 The component supports both single and multiple value displays, making it versatile for various dashboard needs. The charts automatically adapt to show comparisons when both main and secondary values are provided. Format symbols are automatically sized and positioned next to their respective values for optimal readability.
 
-## DragNDropFile
+## MDragNDropFile
 
-The DragNDropFile component is a Vue 3 component that facilitates drag and drop file uploading. It provides a user-friendly interface for users to upload files by dragging them onto a designated area.
+The MDragNDropFile component is a Vue 3 component that facilitates drag and drop file uploading. It provides a user-friendly interface for users to upload single or multiple files by dragging them onto a designated area or selecting them via a file dialog.
 
 ### Props
 
-- `uploadedFile`: File - The currently uploaded file.
+- `uploadedFiles`: Array - An array of previously uploaded files to display (used in multiple files mode).
+- `uploadedFile`: File - A single file to display (used in single file mode for backward compatibility).
 - `downloadIcon`: String - The Material Design Icons (MDI) icon to display in the drop area.
 - `description`: String - Description text to display in the drop area.
 - `formatsAllowed`: Array - An array of file formats allowed for upload.
 - `downloadButtonTitle`: String - Title for the upload button.
 - `invalidFileText`: String - Text to display when an invalid file is uploaded.
 - `errors`: String - Error message to display.
+- `multiple`: Boolean - Whether to enable multiple file selection. Default is false for backward compatibility.
 
 ### Emits
 
-- `file-selected`: This event is emitted when a file is successfully selected, either by manually selecting a file from the file explorer or by dragging and dropping a file into the designated area. The selected file is passed as an argument in the event. You can listen for this event in the parent component to handle logic related to the selected file.
+- `files-selected`: This event is emitted when files are successfully selected in multiple mode. An array of selected files is passed as an argument.
+- `file-selected`: This event is emitted when a single file is selected in single file mode (for backward compatibility).
+
+### Features
+
+- Multiple file selection via drag & drop or file dialog
+- Single file selection mode for backward compatibility
+- File type validation based on specified allowed formats
+- Visual feedback for drag operations
+- Individual file removal capability (in multiple mode)
+- Compatible with Vue 3 and Vuetify
 
 ### Usage
 
+#### Multiple File Mode
+
 ```vue
-import DragNDropFile from './DragNDropFile.vue';
-<DragNDropFile
-  downloadIcon="mdi-upload"
-  :description="'Description'"
-  :uploadedFile="selectedFile"
-  :formatsAllowed="['json', 'xlsx']"
-  :errors="instanceErrors"
-  :downloadButtonTitle="'DownloadButtonTitle'"
-  :invalidFileText="'InvalidFileText'"
-  @file-selected="onFileSelected"
-/>
+<template>
+  <MDragNDropFile
+    multiple
+    downloadIcon="mdi-upload"
+    description="Upload your files"
+    :uploadedFiles="selectedFiles"
+    :formatsAllowed="['json', 'xlsx']"
+    :errors="uploadErrors"
+    downloadButtonTitle="Select Files"
+    invalidFileText="Invalid file format. Only JSON and XLSX files are allowed."
+    @files-selected="onFilesSelected"
+  />
+</template>
+
+<script>
+import { ref } from 'vue'
+import MDragNDropFile from './MDragNDropFile.vue'
+
+export default {
+  components: {
+    MDragNDropFile
+  },
+  setup() {
+    const selectedFiles = ref([])
+    const uploadErrors = ref(null)
+    
+    const onFilesSelected = (files) => {
+      selectedFiles.value = files
+      // Process the files as needed
+    }
+    
+    return {
+      selectedFiles,
+      uploadErrors,
+      onFilesSelected
+    }
+  }
+}
+</script>
 ```
+
+#### Single File Mode (Backward Compatible)
+
+```vue
+<template>
+  <MDragNDropFile
+    downloadIcon="mdi-upload"
+    description="Upload a file"
+    :uploadedFile="selectedFile"
+    :formatsAllowed="['json', 'xlsx']"
+    :errors="uploadErrors"
+    downloadButtonTitle="Select File"
+    invalidFileText="Invalid file format. Only JSON and XLSX files are allowed."
+    @file-selected="onFileSelected"
+  />
+</template>
+
+<script>
+import { ref } from 'vue'
+import MDragNDropFile from './MDragNDropFile.vue'
+
+export default {
+  components: {
+    MDragNDropFile
+  },
+  setup() {
+    const selectedFile = ref(null)
+    const uploadErrors = ref(null)
+    
+    const onFileSelected = (file) => {
+      selectedFile.value = file
+      // Process the file as needed
+    }
+    
+    return {
+      selectedFile,
+      uploadErrors,
+      onFileSelected
+    }
+  }
+}
+</script>
+```
+
+For a more comprehensive example of implementing multiple file uploads with this component, see the example in `docs/examples/MultipleFileUpload.vue`.
 
 ## MFormSteps
 
