@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.4] - 15/05/2024
+
+### Added
+- Feature: Enhanced MDragNDropFile component with multiple file upload support
+- Feature: Backward compatibility for MDragNDropFile to ensure existing implementations continue to work
+- Feature: File removal capability for multiple file uploads in MDragNDropFile
+- Feature: Added example implementations demonstrating both single and multiple file uploads
+
 ## [0.2.3] - 03/03/2025
 
 ### Fixed
