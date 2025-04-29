@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.4] - 15/05/2024
+## [0.2.4] - 29/04/2025
 
 ### Added
 - Feature: Enhanced MDragNDropFile component with multiple file upload support
