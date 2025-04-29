@@ -14,13 +14,13 @@
 - Bugfix: Improved text wrapping in MDataTable headers and cells to handle both long words and phrases properly
 - Bugfix: Fixed header and cell content display to prevent text overflow and ensure proper content visibility
 
-## [0.2.2] - 03/02/2024
+## [0.2.2] - 03/02/2025
 
 ### Added
 - Feature: Added support for comparison values display in KPIChartCard component
 - Feature: Added formatSymbol prop to KPIChartCard component for displaying units (%, €, etc.) next to values
 
-## [0.2.1] - 23/01/2024
+## [0.2.1] - 23/01/2025
 
 ### Added
 - Feature: Implement functionality to allow a customizable message in MDataTable when no data is available
