@@ -1,18 +1,26 @@
 # Changelog
 
+## [0.2.4] - 29/04/2025
+
+### Added
+- Feature: Enhanced MDragNDropFile component with multiple file upload support
+- Feature: Backward compatibility for MDragNDropFile to ensure existing implementations continue to work
+- Feature: File removal capability for multiple file uploads in MDragNDropFile
+- Feature: Added example implementations demonstrating both single and multiple file uploads
+
 ## [0.2.3] - 03/03/2025
 
 ### Fixed
 - Bugfix: Improved text wrapping in MDataTable headers and cells to handle both long words and phrases properly
 - Bugfix: Fixed header and cell content display to prevent text overflow and ensure proper content visibility
 
-## [0.2.2] - 03/02/2024
+## [0.2.2] - 03/02/2025
 
 ### Added
 - Feature: Added support for comparison values display in KPIChartCard component
 - Feature: Added formatSymbol prop to KPIChartCard component for displaying units (%, €, etc.) next to values
 
-## [0.2.1] - 23/01/2024
+## [0.2.1] - 23/01/2025
 
 ### Added
 - Feature: Implement functionality to allow a customizable message in MDataTable when no data is available
