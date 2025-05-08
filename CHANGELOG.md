@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.5] - 08/05/2025
+
+### Added
+- Feature: Enhanced MDragNDropFile component with support for numerous file formats (PDF, DOCX, CSV, images, etc.)
+- Feature: Improved CSV file validation with support for various MIME types
+- Feature: Added robust validation for image file formats with type-specific restrictions
+- Feature: Enhanced accept attribute in file input to properly filter files in the file selector dialog
+
+### Fixed
+- Bugfix: Improved error handling for empty file selections and drops
+- Bugfix: Refactored code to eliminate validation logic duplication
+
+### Changed
+- Refactor: Code style consistency improvements in MDragNDropFile component
+- Refactor: Reused validateFiles function across both single and multiple file modes
+
 ## [0.2.4] - 29/04/2025
 
 ### Added
