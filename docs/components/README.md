@@ -362,7 +362,7 @@ The MDragNDropFile component is a Vue 3 component that facilitates drag and drop
 - `uploadedFile`: File - A single file to display (used in single file mode for backward compatibility).
 - `downloadIcon`: String - The Material Design Icons (MDI) icon to display in the drop area.
 - `description`: String - Description text to display in the drop area.
-- `formatsAllowed`: Array - An array of file formats allowed for upload.
+- `formatsAllowed`: Array - An array of file formats allowed for upload (supports many formats including 'json', 'xlsx', 'csv', 'pdf', 'docx', 'jpg', etc.).
 - `downloadButtonTitle`: String - Title for the upload button.
 - `invalidFileText`: String - Text to display when an invalid file is uploaded.
 - `errors`: String - Error message to display.
@@ -377,7 +377,14 @@ The MDragNDropFile component is a Vue 3 component that facilitates drag and drop
 
 - Multiple file selection via drag & drop or file dialog
 - Single file selection mode for backward compatibility
-- File type validation based on specified allowed formats
+- Comprehensive file type validation based on specified allowed formats
+- Support for many file types:
+  - Documents: PDF, TXT, DOC, DOCX, PPT, PPTX
+  - Data files: JSON, CSV, XLSX, XML
+  - Images: JPG, JPEG, PNG, GIF, SVG
+  - Media: MP3, MP4
+  - Archives: ZIP
+- Robust MIME type detection with fallback to file extension checking
 - Visual feedback for drag operations
 - Individual file removal capability (in multiple mode)
 - Compatible with Vue 3 and Vuetify
@@ -393,10 +400,10 @@ The MDragNDropFile component is a Vue 3 component that facilitates drag and drop
     downloadIcon="mdi-upload"
     description="Upload your files"
     :uploadedFiles="selectedFiles"
-    :formatsAllowed="['json', 'xlsx']"
+    :formatsAllowed="['json', 'xlsx', 'csv', 'pdf']"
     :errors="uploadErrors"
     downloadButtonTitle="Select Files"
-    invalidFileText="Invalid file format. Only JSON and XLSX files are allowed."
+    invalidFileText="Invalid file format. Please select appropriate files."
     @files-selected="onFilesSelected"
   />
 </template>
@@ -436,10 +443,10 @@ export default {
     downloadIcon="mdi-upload"
     description="Upload a file"
     :uploadedFile="selectedFile"
-    :formatsAllowed="['json', 'xlsx']"
+    :formatsAllowed="['pdf', 'docx', 'doc']"
     :errors="uploadErrors"
     downloadButtonTitle="Select File"
-    invalidFileText="Invalid file format. Only JSON and XLSX files are allowed."
+    invalidFileText="Invalid file format. Please select a PDF or Word document."
     @file-selected="onFileSelected"
   />
 </template>

@@ -34,7 +34,7 @@
           type="file"
           ref="fileInput"
           @change="onFileChange"
-          accept="formatsAllowed.join(',')"
+          :accept="formatsAllowed.map(format => '.' + format).join(',')"
           :multiple="multiple"
           hidden
         />
@@ -180,6 +180,22 @@ export default defineComponent({
     const mimeTypes = {
       json: 'application/json',
       xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      csv: 'text/csv',
+      pdf: 'application/pdf',
+      txt: 'text/plain',
+      docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      doc: 'application/msword',
+      pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      ppt: 'application/vnd.ms-powerpoint',
+      xml: 'application/xml',
+      zip: 'application/zip',
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+      gif: 'image/gif',
+      svg: 'image/svg+xml',
+      mp4: 'video/mp4',
+      mp3: 'audio/mpeg',
       // Add more mappings as needed
     }
 
@@ -193,9 +209,75 @@ export default defineComponent({
 
       Array.from(files).forEach(file => {
         const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
+        const fileName = file.name.toLowerCase()
+        
+        // Check if file type matches any of the allowed MIME types
+        let isAllowed = props.formatsAllowed.some(
           (format) => mimeTypes[format] === fileType
         )
+        
+        // Special case for files which might have various MIME types
+        if (!isAllowed) {
+          const fileExtension = fileName.split('.').pop()
+          
+          // CSV special case
+          if (props.formatsAllowed.includes('csv') && 
+             (fileType === 'text/csv' || 
+              fileType === 'application/csv' || 
+              fileType === 'application/vnd.ms-excel' || 
+              fileExtension === 'csv')) {
+            isAllowed = true
+          }
+          
+          // Excel special case
+          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
+                  (fileType === 'application/vnd.ms-excel' || 
+                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                   fileExtension === 'xlsx' || 
+                   fileExtension === 'xls')) {
+            isAllowed = true
+          }
+          
+          // PDF special case
+          else if (props.formatsAllowed.includes('pdf') && 
+                  (fileType === 'application/pdf' || 
+                   fileExtension === 'pdf')) {
+            isAllowed = true
+          }
+          
+          // Image special case
+          else if ((props.formatsAllowed.includes('jpg') || 
+                  props.formatsAllowed.includes('jpeg') || 
+                  props.formatsAllowed.includes('png') || 
+                  props.formatsAllowed.includes('gif') || 
+                  props.formatsAllowed.includes('svg'))) {
+            // Only allow specific image types that are included in formatsAllowed
+            const imageTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg'].filter(type => 
+              props.formatsAllowed.includes(type)
+            )
+            
+            // Check if file matches one of the allowed image types
+            if (fileType.startsWith('image/')) {
+              // For MIME type check, handle special case for jpeg
+              const mimeSubtype = fileType.split('/')[1] // e.g. "jpeg" from "image/jpeg"
+              if (mimeSubtype === 'jpeg' && (imageTypes.includes('jpg') || imageTypes.includes('jpeg'))) {
+                isAllowed = true
+              } else if (imageTypes.includes(mimeSubtype)) {
+                isAllowed = true
+              }
+            } else if (imageTypes.includes(fileExtension)) {
+              // Also check by extension
+              isAllowed = true
+            }
+          }
+          
+          // Text files special case
+          else if (props.formatsAllowed.includes('txt') && 
+                  (fileType === 'text/plain' || 
+                   fileExtension === 'txt')) {
+            isAllowed = true
+          }
+        }
 
         if (isAllowed) {
           validFiles.push(file)
@@ -208,6 +290,10 @@ export default defineComponent({
     }
 
     const onFileChange = (event) => {
+      if (!event.target.files || event.target.files.length === 0) {
+        return // No files selected
+      }
+      
       if (props.multiple) {
         // Multiple files mode
         const { validFiles, hasInvalidFile } = validateFiles(event.target.files)
@@ -224,15 +310,12 @@ export default defineComponent({
         const file = event.target.files[0]
         if (!file) return
 
-        const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
-          (format) => mimeTypes[format] === fileType
-        )
-
-        if (isAllowed) {
-          singleFileSelected.value = file
+        const { validFiles, hasInvalidFile } = validateFiles([file])
+        
+        if (validFiles.length > 0) {
+          singleFileSelected.value = validFiles[0]
           invalidFile.value = false
-          emit('file-selected', file)
+          emit('file-selected', validFiles[0])
         } else {
           invalidFile.value = true
         }
@@ -251,6 +334,10 @@ export default defineComponent({
       event.preventDefault()
       draggingOver.value = false
       
+      if (!event.dataTransfer.files || event.dataTransfer.files.length === 0) {
+        return // No files dropped
+      }
+      
       if (props.multiple) {
         // Multiple files mode
         const { validFiles, hasInvalidFile } = validateFiles(event.dataTransfer.files)
@@ -267,15 +354,12 @@ export default defineComponent({
         const file = event.dataTransfer.files[0]
         if (!file) return
 
-        const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
-          (format) => mimeTypes[format] === fileType
-        )
-
-        if (isAllowed) {
-          singleFileSelected.value = file
+        const { validFiles, hasInvalidFile } = validateFiles([file])
+        
+        if (validFiles.length > 0) {
+          singleFileSelected.value = validFiles[0]
           invalidFile.value = false
-          emit('file-selected', file)
+          emit('file-selected', validFiles[0])
         } else {
           invalidFile.value = true
         }
