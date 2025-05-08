@@ -180,6 +180,22 @@ export default defineComponent({
     const mimeTypes = {
       json: 'application/json',
       xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      csv: 'text/csv',
+      pdf: 'application/pdf',
+      txt: 'text/plain',
+      docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      doc: 'application/msword',
+      pptx: 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      ppt: 'application/vnd.ms-powerpoint',
+      xml: 'application/xml',
+      zip: 'application/zip',
+      jpg: 'image/jpeg',
+      jpeg: 'image/jpeg',
+      png: 'image/png',
+      gif: 'image/gif',
+      svg: 'image/svg+xml',
+      mp4: 'video/mp4',
+      mp3: 'audio/mpeg',
       // Add more mappings as needed
     }
 
@@ -193,9 +209,60 @@ export default defineComponent({
 
       Array.from(files).forEach(file => {
         const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
+        const fileName = file.name.toLowerCase()
+        
+        // Check if file type matches any of the allowed MIME types
+        let isAllowed = props.formatsAllowed.some(
           (format) => mimeTypes[format] === fileType
         )
+        
+        // Special case for files which might have various MIME types
+        if (!isAllowed) {
+          const fileExtension = fileName.split('.').pop()
+          
+          // CSV special case
+          if (props.formatsAllowed.includes('csv') && 
+             (fileType === 'text/csv' || 
+              fileType === 'application/csv' || 
+              fileType === 'application/vnd.ms-excel' || 
+              fileExtension === 'csv')) {
+            isAllowed = true
+          }
+          
+          // Excel special case
+          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
+                  (fileType === 'application/vnd.ms-excel' || 
+                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                   fileExtension === 'xlsx' || 
+                   fileExtension === 'xls')) {
+            isAllowed = true
+          }
+          
+          // PDF special case
+          else if (props.formatsAllowed.includes('pdf') && 
+                  (fileType === 'application/pdf' || 
+                   fileExtension === 'pdf')) {
+            isAllowed = true
+          }
+          
+          // Image special case
+          else if ((props.formatsAllowed.includes('jpg') || 
+                  props.formatsAllowed.includes('jpeg') || 
+                  props.formatsAllowed.includes('png') || 
+                  props.formatsAllowed.includes('gif') || 
+                  props.formatsAllowed.includes('svg')) && 
+                  (fileType.startsWith('image/') || 
+                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
+            isAllowed = true
+          }
+          
+          // Text files special case
+          else if (props.formatsAllowed.includes('txt') && 
+                  (fileType === 'text/plain' || 
+                   fileExtension === 'txt')) {
+            isAllowed = true
+          }
+        }
 
         if (isAllowed) {
           validFiles.push(file)
@@ -225,9 +292,60 @@ export default defineComponent({
         if (!file) return
 
         const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
+        const fileName = file.name.toLowerCase()
+        
+        // Check if file type matches any of the allowed MIME types
+        let isAllowed = props.formatsAllowed.some(
           (format) => mimeTypes[format] === fileType
         )
+        
+        // Special case for files which might have various MIME types
+        if (!isAllowed) {
+          const fileExtension = fileName.split('.').pop()
+          
+          // CSV special case
+          if (props.formatsAllowed.includes('csv') && 
+             (fileType === 'text/csv' || 
+              fileType === 'application/csv' || 
+              fileType === 'application/vnd.ms-excel' || 
+              fileExtension === 'csv')) {
+            isAllowed = true
+          }
+          
+          // Excel special case
+          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
+                  (fileType === 'application/vnd.ms-excel' || 
+                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                   fileExtension === 'xlsx' || 
+                   fileExtension === 'xls')) {
+            isAllowed = true
+          }
+          
+          // PDF special case
+          else if (props.formatsAllowed.includes('pdf') && 
+                  (fileType === 'application/pdf' || 
+                   fileExtension === 'pdf')) {
+            isAllowed = true
+          }
+          
+          // Image special case
+          else if ((props.formatsAllowed.includes('jpg') || 
+                  props.formatsAllowed.includes('jpeg') || 
+                  props.formatsAllowed.includes('png') || 
+                  props.formatsAllowed.includes('gif') || 
+                  props.formatsAllowed.includes('svg')) && 
+                  (fileType.startsWith('image/') || 
+                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
+            isAllowed = true
+          }
+          
+          // Text files special case
+          else if (props.formatsAllowed.includes('txt') && 
+                  (fileType === 'text/plain' || 
+                   fileExtension === 'txt')) {
+            isAllowed = true
+          }
+        }
 
         if (isAllowed) {
           singleFileSelected.value = file
@@ -268,9 +386,60 @@ export default defineComponent({
         if (!file) return
 
         const fileType = file.type
-        const isAllowed = props.formatsAllowed.some(
+        const fileName = file.name.toLowerCase()
+        
+        // Check if file type matches any of the allowed MIME types
+        let isAllowed = props.formatsAllowed.some(
           (format) => mimeTypes[format] === fileType
         )
+        
+        // Special case for files which might have various MIME types
+        if (!isAllowed) {
+          const fileExtension = fileName.split('.').pop()
+          
+          // CSV special case
+          if (props.formatsAllowed.includes('csv') && 
+             (fileType === 'text/csv' || 
+              fileType === 'application/csv' || 
+              fileType === 'application/vnd.ms-excel' || 
+              fileExtension === 'csv')) {
+            isAllowed = true
+          }
+          
+          // Excel special case
+          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
+                  (fileType === 'application/vnd.ms-excel' || 
+                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                   fileExtension === 'xlsx' || 
+                   fileExtension === 'xls')) {
+            isAllowed = true
+          }
+          
+          // PDF special case
+          else if (props.formatsAllowed.includes('pdf') && 
+                  (fileType === 'application/pdf' || 
+                   fileExtension === 'pdf')) {
+            isAllowed = true
+          }
+          
+          // Image special case
+          else if ((props.formatsAllowed.includes('jpg') || 
+                  props.formatsAllowed.includes('jpeg') || 
+                  props.formatsAllowed.includes('png') || 
+                  props.formatsAllowed.includes('gif') || 
+                  props.formatsAllowed.includes('svg')) && 
+                  (fileType.startsWith('image/') || 
+                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
+            isAllowed = true
+          }
+          
+          // Text files special case
+          else if (props.formatsAllowed.includes('txt') && 
+                  (fileType === 'text/plain' || 
+                   fileExtension === 'txt')) {
+            isAllowed = true
+          }
+        }
 
         if (isAllowed) {
           singleFileSelected.value = file
