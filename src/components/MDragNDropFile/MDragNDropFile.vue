@@ -34,7 +34,7 @@
           type="file"
           ref="fileInput"
           @change="onFileChange"
-          accept="formatsAllowed.join(',')"
+          :accept="formatsAllowed.map(format => '.' + format).join(',')"
           :multiple="multiple"
           hidden
         />
@@ -200,25 +200,25 @@ export default defineComponent({
     }
 
     const onUploadClick = () => {
-      fileInput.value.click()
-    }
+      fileInput.value.click();
+    };
 
     const validateFiles = (files) => {
-      const validFiles = []
-      let hasInvalidFile = false
+      const validFiles = [];
+      let hasInvalidFile = false;
 
       Array.from(files).forEach(file => {
-        const fileType = file.type
-        const fileName = file.name.toLowerCase()
+        const fileType = file.type;
+        const fileName = file.name.toLowerCase();
         
         // Check if file type matches any of the allowed MIME types
         let isAllowed = props.formatsAllowed.some(
           (format) => mimeTypes[format] === fileType
-        )
+        );
         
         // Special case for files which might have various MIME types
         if (!isAllowed) {
-          const fileExtension = fileName.split('.').pop()
+          const fileExtension = fileName.split('.').pop();
           
           // CSV special case
           if (props.formatsAllowed.includes('csv') && 
@@ -226,7 +226,7 @@ export default defineComponent({
               fileType === 'application/csv' || 
               fileType === 'application/vnd.ms-excel' || 
               fileExtension === 'csv')) {
-            isAllowed = true
+            isAllowed = true;
           }
           
           // Excel special case
@@ -235,14 +235,14 @@ export default defineComponent({
                    fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
                    fileExtension === 'xlsx' || 
                    fileExtension === 'xls')) {
-            isAllowed = true
+            isAllowed = true;
           }
           
           // PDF special case
           else if (props.formatsAllowed.includes('pdf') && 
                   (fileType === 'application/pdf' || 
                    fileExtension === 'pdf')) {
-            isAllowed = true
+            isAllowed = true;
           }
           
           // Image special case
@@ -250,215 +250,130 @@ export default defineComponent({
                   props.formatsAllowed.includes('jpeg') || 
                   props.formatsAllowed.includes('png') || 
                   props.formatsAllowed.includes('gif') || 
-                  props.formatsAllowed.includes('svg')) && 
-                  (fileType.startsWith('image/') || 
-                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
-            isAllowed = true
+                  props.formatsAllowed.includes('svg'))) {
+            // Only allow specific image types that are included in formatsAllowed
+            const imageTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg'].filter(type => 
+              props.formatsAllowed.includes(type)
+            );
+            
+            // Check if file matches one of the allowed image types
+            if (fileType.startsWith('image/')) {
+              // For MIME type check, handle special case for jpeg
+              const mimeSubtype = fileType.split('/')[1]; // e.g. "jpeg" from "image/jpeg"
+              if (mimeSubtype === 'jpeg' && (imageTypes.includes('jpg') || imageTypes.includes('jpeg'))) {
+                isAllowed = true;
+              } else if (imageTypes.includes(mimeSubtype)) {
+                isAllowed = true;
+              }
+            } else if (imageTypes.includes(fileExtension)) {
+              // Also check by extension
+              isAllowed = true;
+            }
           }
           
           // Text files special case
           else if (props.formatsAllowed.includes('txt') && 
                   (fileType === 'text/plain' || 
                    fileExtension === 'txt')) {
-            isAllowed = true
+            isAllowed = true;
           }
         }
 
         if (isAllowed) {
-          validFiles.push(file)
+          validFiles.push(file);
         } else {
-          hasInvalidFile = true
+          hasInvalidFile = true;
         }
-      })
+      });
 
-      return { validFiles, hasInvalidFile }
+      return { validFiles, hasInvalidFile };
     }
 
     const onFileChange = (event) => {
-      if (props.multiple) {
-        // Multiple files mode
-        const { validFiles, hasInvalidFile } = validateFiles(event.target.files)
-        
-        if (validFiles.length > 0) {
-          filesSelected.value = [...filesSelected.value, ...validFiles]
-          emit('files-selected', filesSelected.value)
-        }
-        
-        invalidFile.value = hasInvalidFile
-      } else {
-        // Single file mode (backward compatibility)
-        singleFileSelected.value = null
-        const file = event.target.files[0]
-        if (!file) return
-
-        const fileType = file.type
-        const fileName = file.name.toLowerCase()
-        
-        // Check if file type matches any of the allowed MIME types
-        let isAllowed = props.formatsAllowed.some(
-          (format) => mimeTypes[format] === fileType
-        )
-        
-        // Special case for files which might have various MIME types
-        if (!isAllowed) {
-          const fileExtension = fileName.split('.').pop()
-          
-          // CSV special case
-          if (props.formatsAllowed.includes('csv') && 
-             (fileType === 'text/csv' || 
-              fileType === 'application/csv' || 
-              fileType === 'application/vnd.ms-excel' || 
-              fileExtension === 'csv')) {
-            isAllowed = true
-          }
-          
-          // Excel special case
-          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
-                  (fileType === 'application/vnd.ms-excel' || 
-                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-                   fileExtension === 'xlsx' || 
-                   fileExtension === 'xls')) {
-            isAllowed = true
-          }
-          
-          // PDF special case
-          else if (props.formatsAllowed.includes('pdf') && 
-                  (fileType === 'application/pdf' || 
-                   fileExtension === 'pdf')) {
-            isAllowed = true
-          }
-          
-          // Image special case
-          else if ((props.formatsAllowed.includes('jpg') || 
-                  props.formatsAllowed.includes('jpeg') || 
-                  props.formatsAllowed.includes('png') || 
-                  props.formatsAllowed.includes('gif') || 
-                  props.formatsAllowed.includes('svg')) && 
-                  (fileType.startsWith('image/') || 
-                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
-            isAllowed = true
-          }
-          
-          // Text files special case
-          else if (props.formatsAllowed.includes('txt') && 
-                  (fileType === 'text/plain' || 
-                   fileExtension === 'txt')) {
-            isAllowed = true
-          }
-        }
-
-        if (isAllowed) {
-          singleFileSelected.value = file
-          invalidFile.value = false
-          emit('file-selected', file)
-        } else {
-          invalidFile.value = true
-        }
+      if (!event.target.files || event.target.files.length === 0) {
+        return; // No files selected
       }
-    }
-
-    const onDragOver = () => {
-      draggingOver.value = true
-    }
-
-    const onDragLeave = () => {
-      draggingOver.value = false
-    }
-
-    const onDrop = (event) => {
-      event.preventDefault()
-      draggingOver.value = false
       
       if (props.multiple) {
         // Multiple files mode
-        const { validFiles, hasInvalidFile } = validateFiles(event.dataTransfer.files)
+        const { validFiles, hasInvalidFile } = validateFiles(event.target.files);
         
         if (validFiles.length > 0) {
-          filesSelected.value = [...filesSelected.value, ...validFiles]
-          emit('files-selected', filesSelected.value)
+          filesSelected.value = [...filesSelected.value, ...validFiles];
+          emit('files-selected', filesSelected.value);
         }
         
-        invalidFile.value = hasInvalidFile
+        invalidFile.value = hasInvalidFile;
       } else {
         // Single file mode (backward compatibility)
-        singleFileSelected.value = null
-        const file = event.dataTransfer.files[0]
-        if (!file) return
+        singleFileSelected.value = null;
+        const file = event.target.files[0];
+        if (!file) return;
 
-        const fileType = file.type
-        const fileName = file.name.toLowerCase()
+        const { validFiles, hasInvalidFile } = validateFiles([file]);
         
-        // Check if file type matches any of the allowed MIME types
-        let isAllowed = props.formatsAllowed.some(
-          (format) => mimeTypes[format] === fileType
-        )
-        
-        // Special case for files which might have various MIME types
-        if (!isAllowed) {
-          const fileExtension = fileName.split('.').pop()
-          
-          // CSV special case
-          if (props.formatsAllowed.includes('csv') && 
-             (fileType === 'text/csv' || 
-              fileType === 'application/csv' || 
-              fileType === 'application/vnd.ms-excel' || 
-              fileExtension === 'csv')) {
-            isAllowed = true
-          }
-          
-          // Excel special case
-          else if ((props.formatsAllowed.includes('xlsx') || props.formatsAllowed.includes('xls')) && 
-                  (fileType === 'application/vnd.ms-excel' || 
-                   fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
-                   fileExtension === 'xlsx' || 
-                   fileExtension === 'xls')) {
-            isAllowed = true
-          }
-          
-          // PDF special case
-          else if (props.formatsAllowed.includes('pdf') && 
-                  (fileType === 'application/pdf' || 
-                   fileExtension === 'pdf')) {
-            isAllowed = true
-          }
-          
-          // Image special case
-          else if ((props.formatsAllowed.includes('jpg') || 
-                  props.formatsAllowed.includes('jpeg') || 
-                  props.formatsAllowed.includes('png') || 
-                  props.formatsAllowed.includes('gif') || 
-                  props.formatsAllowed.includes('svg')) && 
-                  (fileType.startsWith('image/') || 
-                   ['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(fileExtension))) {
-            isAllowed = true
-          }
-          
-          // Text files special case
-          else if (props.formatsAllowed.includes('txt') && 
-                  (fileType === 'text/plain' || 
-                   fileExtension === 'txt')) {
-            isAllowed = true
-          }
-        }
-
-        if (isAllowed) {
-          singleFileSelected.value = file
-          invalidFile.value = false
-          emit('file-selected', file)
+        if (validFiles.length > 0) {
+          singleFileSelected.value = validFiles[0];
+          invalidFile.value = false;
+          emit('file-selected', validFiles[0]);
         } else {
-          invalidFile.value = true
+          invalidFile.value = true;
         }
       }
-    }
+    };
+
+    const onDragOver = () => {
+      draggingOver.value = true;
+    };
+
+    const onDragLeave = () => {
+      draggingOver.value = false;
+    };
+
+    const onDrop = (event) => {
+      event.preventDefault();
+      draggingOver.value = false;
+      
+      if (!event.dataTransfer.files || event.dataTransfer.files.length === 0) {
+        return; // No files dropped
+      }
+      
+      if (props.multiple) {
+        // Multiple files mode
+        const { validFiles, hasInvalidFile } = validateFiles(event.dataTransfer.files);
+        
+        if (validFiles.length > 0) {
+          filesSelected.value = [...filesSelected.value, ...validFiles];
+          emit('files-selected', filesSelected.value);
+        }
+        
+        invalidFile.value = hasInvalidFile;
+      } else {
+        // Single file mode (backward compatibility)
+        singleFileSelected.value = null;
+        const file = event.dataTransfer.files[0];
+        if (!file) return;
+
+        const { validFiles, hasInvalidFile } = validateFiles([file]);
+        
+        if (validFiles.length > 0) {
+          singleFileSelected.value = validFiles[0];
+          invalidFile.value = false;
+          emit('file-selected', validFiles[0]);
+        } else {
+          invalidFile.value = true;
+        }
+      }
+    };
 
     const removeFile = (index) => {
       if (props.multiple) {
-        const updatedFiles = [...filesSelected.value]
-        updatedFiles.splice(index, 1)
-        filesSelected.value = updatedFiles
-        emit('files-selected', filesSelected.value)
+        const updatedFiles = [...filesSelected.value];
+        updatedFiles.splice(index, 1);
+        filesSelected.value = updatedFiles;
+        emit('files-selected', filesSelected.value);
       }
-    }
+    };
 
     // Watch for changes in props
     watch(
