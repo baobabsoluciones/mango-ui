@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.2.5.1] - 22/05/2025
+## [0.2.6] - 22/05/2025
 
 ### Fixed
 - Bugfix: Fixed pagination centering in MDataTable when tables have many columns, preventing unnecessary table width expansion
