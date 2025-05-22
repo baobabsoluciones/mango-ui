@@ -492,6 +492,7 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
 - `disablePreviousButton`: Boolean - Whether to disable the "Previous" button when on the first step.
 - `disableNextButton`: Boolean - Whether to disable the "Continue" button when on the last step.
 - `currentStep`: Number - The index of the current step. Defaults to 0.
+- `stepsColumnWidth`: String - The width of the steps column. Accepts CSS width values (px, rem, em, %). Defaults to '300px'.
 
 ### Emits
 
@@ -517,12 +518,13 @@ The MFormSteps is a Vue 3 component designed to facilitate the creation of multi
   :currentStep.sync="currentStep"
   :continueButtonText="$t('projectExecution.continueButton')"
   :previousButtonText="$t('projectExecution.previousButton')"
+  steps-column-width="400px"
   @update:currentStep="handleStepChange"
   class="mt-5"
 ></MFormSteps>
 ```
 
-This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props.
+This will render a multi-step form interface with each step represented by a card. The user can navigate between steps using the "Previous" and "Continue" buttons. The appearance and behavior of these buttons can be customized using the provided props. The width of the steps column can be adjusted using the `stepsColumnWidth` prop, allowing for flexible layouts that adapt to different screen sizes and design requirements.
 
 ## MTitleView
 
