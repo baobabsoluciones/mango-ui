@@ -1,7 +1,7 @@
 <template>
   <div class="form-steps">
-    <v-row>
-      <v-col class="v-col-s-3 v-col-md-4 v-col-xl-3">
+    <v-row class="form-steps-row">
+      <v-col class="steps-column" :style="{ width: stepsColumnWidth, minWidth: stepsColumnWidth, maxWidth: stepsColumnWidth }">
         <v-card class="elevation-2" style="border-radius: 20px !important">
           <div class="steps-container">
             <div v-for="(step, index) in steps" :key="index" class="step-item">
@@ -40,7 +40,7 @@
           </div>
         </v-card>
       </v-col>
-      <v-col class="v-col-s-9 v-col-md-8 v-col-xl-9">
+      <v-col class="content-column" :style="{ width: `calc(100% - ${stepsColumnWidth})`, minWidth: `calc(100% - ${stepsColumnWidth})`, maxWidth: `calc(100% - ${stepsColumnWidth})` }">
         <v-card class="elevation-2" style="border-radius: 20px !important">
           <div class="px-3 py-3">
             <slot :name="`step-${localCurrentStep}-title`">
@@ -130,6 +130,14 @@ export default {
       type: Number,
       default: 0,
     },
+    stepsColumnWidth: {
+      type: String,
+      default: '300px',
+      validator: (value) => {
+        // Basic validation for CSS width values
+        return /^\d+(\.\d+)?(px|rem|em|%)$/.test(value)
+      }
+    }
   },
   data() {
     return {

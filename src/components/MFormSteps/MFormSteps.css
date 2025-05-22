@@ -1,6 +1,20 @@
 .form-steps {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+}
+
+.form-steps-row {
+  width: 100%;
+  margin: 0 !important;
+}
+
+.steps-column {
+  flex: 0 0 auto !important;
+}
+
+.content-column {
+  flex: 1 1 auto !important;
 }
 
 .steps-container {

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.7] - 22/05/2025
+
+### Added
+- Feature: Added `stepsColumnWidth` prop to MFormSteps for customizable steps column width
+
+### Fixed
+- Bugfix: MFormSteps layout now maintains consistent column widths across steps, regardless of content or step changes
+
 ## [0.2.6] - 22/05/2025
 
 ### Fixed
@@ -75,3 +83,4 @@
 
 ### Fixed
 - Bugfix: Fixed word wrapping and breaking in table headers
+
