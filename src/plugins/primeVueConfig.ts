@@ -9,9 +9,9 @@ import 'primeicons/primeicons.css';
 import type { App } from 'vue'
 
 export function registerPlugins (app: App) {
-    app.use(PrimeVue, {
-        theme: {
-            preset: Aura
-        }
-    });
+  app.use(PrimeVue, {
+    theme: {
+      preset: Aura
+    }
+  });
 }
