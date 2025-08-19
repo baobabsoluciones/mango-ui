@@ -4,6 +4,8 @@ import '@/assets/styles/variables.css'
 import App from '@/App.vue'
 import VueApexCharts from 'vue3-apexcharts'
 
+// PrimeVue icons
+
 // Plugins
 import { registerPlugins } from '@/plugins'
 import { registerPlugins as registerPrimeVuePlugins } from '@/plugins/primeVueConfig'
@@ -13,5 +15,5 @@ const app = createApp(App)
 registerPlugins(app)
 registerPrimeVuePlugins(app)
 
-app.mount('#app')
 app.use(VueApexCharts)
+app.mount('#app')

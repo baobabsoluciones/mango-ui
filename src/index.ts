@@ -18,3 +18,5 @@ export { default as MBaseModal } from './components/MBaseModal/MBaseModal.vue'
 export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
 export { default as MCheckboxOptions } from './components/MCheckboxOptions/MCheckboxOptions.vue'
 export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
+
+export { default as TitleView } from './components/PrimeVueTitleView/TitleView.vue'

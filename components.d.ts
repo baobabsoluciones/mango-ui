@@ -38,5 +38,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBox: typeof import('./src/components/FilterSearch/SearchBox.vue')['default']
+    TitleView: typeof import('./src/components/PrimeVueTitleView/TitleView.vue')['default']
   }
 }
