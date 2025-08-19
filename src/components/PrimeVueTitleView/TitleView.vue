@@ -1,11 +1,7 @@
 <template>
   <div class="icon-title">
-    <div class="icon-title-row">
-      <div class="icon">
-        <i :class="`pi ${icon}`"></i>
-      </div>
-      <h4 class="title">{{ title }}</h4>
-    </div>
+    <i :class="`pi ${icon}`"></i>
+    <h4 class="title">{{ title }}</h4>
     <div class="description">
       <p v-if="description">{{ description }}</p>
     </div>
@@ -21,7 +17,7 @@ interface Props {
   description?: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 </script>
 <style scoped>
 i, span {
