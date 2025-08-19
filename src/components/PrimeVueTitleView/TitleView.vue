@@ -2,9 +2,9 @@
   <div class="icon-title">
     <i :class="`pi ${icon}`"></i>
     <h4 class="title">{{ title }}</h4>
-    <div class="description">
-      <p v-if="description">{{ description }}</p>
-    </div>
+  </div>
+  <div class="description">
+    <p v-if="description">{{ description }}</p>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ interface Props {
 defineProps<Props>()
 </script>
 <style scoped>
-i, span {
-  display: block; /* esto rompe PrimeIcons, que usa inline-block */
-}</style>
+.icon-title {
+  display: flex;
+  align-items: center; /* Alinea verticalmente icono y texto */
+  gap: 0.5rem; /* Espacio entre icono y título */
+}
+</style>
