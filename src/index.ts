@@ -20,3 +20,4 @@ export { default as MCheckboxOptions } from './components/MCheckboxOptions/MChec
 export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
 
 export { default as TitleView } from './components/PrimeVueTitleView/TitleView.vue'
+export { default as DataTable } from './components/PrimeVueDataTable/DataTable.vue'
