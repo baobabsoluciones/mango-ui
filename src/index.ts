@@ -21,3 +21,4 @@ export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
 
 export { default as PTitleView } from './components/PVueTitleView/PTitleView.vue'
 export { default as PDataTable } from './components/PVueDataTable/PDataTable.vue'
+export { default as PFormSteps } from './components/PFormSteps/PFormSteps.vue'
