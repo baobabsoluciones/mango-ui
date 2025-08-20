@@ -116,7 +116,7 @@ const customSpaceBetweenPaginationHeight = computed(() => {
 			<Button
 				v-if="editionMode && !headers[0]?.config"
 				class="create-tab-btn"
-				icon="pi pi-plus"
+				icon="mdi mdi-plus"
 				label="Add Item"
 				style="width: 140px"
 				text
@@ -145,7 +145,7 @@ const customSpaceBetweenPaginationHeight = computed(() => {
 					<div v-else>
 						<template v-if="header.value === 'delete'">
 							<Button
-								icon="pi pi-trash"
+								icon="mdi mdi-delete"
 								class="p-button-text p-button-sm"
 								@click="$emit('delete-item', slotProps.data.index)"
 							/>
@@ -217,7 +217,7 @@ const customSpaceBetweenPaginationHeight = computed(() => {
 					<div v-else>
 						<template v-if="header.value === 'delete'">
 							<Button
-								icon="pi pi-trash"
+								icon="mdi mdi-delete"
 								class="p-button-text p-button-sm"
 								@click="$emit('delete-item', slotProps.data.index)"
 							/>

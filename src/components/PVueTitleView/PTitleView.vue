@@ -1,6 +1,6 @@
 <template>
   <div class="icon-title">
-    <i :class="`mdi ${icon}`"></i>
+    <v-icon>{{ icon }}</v-icon>
     <h4 class="title">{{ title }}</h4>
   </div>
   <div class="description">
