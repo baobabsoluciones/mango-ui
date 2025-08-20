@@ -244,8 +244,13 @@ const customSpaceBetweenPaginationHeight = computed(() => {
 .hide-footer .p-datatable-footer {
 	display: none;
 }
-.hide-header .p-datatable-header {
-	display: none;
+.hide-header :deep(.p-datatable-header),
+.hide-header :deep(.p-datatable-thead) {
+	display: none !important;
+	height: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	line-height: 0 !important;
 }
 </style>
 
