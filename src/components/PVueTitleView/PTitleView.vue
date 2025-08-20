@@ -1,6 +1,6 @@
 <template>
   <div class="icon-title">
-    <i :class="`pi ${icon}`"></i>
+    <i :class="`mdi ${icon}`"></i>
     <h4 class="title">{{ title }}</h4>
   </div>
   <div class="description">
@@ -9,8 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 interface Props {
   icon: string
   title: string

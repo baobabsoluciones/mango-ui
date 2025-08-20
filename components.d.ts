@@ -11,7 +11,6 @@ declare module 'vue' {
     AreaChart: typeof import('./src/components/KPICharts/charts/AreaChart.vue')['default']
     ChartCardTitle: typeof import('./src/components/KPICharts/ChartCardTitle.vue')['default']
     Checkbox: typeof import('./src/components/FilterSearch/filters/Checkbox.vue')['default']
-    DataTable: typeof import('./src/components/PVueDataTable/DataTable.vue')['default']
     DateRange: typeof import('./src/components/FilterSearch/filters/DateRange.vue')['default']
     DonutChart: typeof import('./src/components/KPICharts/charts/DonutChart.vue')['default']
     FilterRow: typeof import('./src/components/FilterSearch/FilterRow.vue')['default']
