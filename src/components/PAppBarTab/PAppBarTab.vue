@@ -8,6 +8,7 @@
 						:key="tabKey(tab, index)"
 						:disabled="false"
 						:value="index"
+						:pt="{ headerAction: { onClick: () => onHeaderClick(index) } }"
 					>
 						<i v-if="tab.loading" class="mdi mdi-loading mdi-spin" />
 						<i v-else :class="`mdi ${tab.icon}`" />
@@ -22,7 +23,7 @@
 						/>
 					</Tab>
 				</TabList>
-				<TabPanels>
+				<TabPanels v-if="typeof activeValue === 'number'">
 					<TabPanel v-for="(tab, index) in tabs" :key="`panel-${tabKey(tab, index)}`" :value="index" />
 				</TabPanels>
 			</Tabs>
@@ -55,10 +56,10 @@ interface AppBarTabItem {
 	icon?: string
 	loading?: boolean
 	selected?: boolean
-	// Permitir variantes comunes de nombre
 	title?: string
 	name?: string
 	id?: string | number
+	value?: any
 }
 
 const props = defineProps<{
@@ -72,9 +73,11 @@ const emit = defineEmits<{
 	(e: 'select', tab: AppBarTabItem): void
 }>()
 
-const initialIndex = computed(() => Math.max(0, props.tabs.findIndex(t => t.selected) ?? 0))
-const activeValue = ref<number>(initialIndex.value >= 0 ? initialIndex.value : 0)
-const prevLength = ref<number>(props.tabs.length)
+const initialIndex = computed<number | null>(() => {
+	const idx = props.tabs.findIndex(t => t.selected)
+	return idx >= 0 ? idx : null
+})
+const activeValue = ref<number | null>(initialIndex.value)
 
 watch(
 	() => props.tabs,
@@ -82,11 +85,10 @@ watch(
 		const selectedIdx = newTabs.findIndex(t => t.selected)
 		if (selectedIdx !== -1 && selectedIdx !== activeValue.value) {
 			activeValue.value = selectedIdx
-		} else if (newTabs.length > prevLength.value) {
-			// Si se añadió una nueva pestaña y no hay selected, selecciona la última
-			activeValue.value = newTabs.length - 1
 		}
-		prevLength.value = newTabs.length
+		if (typeof activeValue.value === 'number' && activeValue.value >= newTabs.length) {
+			activeValue.value = null
+		}
 	},
 	{ deep: true }
 )
@@ -94,13 +96,28 @@ watch(
 watch(
 	() => activeValue.value,
 	(idx) => {
+		if (typeof idx !== 'number') return
 		const t = props.tabs[idx]
 		if (t) emit('select', t)
 	}
 )
 
 const onCreate = () => emit('create')
-const onClose = (index: number) => emit('close', index)
+const onClose = (index: number) => {
+	if (activeValue.value === index) {
+		const t = props.tabs[index]
+		if (t) emit('select', t)
+		activeValue.value = null
+	} else if (typeof activeValue.value === 'number' && index < activeValue.value) {
+		activeValue.value = activeValue.value - 1
+	}
+	emit('close', index)
+}
+
+const onHeaderClick = (index: number) => {
+	const t = props.tabs[index]
+	if (t) emit('select', t)
+}
 
 const displayText = (tab: AppBarTabItem, index: number): string => {
 	return tab.text ?? tab.title ?? tab.name ?? `Tab ${index + 1}`
