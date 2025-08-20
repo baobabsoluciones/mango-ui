@@ -1,92 +1,73 @@
 <template>
-	<div class="form-steps">
-		<div class="form-steps-row">
-			<div
-				class="steps-column"
-				:style="{ width: stepsColumnWidth, minWidth: stepsColumnWidth, maxWidth: stepsColumnWidth }"
-			>
-				<div class="steps-card">
-					<div class="steps-container">
-						<div v-for="(step, index) in steps" :key="index" class="step-item">
-							<div
-								class="icon-container"
-								:class="{
-									'last-icon': index === steps.length - 1,
-									'completed-step': localCurrentStep > index,
-									'current-step': localCurrentStep === index,
-									'future-step': localCurrentStep < index,
-								}"
-							>
-								<i v-if="localCurrentStep > index" class="mdi mdi-check-circle" :style="{ color: 'var(--primary-variant)' }"></i>
-								<i v-else-if="localCurrentStep === index" class="mdi mdi-record-circle" :style="{ color: 'var(--primary-variant)' }"></i>
-								<i v-else class="mdi mdi-record-circle" :style="{ color: 'var(--disabled)' }"></i>
-								<div v-if="index < steps.length - 1" class="vertical-line"></div>
-							</div>
-							<div>
-								<div class="step-title">{{ step.title }}</div>
-								<div class="step-subtitle">{{ step.subtitle }}</div>
-							</div>
+	<Stepper v-model:value="activeStepOneBased" linear>
+		<template v-for="(step, index) in steps" :key="index">
+			<StepItem :value="index + 1">
+				<Step>
+					<div class="step-header">
+						<span class="step-icon">
+							<i :class="headerIcon(index)" :style="{ color: headerIconColor(index) }" />
+						</span>
+						<div class="step-header-texts">
+							<div class="step-title">{{ step.title }}</div>
+							<div class="step-subtitle">{{ step.subtitle }}</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div
-				class="content-column"
-				:style="{ width: `calc(100% - ${stepsColumnWidth})`, minWidth: `calc(100% - ${stepsColumnWidth})`, maxWidth: `calc(100% - ${stepsColumnWidth})` }"
-			>
-				<div class="content-card">
-					<div class="content-wrapper">
-						<slot :name="`step-${localCurrentStep}-title`">
-							<div v-if="steps[localCurrentStep]?.titleContent" class="content-title">
-								<span>{{ steps[localCurrentStep].titleContent }}</span>
-							</div>
-							<div
-								class="content-subtitle"
-								v-if="steps[localCurrentStep]?.subtitleContent"
-								v-html="steps[localCurrentStep].subtitleContent"
-							></div>
-						</slot>
-						<div class="content-slot">
-							<slot :name="`step-${localCurrentStep}-content`"></slot>
+				</Step>
+				<StepPanel v-slot="{ activateCallback }">
+					<slot :name="`step-${index}-title`">
+						<div v-if="steps[index]?.titleContent" class="content-title">
+							<span>{{ steps[index].titleContent }}</span>
+						</div>
+						<div
+							class="content-subtitle"
+							v-if="steps[index]?.subtitleContent"
+							v-html="steps[index].subtitleContent"
+						></div>
+					</slot>
+					<div class="content-slot">
+						<slot :name="`step-${index}-content`"></slot>
+					</div>
+					<div class="nav-row">
+						<div>
+							<slot :name="`step-${index}-previous-button`">
+								<Button
+									v-if="index > 0"
+									class="previous-button"
+									:label="previousButtonText"
+									icon="mdi mdi-arrow-left"
+									iconPos="left"
+									:disabled="disablePreviousButton"
+									@click="activateCallback(index)"
+								/>
+							</slot>
+						</div>
+						<div>
+							<slot :name="`step-${index}-continue-button`">
+								<Button
+									v-if="index < steps.length - 1"
+									class="continue-button"
+									:label="continueButtonText"
+									icon="mdi mdi-arrow-right"
+									iconPos="right"
+									:disabled="disableNextButton"
+									@click="activateCallback(index + 2)"
+								/>
+							</slot>
 						</div>
 					</div>
-				</div>
-				<div class="nav-row">
-					<div>
-						<slot :name="`step-${localCurrentStep}-previous-button`">
-							<Button
-								v-if="localCurrentStep > 0"
-								class="previous-button"
-								:label="previousButtonText"
-								icon="mdi mdi-arrow-left"
-								iconPos="left"
-								:disabled="disablePreviousButton"
-								@click="localCurrentStep--"
-							/>
-						</slot>
-					</div>
-					<div>
-						<slot :name="`step-${localCurrentStep}-continue-button`">
-							<Button
-								v-if="localCurrentStep < steps.length - 1"
-								class="continue-button"
-								:label="continueButtonText"
-								icon="mdi mdi-arrow-right"
-								iconPos="right"
-								:disabled="disableNextButton"
-								@click="localCurrentStep++"
-							/>
-						</slot>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+				</StepPanel>
+			</StepItem>
+		</template>
+	</Stepper>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, computed } from 'vue'
 import Button from 'primevue/button'
+import Stepper from 'primevue/stepper'
+import StepItem from 'primevue/stepitem'
+import Step from 'primevue/step'
+import StepPanel from 'primevue/steppanel'
 
 interface StepItem {
 	title?: string
@@ -141,69 +122,48 @@ watch(
 )
 
 const steps = computed(() => props.steps ?? [])
-const stepsColumnWidth = computed(() => props.stepsColumnWidth ?? '300px')
 const previousButtonText = computed(() => props.previousButtonText ?? 'Previous')
 const continueButtonText = computed(() => props.continueButtonText ?? 'Continue')
 const disablePreviousButton = computed(() => props.disablePreviousButton ?? false)
 const disableNextButton = computed(() => props.disableNextButton ?? false)
+
+// Sincroniza currentStep (0-based) con Stepper (1-based)
+const activeStepOneBased = computed<number>({
+	get() {
+		return (localCurrentStep.value ?? 0) + 1
+	},
+	set(newVal: number) {
+		const maxVal = steps.value.length > 0 ? steps.value.length : 1
+		const normalized = Math.max(1, Math.min(newVal, maxVal))
+		localCurrentStep.value = normalized - 1
+	}
+})
+
+// Iconos de cabecera
+const headerIcon = (index: number) => (localCurrentStep.value > index ? 'mdi mdi-check-circle' : 'mdi mdi-record-circle')
+const headerIconColor = (index: number) => (localCurrentStep.value >= index ? 'var(--primary-variant)' : 'var(--disabled)')
 </script>
 
 <style scoped>
-.form-steps {
+:deep(.p-steps-item) {
+	cursor: default !important;
+	pointer-events: none;
+}
+
+:deep(.p-steps-title) {
+	cursor: default !important;
+	pointer-events: none;
+}
+
+.step-header {
 	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-}
-
-.form-steps-row {
-	display: flex;
-	flex-direction: row;
-	gap: 1rem;
-}
-
-.steps-column {
-	flex: 0 0 auto;
-}
-
-.steps-card {
-	border-radius: 20px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-	background: #fff;
-	padding: 0.75rem 0.5rem;
-}
-
-.steps-container {
-	display: flex;
-	flex-direction: column;
-	gap: 0.75rem;
-}
-
-.step-item {
-	display: flex;
-	align-items: flex-start;
-	gap: 0.75rem;
-}
-
-.icon-container {
-	position: relative;
-	display: flex;
-	flex-direction: column;
 	align-items: center;
-	min-width: 24px;
+	gap: 0.75rem;
 }
 
-.icon-container i {
-	font-size: 22px;
-}
-
-.vertical-line {
-	position: absolute;
-	top: 26px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 2px;
-	height: calc(100% - 26px);
-	background-color: var(--disabled);
+.step-header-texts {
+	display: flex;
+	flex-direction: column;
 }
 
 .step-title {
@@ -215,20 +175,6 @@ const disableNextButton = computed(() => props.disableNextButton ?? false)
 	font-size: 0.85rem;
 	color: var(--subtitle);
 	margin-top: -2px;
-}
-
-.content-column {
-	flex: 1 1 auto;
-}
-
-.content-card {
-	border-radius: 20px;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-	background: #fff;
-}
-
-.content-wrapper {
-	padding: 0.75rem 1rem;
 }
 
 .content-title {
