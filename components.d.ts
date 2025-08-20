@@ -11,7 +11,7 @@ declare module 'vue' {
     AreaChart: typeof import('./src/components/KPICharts/charts/AreaChart.vue')['default']
     ChartCardTitle: typeof import('./src/components/KPICharts/ChartCardTitle.vue')['default']
     Checkbox: typeof import('./src/components/FilterSearch/filters/Checkbox.vue')['default']
-    DataTable: typeof import('./src/components/PrimeVueDataTable/DataTable.vue')['default']
+    DataTable: typeof import('./src/components/PVueDataTable/DataTable.vue')['default']
     DateRange: typeof import('./src/components/FilterSearch/filters/DateRange.vue')['default']
     DonutChart: typeof import('./src/components/KPICharts/charts/DonutChart.vue')['default']
     FilterRow: typeof import('./src/components/FilterSearch/FilterRow.vue')['default']
@@ -35,10 +35,12 @@ declare module 'vue' {
     MTabTable: typeof import('./src/components/MTabTable/MTabTable.vue')['default']
     MTitleView: typeof import('./src/components/MTitleView/MTitleView.vue')['default']
     MultiCheckbox: typeof import('./src/components/FilterSearch/filters/MultiCheckbox.vue')['default']
+    PDataTable: typeof import('./src/components/PVueDataTable/PDataTable.vue')['default']
+    PTitleView: typeof import('./src/components/PVueTitleView/PTitleView.vue')['default']
     Range: typeof import('./src/components/FilterSearch/filters/Range.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBox: typeof import('./src/components/FilterSearch/SearchBox.vue')['default']
-    TitleView: typeof import('./src/components/PrimeVueTitleView/TitleView.vue')['default']
+    TitleView: typeof import('./src/components/PVueTitleView/TitleView.vue')['default']
   }
 }

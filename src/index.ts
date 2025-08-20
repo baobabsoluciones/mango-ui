@@ -19,5 +19,5 @@ export { default as MDataTable } from './components/MDataTable/MDataTable.vue'
 export { default as MCheckboxOptions } from './components/MCheckboxOptions/MCheckboxOptions.vue'
 export { default as MTabTable } from './components/MTabTable/MTabTable.vue'
 
-export { default as TitleView } from './components/PrimeVueTitleView/TitleView.vue'
-export { default as DataTable } from './components/PrimeVueDataTable/DataTable.vue'
+export { default as PTitleView } from './components/PVueTitleView/PTitleView.vue'
+export { default as PDataTable } from './components/PVueDataTable/PDataTable.vue'
