@@ -35,6 +35,7 @@ declare module 'vue' {
     MTitleView: typeof import('./src/components/MTitleView/MTitleView.vue')['default']
     MultiCheckbox: typeof import('./src/components/FilterSearch/filters/MultiCheckbox.vue')['default']
     PAppBarTab: typeof import('./src/components/PAppBarTab/PAppBarTab.vue')['default']
+    PAppDrawer: typeof import('./src/components/PAppDrawer/PAppDrawer.vue')['default']
     PDataTable: typeof import('./src/components/PVueDataTable/PDataTable.vue')['default']
     PFormSteps: typeof import('./src/components/PFormSteps/PFormSteps.vue')['default']
     PTitleView: typeof import('./src/components/PVueTitleView/PTitleView.vue')['default']
