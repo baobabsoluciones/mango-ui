@@ -24,3 +24,4 @@ export { default as PDataTable } from './components/PVueDataTable/PDataTable.vue
 export { default as PFormSteps } from './components/PFormSteps/PFormSteps.vue'
 export { default as PAppBarTab } from './components/PAppBarTab/PAppBarTab.vue'
 export { default as PAppDrawer } from './components/PAppDrawer/PAppDrawer.vue'
+export { default as PTabTable } from './components/PTabTable/PTabTable.vue'

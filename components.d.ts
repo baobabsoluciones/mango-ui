@@ -38,6 +38,7 @@ declare module 'vue' {
     PAppDrawer: typeof import('./src/components/PAppDrawer/PAppDrawer.vue')['default']
     PDataTable: typeof import('./src/components/PVueDataTable/PDataTable.vue')['default']
     PFormSteps: typeof import('./src/components/PFormSteps/PFormSteps.vue')['default']
+    PTabTable: typeof import('./src/components/PTabTable/PTabTable.vue')['default']
     PTitleView: typeof import('./src/components/PVueTitleView/PTitleView.vue')['default']
     Range: typeof import('./src/components/FilterSearch/filters/Range.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
