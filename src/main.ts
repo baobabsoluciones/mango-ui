@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
-import '@/assets/styles/style.css'
-import '@/assets/styles/variables.css'
+/* import '@/assets/styles/style.css'
+import '@/assets/styles/variables.css' */
+
 import App from '@/App.vue'
 import VueApexCharts from 'vue3-apexcharts'
 
