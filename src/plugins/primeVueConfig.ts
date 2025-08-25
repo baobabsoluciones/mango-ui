@@ -6,9 +6,5 @@ import Aura from '@primeuix/themes/aura'
 import type { App } from 'vue'
 
 export const registerPlugins = (app: App) => {
-  app.use(PrimeVue, {
-    theme: {
-      preset: Aura
-    }
-  });
+  app.use(PrimeVue, { unstyled: true });
 }
