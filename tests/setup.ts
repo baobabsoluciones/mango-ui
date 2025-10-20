@@ -1,18 +1,13 @@
-import { enableAutoUnmount } from '@vue/test-utils'
-import { afterEach } from 'vitest'
-
-enableAutoUnmount(afterEach)
-
 /* With jest-dom the resizeObserver seems to not be included, it is used by Vuetify so we have
    to include it somehow for tests.
 */
-global.ResizeObserver = class ResizeObserver {
-  constructor(callback) {
-    this.callback = callback
+(global as any).ResizeObserver = class ResizeObserver {
+  constructor(callback: (entries: any[]) => void) {
+    (this as any).callback = callback
   }
   disconnect() {}
-  observe(element) {
-    this.callback([
+  observe(element: any) {
+    (this as any).callback([
       {
         target: element,
         contentRect: {
@@ -30,3 +25,19 @@ global.ResizeObserver = class ResizeObserver {
   }
   unobserve() {}
 }
+
+// Polyfill for visualViewport API used by Vuetify
+Object.defineProperty(window, 'visualViewport', {
+  writable: true,
+  value: {
+    width: 1920,
+    height: 1080,
+    scale: 1,
+    offsetLeft: 0,
+    offsetTop: 0,
+    pageLeft: 0,
+    pageTop: 0,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  },
+})
