@@ -10,6 +10,7 @@ This page provides documentation for all components in our library.
 - [MDragNDropFile](#dragndropfile)
 - [MFormSteps](#mformsteps)
 - [MTitleView](#mtitleview)
+- [MDropdownMenu](#mdropdownmenu)
 - [MAppBarTab](#mappbartab)
 - [MInfoCard](#minfocard)
 - [MPanelData](#mpaneldata)
@@ -217,12 +218,25 @@ It provides flexibility in customizing button appearance and behavior by allowin
 ### Props
 
 - `label`: String - It is the text label to display on the button.
+- `text`: String - Alias of `label`.
 - `icon`: String - Name of the Material Design Icons (MDI) icon to display on the button.
-- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' or 'append-icon'.
-- `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)) or the name of the material color (for example success or purple)
+- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' (or 'before') or 'append-icon' (or 'after').
+- `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)), the name of the material color (for example success or purple), or 'danger', 'warning' and 'success', which use the CSS variables of the library.
+- `backgroundColor`: String - Overrides `color`.
+- `textColor`: String - Text color of the button.
 - `rounded`: String - Controls the roundedness of the button's corners. Possible values are '0', 'xs', 'sm', 'lg' or 'xl'.
-- `size`: String - Controls the size of the button. Accepted values are 'x-small', 'small', 'large' or 'x-large'.
-- `variant`: String - Controls the appearance or style of the botton. Possible values are elevated(default), flat, tonal, outlined, text, and plain.
+- `size`: String - Controls the size of the button. Accepted values are 'xs' or 'x-small', 'small', 'large' and 'xl' or 'x-large'.
+- `variant`: String - Controls the appearance or style of the botton. Possible values are flat (default), elevated, tonal, outlined, text and plain. 'filled' is an alias of flat, and 'icon' renders an icon-only button.
+
+### Emits
+
+- `click`: Emitted with the native event when the button is clicked.
+
+### Slots
+
+- `default`: Replaces the text of the button.
+
+`loading`, `disabled`, `title` and any other attribute are passed to v-btn.
 
 ### Usage
 
@@ -535,6 +549,16 @@ The MTitleView component is a Vue 3 component designed to display a title along 
 - `icon`: String - The name of the icon to display alongside the title.
 - `title`: String - The main title to be displayed.
 - `description`: String - An optional description to provide additional context or details.
+- `dropdownItems`: Array - Items of an MDropdownMenu shown on the right of the title. See [MDropdownMenu](#mdropdownmenu).
+- `dropdownSections`: Array - Sections of the MDropdownMenu.
+
+### Emits
+
+- `dropdown-item-click`: Emitted with the item when a dropdown item is clicked. The item's `action` has already run.
+
+### Slots
+
+- `actions`: Replaces the dropdown menu on the right of the title.
 
 ### Usage
 
@@ -545,10 +569,46 @@ To use the MTitleView component, import it into the script of your Vue project:
   :icon="'mdi-check'"
   :title="'Title'"
   :description="'Description text goes here'"
+  :dropdown-items="[{ title: 'Export', icon: 'mdi-download', action: exportData }]"
 />
 ```
 
 This will render a title along with an icon, if provided, and an optional description. The appearance of the title and description can be customized using CSS styles defined within the component.
+
+## MDropdownMenu
+
+The `MDropdownMenu` component shows a menu of actions behind a button with three vertical dots. It is built on v-menu and v-list from Vuetify.
+
+### Props
+
+- `items`: DropdownItem[] - Items of the menu. Each item has `title` and, optionally, `id`, `icon`, `rightIcon`, `rightContent`, `disabled`, `action` and `data`.
+- `sections`: DropdownSection[] - Groups of items, each with an optional `title`. They are rendered before `items`, separated by dividers.
+- `modelValue`: Boolean - Whether the menu is open. Use it with `v-model`.
+- `closeOnItemClick`: Boolean - Closes the menu after an item is clicked. Defaults to true.
+
+### Emits
+
+- `item-click`: Emitted with the item when it is clicked. The item's `action` runs before the event, so listeners must not call it again. Disabled items do nothing.
+- `update:modelValue`: Emitted when the menu opens or closes.
+
+### Slots
+
+- `activator`: Replaces the default button. Receives `props`, which must be bound to the element, and `isOpen`.
+- `content`: Extra content at the end of the list.
+
+### Usage
+
+```vue
+<MDropdownMenu
+  :items="[
+    { title: 'Edit', icon: 'mdi-pencil', action: edit },
+    { title: 'Delete', icon: 'mdi-delete', disabled: !canDelete },
+  ]"
+  @item-click="onItemClick"
+/>
+```
+
+The `DropdownItem` and `DropdownSection` types are exported from `mango-vue`.
 
 ## MAppBarTab Component
 

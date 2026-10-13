@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0] - 13/10/2026
+
+### Breaking
+- Build: `vue` and `vuetify` are now `peerDependencies` and are no longer bundled. Consumers must install Vuetify (^3.9.0) and load its CSS themselves; `mango-vue` no longer imports `vuetify/dist/vuetify.min.css`
+
+### Added
+- Feature: New `MDropdownMenu` component (items, sections, activator and content slots, `v-model`), plus exported `DropdownItem` and `DropdownSection` types
+- Feature: MTitleView accepts `dropdownItems` and `dropdownSections` props, emits `dropdown-item-click` and has an `actions` slot
+- Feature: MButton accepts `text` (alias of `label`), `backgroundColor`, `textColor`, a default slot and declares the `click` emit
+- Feature: MButton accepts `filled` / `icon` variants, `xs` / `xl` sizes, `before` / `after` icon positions and `danger` / `warning` / `success` colors
+- Feature: New `--primary-light-variant` CSS variable
+
+### Changed
+- Style: MButton uses font weight 600 and 12px border radius; removed the unused uppercase class
+- Style: MButton with `variant="icon"` or an icon without text renders as a Vuetify icon button
+
 ## [0.2.7] - 22/05/2025
 
 ### Added

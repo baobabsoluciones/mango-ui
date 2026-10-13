@@ -21,9 +21,11 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'mango-vue',
+      // Consumers import 'mango-vue/dist/style.css'
+      cssFileName: 'style',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vuetify', /^vuetify\//],
       output: {
         globals: {
           vue: 'Vue',
