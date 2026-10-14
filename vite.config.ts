@@ -21,16 +21,14 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'mango-vue',
+      // ES only: vue and vuetify are peer dependencies resolved by the consumer
+      formats: ['es'],
+      fileName: 'mango-vue',
       // Consumers import 'mango-vue/dist/style.css'
       cssFileName: 'style',
     },
     rollupOptions: {
       external: ['vue', 'vuetify', /^vuetify\//],
-      output: {
-        globals: {
-          vue: 'Vue',
-        },
-      },
     },
   },
   resolve: {

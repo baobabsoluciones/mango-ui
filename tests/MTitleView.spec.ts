@@ -124,6 +124,22 @@ describe('MTitleView.vue', () => {
     expect(wrapper.emitted('dropdown-item-click')![0]).toEqual([item])
   })
 
+  test('does not crash with null dropdown props', ({ expect }) => {
+    const wrapper = mount(MTitleView, {
+      props: {
+        icon: 'mdi-home',
+        title: 'Home',
+        dropdownItems: null,
+        dropdownSections: null,
+      },
+      global: {
+        plugins: [vuetify],
+      },
+    })
+    expect(wrapper.find('.title').text()).toBe('Home')
+    expect(wrapper.find('.actions').exists()).toBe(false)
+  })
+
   test('renders the actions slot', ({ expect }) => {
     const wrapper = mount(MTitleView, {
       props: {

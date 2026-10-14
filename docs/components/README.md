@@ -220,12 +220,12 @@ It provides flexibility in customizing button appearance and behavior by allowin
 - `label`: String - It is the text label to display on the button.
 - `text`: String - Alias of `label`.
 - `icon`: String - Name of the Material Design Icons (MDI) icon to display on the button.
-- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' (or 'before') or 'append-icon' (or 'after').
-- `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)), the name of the material color (for example success or purple), or 'danger', 'warning' and 'success', which use the CSS variables of the library.
-- `backgroundColor`: String - Overrides `color`.
-- `textColor`: String - Text color of the button.
+- `iconPosition`: String - Determines the position of the icon relative to the label. Can be 'prepend-icon' (or 'before', the default) or 'append-icon' (or 'after').
+- `color`: String - The background color of the button. Accepts any valid CSS color value (for example #033 or rgba(255, 0, 0, 0.5)), the name of the material color (for example purple), or 'primary' (default), 'danger', 'warning' and 'success', which use the CSS variables of the library. 'grey' keeps the default text color.
+- `backgroundColor`: String - Background color of filled buttons. It overrides `color`, so on outlined, text and icon buttons it becomes the text and border color.
+- `textColor`: String - Text color of the button. By default, filled buttons with a CSS variable color get white text, and outlined ones dark text with a colored border.
 - `rounded`: String - Controls the roundedness of the button's corners. Possible values are '0', 'xs', 'sm', 'lg' or 'xl'.
-- `size`: String - Controls the size of the button. Accepted values are 'xs' or 'x-small', 'small', 'large' and 'xl' or 'x-large'.
+- `size`: String - Controls the size of the button. Accepted values are 'xs' (28px high), 'small' (36px), 'default' (44px), 'large' (52px) and 'xl' (60px). 'x-small' and 'x-large' are aliases of 'xs' and 'xl'. Without `size`, the button keeps the Vuetify default height.
 - `variant`: String - Controls the appearance or style of the botton. Possible values are flat (default), elevated, tonal, outlined, text and plain. 'filled' is an alias of flat, and 'icon' renders an icon-only button.
 
 ### Emits
@@ -608,7 +608,7 @@ The `MDropdownMenu` component shows a menu of actions behind a button with three
 />
 ```
 
-The `DropdownItem` and `DropdownSection` types are exported from `mango-vue`.
+Items follow the `DropdownItem` and `DropdownSection` shapes described above. The package does not ship TypeScript declarations yet.
 
 ## MAppBarTab Component
 

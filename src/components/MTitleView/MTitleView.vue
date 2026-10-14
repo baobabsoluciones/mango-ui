@@ -56,7 +56,10 @@ export default {
   emits: ['dropdown-item-click'],
   computed: {
     hasDropdownActions() {
-      return this.dropdownItems.length > 0 || this.dropdownSections.length > 0
+      return (
+        (this.dropdownItems?.length ?? 0) > 0 ||
+        (this.dropdownSections?.length ?? 0) > 0
+      )
     },
   },
 }
