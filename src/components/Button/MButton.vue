@@ -161,9 +161,10 @@ export default {
       if (isCssVariable && FILLED_VARIANTS.includes(this.resolvedVariant)) {
         style.color = 'white'
       }
-      // Outlined buttons keep dark text and use the color for the border
+      // Outlined buttons keep dark text on white and use the color for the border
       if (isCssVariable && this.resolvedVariant === 'outlined') {
         style.color = '#333333'
+        style.backgroundColor = 'white'
         style.borderColor = this.resolvedColor as string
       }
       if (this.textColor) style.color = this.textColor
@@ -179,6 +180,7 @@ export default {
 .v-btn.m-button {
   font-weight: 600;
   letter-spacing: 0;
+  text-indent: 0;
 }
 
 .m-button__content {
@@ -191,11 +193,56 @@ export default {
   font-size: 1.25em;
 }
 
+/*
+ * With an explicit size, MButton follows the cornflow button design
+ * (the former CoreButton): system font, height scale, paddings, gaps,
+ * icon sizes, disabled opacity and hover effects.
+ */
+.v-btn.m-button[class*='m-button--size-'] {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.v-btn.m-button[class*='m-button--size-'] .v-btn__overlay {
+  display: none;
+}
+
+.v-btn.m-button[class*='m-button--size-'].v-btn--disabled {
+  opacity: 0.6;
+}
+
+.v-btn.m-button[class*='m-button--size-'].v-btn--disabled .v-btn__underlay {
+  display: none;
+}
+
+/* Hover effects */
 .v-btn.m-button--filled:not(.v-btn--disabled) {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Height scale shared with the rest of the cornflow design */
+.v-btn.m-button--filled[class*='m-button--size-']:not(.v-btn--disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.v-btn.m-button--filled[class*='m-button--size-']:not(.v-btn--disabled):active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.v-btn.m-button.v-btn--variant-outlined[class*='m-button--size-']:hover {
+  opacity: 0.9;
+}
+
+.v-btn.m-button.v-btn--variant-text[class*='m-button--size-']:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.v-btn.m-button.v-btn--variant-text[class*='m-button--size-']:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Height scale */
 .v-btn.m-button--size-xs:not(.v-btn--icon) {
   --v-btn-height: 28px;
   font-size: 12px;
@@ -231,6 +278,61 @@ export default {
   border-radius: 16px;
 }
 
+/* Text buttons have smaller side paddings */
+.v-btn.m-button--size-xs.v-btn--variant-text:not(.v-btn--icon) {
+  padding: 0 8px;
+}
+
+.v-btn.m-button--size-small.v-btn--variant-text:not(.v-btn--icon) {
+  padding: 0 12px;
+}
+
+.v-btn.m-button--size-default.v-btn--variant-text:not(.v-btn--icon) {
+  padding: 0 20px;
+}
+
+.v-btn.m-button--size-large.v-btn--variant-text:not(.v-btn--icon) {
+  padding: 0 20px;
+}
+
+.v-btn.m-button--size-xl.v-btn--variant-text:not(.v-btn--icon) {
+  padding: 0 24px;
+}
+
+/* Gap and icon size */
+.m-button--size-xs .m-button__content,
+.m-button--size-small .m-button__content {
+  gap: 6px;
+}
+
+.m-button--size-large .m-button__content {
+  gap: 10px;
+}
+
+.m-button--size-xl .m-button__content {
+  gap: 12px;
+}
+
+.m-button--size-xs .v-icon {
+  font-size: 14px;
+}
+
+.m-button--size-small .v-icon {
+  font-size: 16px;
+}
+
+.m-button--size-default .v-icon {
+  font-size: 18px;
+}
+
+.m-button--size-large .v-icon {
+  font-size: 20px;
+}
+
+.m-button--size-xl .v-icon {
+  font-size: 22px;
+}
+
 /* Icon-only buttons */
 .v-btn.m-button--size-xs.v-btn--icon {
   width: 24px;
@@ -253,11 +355,16 @@ export default {
 .v-btn.m-button--size-large.v-btn--icon {
   width: 40px;
   height: 40px;
+  border-radius: 12px;
 }
 
 .v-btn.m-button--size-xl.v-btn--icon {
   width: 44px;
   height: 44px;
   border-radius: 14px;
+}
+
+.v-btn.m-button.v-btn--icon[class*='m-button--size-']:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 </style>
