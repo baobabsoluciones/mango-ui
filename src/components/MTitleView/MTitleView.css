@@ -3,6 +3,25 @@
   flex-direction: column;
 }
 
+.icon-title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.icon-title-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
 .icon-title-row {
   display: flex;
   align-items: center;
